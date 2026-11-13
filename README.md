@@ -35,10 +35,15 @@ css/styles.css          All styles and themes
 js/game-data.js         Item, level, cost and time data
 js/app.js               App logic
 assets/townhalls/       Town Hall pictures, th1.webp to th18.webp
-dist/                   Single-file build (everything inlined)
+scripts/build-single.mjs Builds the single-file version
+dist/                   Single-file build output (git-ignored)
 ```
 
-`dist/clash-of-clans-dashboard-and-planner.html` is the same app as one self-contained file, handy for sharing or opening offline.
+`dist/clash-of-clans-dashboard-and-planner.html` is the same app as one self-contained file, handy for sharing or opening offline. Regenerate it after changing the sources (needs Node.js, no packages):
+
+```bash
+node scripts/build-single.mjs
+```
 
 ## Data and storage
 
