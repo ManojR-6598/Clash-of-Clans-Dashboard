@@ -1,0 +1,6 @@
+{
+  "files.readonlyInclude": {
+    "**/QEngine/**/elements.json": true,
+    "**/QEngine/**/environment.json": true
+  }
+}
