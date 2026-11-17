@@ -15,6 +15,11 @@ const parseDay=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,
 const seasonKey=ms=>{const d=new Date(ms);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")};
 function resHTML(obj,keys){keys=keys||Object.keys(obj);const parts=keys.filter(k=>obj[k]>0).map(k=>`<span class="res" title="${esc(RES[k]||k)}"><i class="dot d-${esc(k)}"></i>${fmtNum(obj[k])}</span>`);return parts.length?parts.join(" "):'<span class="muted">—</span>';}
 function toast(t){const el=document.createElement("div");el.className="toast";el.textContent=t;document.body.appendChild(el);setTimeout(()=>el.remove(),2400);}
+/* every error is kept here and listed on the Overview, alongside problems found in the export */
+const ERRS=[];
+function logErr(src,e){const msg=String((e&&e.message)||e||"Unknown error");console.error(src,e);const hit=ERRS.find(x=>x.src===src&&x.msg===msg);if(hit){hit.n++;hit.at=Date.now();}else ERRS.push({src,msg,at:Date.now(),n:1});if(ERRS.length>50)ERRS.shift();refreshErrs();}
+window.addEventListener("error",ev=>logErr("Script",ev.error||ev.message));
+window.addEventListener("unhandledrejection",ev=>logErr("Script",ev.reason));
 const sum=a=>a.reduce((x,y)=>x+y,0);
 function addRes(t,c,r,mult){mult=mult??1;if(c==null)return;if(typeof c==="object"){for(const k in c){if(c[k])t[k]=(t[k]||0)+c[k]*mult;}return;}if(!c)return;const k=RES[r]?r:(String(r).startsWith("Builder Gold")?"BG":(r||"G"));t[k]=(t[k]||0)+c*mult;}
 
@@ -150,7 +155,7 @@ const Store={db:null,mode:"loading",cache:{accounts:[],snapshots:[],seasons:[],i
   async init(){
     let db=null;
     this.db=db;this.mode=db?"db":"local";
-    for(const c of Object.keys(this.cache)){try{this.cache[c]=await this.list(c);}catch(e){console.warn("load",c,e);this.cache[c]=[];}}
+    for(const c of Object.keys(this.cache)){try{this.cache[c]=await this.list(c);}catch(e){logErr("Loading saved "+c,e);this.cache[c]=[];}}
   },
   local(){try{return JSON.parse(localStorage.getItem(LSKEY)||"{}")}catch(e){return{}}},
   saveLocal(o){try{localStorage.setItem(LSKEY,JSON.stringify(o))}catch(e){}},
@@ -183,7 +188,7 @@ try{S.acct=localStorage.getItem("coc-ledger-acct");S.tab=localStorage.getItem("c
 const TABS=[["overview","Overview"],["home","Home Village"],["heroes","Heroes & Gear"],["lab","Lab"],["builder","Builder Base"],["events","Events & Effects"],["planner","Planner"],["log","Item log"],["about","Data notes"]];
 const memo=new Map();let CUR=null;
 function snapsFor(k){return Store.cache.snapshots.filter(s=>s.tag===k).sort((a,b)=>a.ts-b.ts);}
-function parsed(s){if(memo.has(s._id))return memo.get(s._id);let exp;try{exp=typeof s.raw==="string"?JSON.parse(s.raw):s.raw;}catch(e){exp=null;}const v={exp,home:exp&&computeVillage(exp,"h"),bb:exp&&computeVillage(exp,"b")};memo.set(s._id,v);return v;}
+function parsed(s){if(memo.has(s._id))return memo.get(s._id);let exp;try{exp=typeof s.raw==="string"?JSON.parse(s.raw):s.raw;}catch(e){exp=null;logErr("Snapshot",new Error("The snapshot from "+dateStr((s.ts||0)*1000)+" isn't valid JSON: "+e.message));}let home=null,bb=null;if(exp){try{home=computeVillage(exp,"h");bb=computeVillage(exp,"b");}catch(e){logErr("Reading the export",e);}}const v={exp,home,bb};memo.set(s._id,v);return v;}
 function latest(){const a=snapsFor(S.acct);return a.length?a[a.length-1]:null;}
 function account(k){return Store.cache.accounts.find(a=>a._id===k);}
 
@@ -294,7 +299,7 @@ async function syncNames(btn){
     const other=[...(CUR.P.home.unknown||[]),...((CUR.P.bb&&CUR.P.bb.unknown)||[])].filter(id=>!BY_ID[id]&&!skipped.includes(id));
     toast(out.length?`Named ${out.map(i=>i.n).join(", ")}`+(skipped.length+other.length?` · ${skipped.length+other.length} still unknown`:""):"No new names matched. Only equipment can be named so far.");
     render();
-  }catch(e){toast(e.message);btn.disabled=false;btn.textContent="Fetch names from Clash of Clans API";}
+  }catch(e){logErr("API sync",e);toast(e.message);btn.disabled=false;btn.textContent="Fetch names from Clash of Clans API";}
 }
 
 function render(){
@@ -306,10 +311,11 @@ function render(){
   const snap=latest();
   if(!snap){main.innerHTML=storageBanner()+`<section class="panel empty"><h2>No village yet</h2><p class="muted" style="max-width:52ch;margin:0">Paste the JSON from Settings → More Settings → Data Export. The tracker reads your Town Hall, buildings, heroes, equipment, lab and Builder Base, and keeps every import as a dated snapshot.</p><button class="btn gold" type="button" data-act="import">Import your first export</button></section>`;return;}
   const P=parsed(snap);
-  if(!P.exp||!P.home){main.innerHTML=`<div class="banner">This snapshot could not be read. Try importing the export again.</div>`;return;}
+  if(!P.exp||!P.home){CUR=null;main.innerHTML=`<div class="banner">This snapshot could not be read. Try importing the export again.</div>`+errPanel();return;}
   const V={snap,P,acc:account(S.acct),fx:effectsNow(S.acct)};FX=V.fx;CUR=V;{const de=document.documentElement;const th=P.home.th||0;if(th){de.dataset.th=String(Math.min(th,18));if(th>18)de.dataset.thMax="";else delete de.dataset.thMax;}}
   const views={overview:viewOverview,home:viewHome,heroes:viewHeroes,lab:viewLab,builder:viewBuilder,planner:viewPlanner,log:viewLog};
-  main.innerHTML=storageBanner()+(["overview","home","heroes","lab","planner"].includes(S.tab)?fxBanner():"")+(views[S.tab]||viewOverview)(V);
+  try{main.innerHTML=storageBanner()+(["overview","home","heroes","lab","planner"].includes(S.tab)?fxBanner():"")+(views[S.tab]||viewOverview)(V);}
+  catch(e){logErr("Showing the "+(TABS.find(x=>x[0]===S.tab)||[,S.tab])[1]+" tab",e);main.innerHTML=errPanel();return;}
   applySorts();
   if(S.tab==="overview")tick();
 }
@@ -319,13 +325,12 @@ function catBars(v,keys){return`<div class="cats">${v.groups.filter(g=>!keys||ke
 function viewOverview(V){
   const h=V.P.home,b=V.P.bb,exp=V.P.exp,fx=V.fx;const hl=helperLevels(exp);const acc=V.acc||{};
   const vb=S.ovBase==="b"?"b":"h";
-  const unk=h.unknown.concat(b?b.unknown:[]).filter(id=>!isEquipId(id));
   const tmsFor=base=>timersOf(exp).filter(t=>t.base===base);
   const nextPanel=(base,tab)=>{const all=tmsFor(base);const up=all.filter(t=>t.to!=null);const cd=all.filter(t=>t.to==null);const tms=up;return`<section class="panel"><div class="panel-h"><h3>Finishing next · ${base==="Home"?"TH"+h.th:"BH"+(b?b.th:"")}</h3><span class="small muted"><span data-ups="${up.map(t=>t.end).join(",")}">${up.length} upgrade${up.length===1?"":"s"} running</span> · from the snapshot taken ${dateStr(V.snap.ts*1000)}; boosts or potions used since then aren't reflected</span></div>
     ${(()=>{const H=base==="Home";const wrap=l=>`<div class="timers">${l.map(timerTileC).join("")}</div>`;return all.length?wrap(all):`<p class="muted">Nothing upgrading in this village.</p>`;})()}</section>`;};
   const seg=`<div class="seg" role="group" aria-label="Village">${[["h","Home Village"],["b","Builder Base"]].map(([v,l])=>`<button type="button" data-act="ovbase" data-v="${v}" aria-pressed="${vb===v}">${l}</button>`).join("")}</div>`;
   const head=`<section class="panel"><div class="panel-h" style="margin:0"><h2>${esc(acc.name||exp.tag)} <span class="muted small" style="font-family:var(--body)">${esc(exp.tag)}</span></h2><span class="small muted">Snapshot ${dateStr(V.snap.ts*1000)}</span></div><div style="margin-top:12px">${seg}</div></section>`;
-  const banner=unk.length?`<div class="banner">Unknown item IDs in this export (shown as unknown, not counted): ${unk.map(esc).join(", ")}. The game data may be older than your game version. <button class="btn ghost sm" type="button" data-act="syncnames">Fetch names from Clash of Clans API</button></div>`:"";
+  const banner=errPanel();
   const dayTxt=(adj,base)=>Math.abs(adj-base)>0.05?`<b>≈ ${adj.toFixed(1)} days</b> <s>${base.toFixed(1)}</s>`:`≈ ${base.toFixed(1)} days`;
 
   if(vb==="h"){
@@ -431,6 +436,17 @@ function onSortHead(th){const tbl=th.closest("table");if(!tbl||!tbl.tHead||!tbl.
 document.addEventListener("click",ev=>{const th=ev.target.closest&&ev.target.closest("main thead th");if(th)onSortHead(th);});
 document.addEventListener("keydown",ev=>{if((ev.key==="Enter"||ev.key===" ")&&ev.target.matches&&ev.target.matches("main thead th")){ev.preventDefault();onSortHead(ev.target);}});
 const isEquipId=id=>id>=90000000&&id<91000000;
+const ID_KIND=[[1000000,"building"],[4000000,"troop"],[12000000,"trap"],[26000000,"spell"],[28000000,"hero"],[73000000,"pet"],[90000000,"equipment"]];
+const idKind=id=>(ID_KIND.find(([b])=>id>=b&&id<b+1000000)||[,"item"])[1];
+function errPanel(){
+  const rows=[];const P=CUR&&CUR.P;let unkEquip=false;
+  if(P&&P.exp){const lvl=id=>{for(const k in P.exp){const l=P.exp[k];if(Array.isArray(l)){const e=l.find(x=>x&&x.data===id);if(e)return e.lvl;}}};
+    for(const [v,name] of [[P.home,"Home Village"],[P.bb,"Builder Base"]]){const u=v?v.unknown.filter(id=>!BY_ID[id]):[];if(!u.length)continue;if(u.some(isEquipId))unkEquip=true;
+      rows.push(`<li><b>${name}:</b> ${u.length} unknown ID${u.length>1?"s":""}, not counted: ${u.map(id=>`${idKind(id)} <code>${id}</code>${lvl(id)?" (L"+lvl(id)+")":""}`).join(", ")}. The game data is older than your game version.</li>`);}}
+  for(const e of ERRS)rows.push(`<li><b>${esc(e.src)}:</b> ${esc(e.msg)} <span class="muted small">${dateStr(e.at)}${e.n>1?" · ×"+e.n:""}</span></li>`);
+  if(!rows.length)return'<div id="ovErrs" hidden></div>';
+  return`<section class="panel errs" id="ovErrs" role="alert"><div class="panel-h"><h3>Errors (${rows.length})</h3><span>${unkEquip?'<button class="btn ghost sm" type="button" data-act="syncnames">Fetch names from Clash of Clans API</button> ':""}${ERRS.length?'<button class="btn ghost sm" type="button" data-act="clearerrs">Clear</button>':""}</span></div><ul>${rows.join("")}</ul></section>`;}
+function refreshErrs(){const el=document.getElementById("ovErrs");if(el)el.outerHTML=errPanel();}
 function heroName(slug){if(!slug)return"Unknown hero";return String(slug).split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");}
 function viewHome(V){const h=V.P.home;return`<section class="panel"><div class="panel-h"><h2>Home Village · Town Hall ${h.th}</h2><span class="muted small">Max levels are for TH${h.th}. "Rushed" means below the TH${h.th-1} max.</span></div>${catBars(h,["defense","army","resource","trap","wall"])}</section>`+["defense","army","resource","trap","wall"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("");}
 function viewHeroes(V){const h=V.P.home;const exp=V.P.exp;
@@ -567,6 +583,7 @@ document.addEventListener("click",async ev=>{
     if(a==="import"){openImport();}
     else if(a==="ovbase"){S.ovBase=t.dataset.v;render();}
     else if(a==="syncnames"){await syncNames(t);}
+    else if(a==="clearerrs"){ERRS.length=0;refreshErrs();}
     else if(a==="copies"){const k=t.dataset.k;const op=!S.open.has(k);if(op)S.open.add(k);else S.open.delete(k);t.setAttribute("aria-expanded",String(op));document.querySelectorAll("tr.copy-row").forEach(tr=>{if(tr.dataset.p===k)tr.hidden=!op;});}
     else if(a==="delsnap"){if(t.dataset.confirm!=="1"){t.dataset.confirm="1";t.textContent="Confirm delete";return;}await Store.del("snapshots",t.dataset.id);memo.delete(t.dataset.id);toast("Snapshot deleted");render();}
     else if(a==="saveseason"){await saveSeason({points:Number($("#spPoints").value)||0,notes:$("#spNotes").value});toast("Season saved");render();}
@@ -579,7 +596,7 @@ document.addEventListener("click",async ev=>{
     else if(a==="saveacc"){const id=t.dataset.id;const acc=account(id);await Store.put("accounts",id,Object.assign({},acc,{name:$(`[data-acc-name="${id}"]`).value.trim(),builders:Number($(`[data-acc-b="${id}"]`).value)||null}));toast("Account saved");render();}
     else if(a==="delacc"){if(t.dataset.confirm!=="1"){t.dataset.confirm="1";t.textContent="Confirm: delete account and its snapshots";return;}const id=t.dataset.id;for(const s of snapsFor(id))await Store.del("snapshots",s._id);await Store.del("accounts",id);S.acct=null;toast("Account deleted");render();}
     else if(a==="backup"){const out=JSON.stringify(Store.cache);const ta=$("#backupOut");try{await navigator.clipboard.writeText(out);toast("Backup copied");}catch(e){ta.hidden=false;ta.value=out;ta.select();toast("Select and copy the text below");}}
-  }catch(e){console.error(e);toast("Couldn't save: "+(e&&e.message||e));}
+  }catch(e){logErr("Saving",e);toast("Couldn't save: "+(e&&e.message||e));}
 });
 document.addEventListener("change",async ev=>{
   const t=ev.target;
@@ -591,20 +608,20 @@ document.addEventListener("change",async ev=>{
     else if(t.id==="compA"){S.compA=t.value;render();}
     else if(t.id==="compB"){S.compB=t.value;render();}
     else if(t.id==="importFile"&&t.files[0]){$("#importText").value=await t.files[0].text();}
-  }catch(e){console.error(e);toast("Couldn't save: "+(e&&e.message||e));}
+  }catch(e){logErr("Saving",e);toast("Couldn't save: "+(e&&e.message||e));}
 });
 function openImport(){$("#importErr").textContent="";$("#importText").value="";$("#importFile").value="";$("#importName").value="";$("#importDlg").showModal();}
 $("#importBtn").addEventListener("click",openImport);
 $("#importForm").addEventListener("submit",async ev=>{ev.preventDefault();const btn=ev.submitter;if(btn)btn.disabled=true;
   try{await importExport($("#importText").value,$("#importName").value.trim());$("#importDlg").close();toast("Snapshot saved");S.tab="overview";render();}
-  catch(e){$("#importErr").textContent=e.message||String(e);}finally{if(btn)btn.disabled=false;}});
+  catch(e){logErr("Import",e);$("#importErr").textContent=e.message||String(e);}finally{if(btn)btn.disabled=false;}});
 $("#eventForm").addEventListener("submit",async ev=>{ev.preventDefault();
   const data={name:$("#evName").value.trim(),type:$("#evType").value,start:$("#evStart").value,end:$("#evEnd").value,notes:$("#evNotes").value.trim(),estimated:false,
     effects:[{target:$("#evTarget").value,costPct:Number($("#evCost").value)||0,timePct:Number($("#evTime").value)||0}]};
   if(data.end<data.start){toast("End date is before the start date");return;}
   const id=editingEv||("c-"+Date.now().toString(36));
-  try{await Store.put("events",id,data);$("#eventDlg").close();toast("Event saved");render();}catch(e){toast("Couldn't save: "+(e.message||e));}});
-$("#evDelete").addEventListener("click",async()=>{if(!editingEv)return;try{if(editingEv.startsWith("b-"))await Store.put("events",editingEv,{hidden:true});else await Store.del("events",editingEv);$("#eventDlg").close();toast("Event hidden");render();}catch(e){toast("Couldn't save: "+(e.message||e));}});
+  try{await Store.put("events",id,data);$("#eventDlg").close();toast("Event saved");render();}catch(e){logErr("Saving",e);toast("Couldn't save: "+(e.message||e));}});
+$("#evDelete").addEventListener("click",async()=>{if(!editingEv)return;try{if(editingEv.startsWith("b-"))await Store.put("events",editingEv,{hidden:true});else await Store.del("events",editingEv);$("#eventDlg").close();toast("Event hidden");render();}catch(e){logErr("Saving",e);toast("Couldn't save: "+(e.message||e));}});
 document.addEventListener("submit",async ev=>{if(ev.target.id!=="calForm")return;ev.preventDefault();
   const err=$("#calErr");err.textContent="";
   const P=parsed(latest());const cands=upgradeCandidates({P}).filter(c=>c.s>0&&(c.q==="Builder"||c.q==="Lab")).slice(0,60);
@@ -618,10 +635,10 @@ document.addEventListener("submit",async ev=>{if(ev.target.id!=="calForm")return
   const q=c.q==="Builder"?"builder":"lab";
   const entry={t:t/c.s,c:amt>0&&base>0?amt/base:null,from:c.name+" L"+c.from+"→L"+c.to+" ("+fmtDur(t)+" vs "+fmtDur(c.s)+")",until,set:now};
   const sd=seasonDoc(S.acct,seasonKey(now))||{};
-  try{await saveSeason({calib:Object.assign({},sd.calib||{},{[q]:entry})});toast("Matched: "+(q==="builder"?"builder":"lab")+" times ×"+entry.t.toFixed(2));render();}catch(e){err.textContent="Couldn't save: "+(e.message||e);}
+  try{await saveSeason({calib:Object.assign({},sd.calib||{},{[q]:entry})});toast("Matched: "+(q==="builder"?"builder":"lab")+" times ×"+entry.t.toFixed(2));render();}catch(e){logErr("Saving",e);err.textContent="Couldn't save: "+(e.message||e);}
 });
 document.addEventListener("submit",async ev=>{if(ev.target.id!=="logForm")return;ev.preventDefault();
-  try{await Store.put("itemlog","l-"+Date.now().toString(36),{tag:S.acct,date:$("#lgDate").value,item:$("#lgItem").value,qty:Number($("#lgQty").value)||1,target:$("#lgOn").value.trim(),notes:$("#lgNotes").value.trim()});toast("Logged");render();}catch(e){toast("Couldn't save: "+(e.message||e));}});
+  try{await Store.put("itemlog","l-"+Date.now().toString(36),{tag:S.acct,date:$("#lgDate").value,item:$("#lgItem").value,qty:Number($("#lgQty").value)||1,target:$("#lgOn").value.trim(),notes:$("#lgNotes").value.trim()});toast("Logged");render();}catch(e){logErr("Saving",e);toast("Couldn't save: "+(e.message||e));}});
 
 
 /* style switcher (remembered per browser) */
@@ -634,5 +651,5 @@ $("#skinSel").addEventListener("change",e=>{applySkin(e.target.value);try{localS
 /* boot */
 window.__ledger={computeVillage,timersOf,GAME,BY_ID};
 render();
-Store.init().then(render).catch(e=>{console.error(e);Store.mode="local";render();});
+Store.init().then(render).catch(e=>{logErr("Opening saved data",e);Store.mode="local";render();});
 })();

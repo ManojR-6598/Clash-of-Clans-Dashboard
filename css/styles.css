@@ -344,3 +344,7 @@ details>summary{cursor:pointer;font-weight:800}
 .xp[aria-expanded="true"]{transform:rotate(90deg)}
 .copy-row td{background:var(--panel2)}
 .copy-n{display:inline-block;padding-left:24px;font-size:.88rem;color:var(--muted)}
+.errs{border:2px solid var(--warn)}
+.errs h3{color:var(--warn)}
+.errs ul{margin:0;padding-left:20px;display:grid;gap:6px}
+.errs code{font-size:.9em}
