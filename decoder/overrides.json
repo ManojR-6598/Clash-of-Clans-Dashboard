@@ -1,0 +1,4 @@
+{
+  "_comment": "Names researched by hand, keyed table:id (tables: buildings, traps, decos, obstacles, characters, heroes, spells, pets, equipment, house_parts, skins, sceneries, helpers, emotes). Each entry needs a name and a source, e.g. \"equipment:90000062\": {\"name\": \"...\", \"hero\": \"barbarian-king\", \"rarity\": \"Epic\", \"source\": \"in-game Blacksmith, 18 Nov 2026\"}. Rebuild with build-id-map.mjs after editing.",
+  "ids": {}
+}

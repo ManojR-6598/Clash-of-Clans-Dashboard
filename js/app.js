@@ -20,7 +20,12 @@ function addRes(t,c,r,mult){mult=mult??1;if(c==null)return;if(typeof c==="object
 
 /* ---------- game data index ---------- */
 const BY_ID={};for(const it of GAME.items)BY_ID[it.id]=it;
-const ID={TH:1000001,BH:1000034,LAB:1000007,HH:1000071,BS:1000070,PH:1000068,SL:1000046,HUT:1000015};
+/* items named through the Clash of Clans API sync, kept per browser until the bundled game data catches up */
+const LEARNED_KEY="coc-ledger-learned";
+function loadLearned(){try{return JSON.parse(localStorage.getItem(LEARNED_KEY)||"[]")}catch(e){return[]}}
+function addLearned(items){for(const it of items)if(!BY_ID[it.id]){GAME.items.push(it);BY_ID[it.id]=it;}}
+addLearned(loadLearned());
+const ID={TH:1000001,BH:1000034,LAB:1000007,HH:1000071,BS:1000070,PH:1000068,SL:1000046,HUT:1000015,OTTO:1000078};
 function bldMaxAt(id,th){const it=BY_ID[id];if(!it)return 0;let m=0;for(const L of it.lv){if(L[4]==null||L[4]<=th)m=Math.max(m,L[0]);}return m;}
 function reqCaps(base,th){return base==="h"?{lab:bldMaxAt(ID.LAB,th),herohall:bldMaxAt(ID.HH,th),blacksmith:bldMaxAt(ID.BS,th),pethouse:bldMaxAt(ID.PH,th)}:{starlab:bldMaxAt(ID.SL,th)};}
 function levelOK(L,th,caps){if(L[4]!=null&&L[4]>th)return false;const rq=L[5];if(rq){for(const k in rq){if(caps[k]!=null&&rq[k]>caps[k])return false;}}return true;}
@@ -123,8 +128,9 @@ function computeVillage(exp,base){
   const done=sum(timed.map(g=>g.done)),rem=sum(timed.map(g=>g.rem));
   const builderCost={},labCost={},wallCost={},ore={};
   for(const g of groups){const t=g.q==="builder"?builderCost:g.q==="lab"||g.q==="pet"?labCost:g.q==="wall"?wallCost:ore;for(const k in g.remCost)t[k]=(t[k]||0)+g.remCost[k];}
-  const huts=H?(owned[ID.HUT]||[]).length:1;
-  return {base,th,hallUp:hall.timer?(exp.timestamp+hall.timer)*1000:0,caps,cur,groups,by,unknown,overall:done+rem>0?done/(done+rem):1,builderTime:sumQ("builder"),labTime:sumQ("lab"),petTime:sumQ("pet"),builderLock:lockQ("builder"),labLock:lockQ("lab"),petLock:lockQ("pet"),builderCost,labCost,wallCost,ore,huts,gearUps:sum(Object.values(owned).flat().map(c=>c.gear?1:0))};
+  const otto=H?0:Math.max(0,...(owned[ID.OTTO]||[]).map(c=>c.lvl));
+  const huts=H?(owned[ID.HUT]||[]).length:1+(otto>0?1:0);
+  return {base,th,hallUp:hall.timer?(exp.timestamp+hall.timer)*1000:0,caps,cur,groups,by,unknown,overall:done+rem>0?done/(done+rem):1,builderTime:sumQ("builder"),labTime:sumQ("lab"),petTime:sumQ("pet"),builderLock:lockQ("builder"),labLock:lockQ("lab"),petLock:lockQ("pet"),builderCost,labCost,wallCost,ore,huts,otto,gearUps:sum(Object.values(owned).flat().map(c=>c.gear?1:0))};
 }
 
 function timersOf(exp){
@@ -175,7 +181,7 @@ const tagKey=t=>String(t||"").replace(/[^A-Z0-9]/gi,"").toUpperCase();
 const S={acct:null,tab:"overview",view:{},compA:null,compB:null,open:new Set()};
 try{S.acct=localStorage.getItem("coc-ledger-acct");S.tab=localStorage.getItem("coc-ledger-tab")||"overview";}catch(e){}
 const TABS=[["overview","Overview"],["home","Home Village"],["heroes","Heroes & Gear"],["lab","Lab"],["builder","Builder Base"],["events","Events & Effects"],["planner","Planner"],["log","Item log"],["about","Data notes"]];
-const memo=new Map();
+const memo=new Map();let CUR=null;
 function snapsFor(k){return Store.cache.snapshots.filter(s=>s.tag===k).sort((a,b)=>a.ts-b.ts);}
 function parsed(s){if(memo.has(s._id))return memo.get(s._id);let exp;try{exp=typeof s.raw==="string"?JSON.parse(s.raw):s.raw;}catch(e){exp=null;}const v={exp,home:exp&&computeVillage(exp,"h"),bb:exp&&computeVillage(exp,"b")};memo.set(s._id,v);return v;}
 function latest(){const a=snapsFor(S.acct);return a.length?a[a.length-1]:null;}
@@ -250,6 +256,47 @@ function bar(p,cls){const w=Math.max(0,Math.min(100,(p||0)*100));
   return`<div class="bar-track"><div class="bar-fill ${cls||""}" style="width:${w.toFixed(1)}%;background:${progColor(p)}"></div></div>`;}
 function storageBanner(){return"";}
 
+/* ---------- Clash of Clans API sync ----------
+   The export has IDs but no names; the API (through worker.js) has names but no IDs. New equipment is
+   matched by pairing the export's unknown equipment IDs, in ID order, with the API's equipment names the
+   game data doesn't know, preferring equal levels. Costs come from an existing piece with the same max level:
+   every epic shares one upgrade table, and commons nearly do. */
+function equipTemplate(maxLevel){
+  const eq=GAME.items.filter(i=>i.k==="equipment"&&!i.learned&&i.lv.length===maxLevel);
+  const key=i=>JSON.stringify(i.lv.map(L=>[L[1],L[5]]));const n={};for(const i of eq)n[key(i)]=(n[key(i)]||0)+1;
+  return eq.sort((a,b)=>n[key(b)]-n[key(a)])[0];
+}
+function matchEquipment(exp,api){
+  const known=new Set(GAME.items.filter(i=>i.k==="equipment").map(i=>i.n.toLowerCase()));
+  const ids=(exp.equipment||[]).filter(e=>!BY_ID[e.data]).sort((a,b)=>a.data-b.data);
+  const fresh=(api.heroEquipment||[]).filter(e=>e.village==="home"&&!known.has(e.name.toLowerCase()));
+  const out=[],skipped=[];
+  for(const e of ids){
+    const i=fresh.findIndex(f=>f.level===e.lvl);const f=fresh.splice(i>=0?i:0,1)[0];
+    const tpl=f&&equipTemplate(f.maxLevel);
+    if(!f||!tpl){skipped.push(e.data);continue;}
+    const owner=(api.heroes||[]).find(h=>(h.equipment||[]).includes(f.name));
+    out.push({id:e.data,n:f.name,b:"h",k:"equipment",lv:JSON.parse(JSON.stringify(tpl.lv)),
+      x:{hero:owner?owner.name.toLowerCase().replace(/[^a-z0-9]+/g,"-"):"",rarity:f.maxLevel>=27?"epic":"common"},learned:true});
+  }
+  return{out,skipped};
+}
+async function syncNames(btn){
+  const exp=CUR&&CUR.P.exp;if(!exp)return;
+  btn.disabled=true;btn.textContent="Fetching…";
+  try{
+    let res,api;
+    try{res=await fetch("/api/player?tag="+encodeURIComponent(exp.tag));api=await res.json();}
+    catch(e){throw new Error("Sync needs the Cloudflare Worker, which isn't running on this copy of the site.");}
+    if(!res.ok)throw new Error(api.error||("Sync failed ("+res.status+")"));
+    const {out,skipped}=matchEquipment(exp,api);
+    if(out.length){addLearned(out);try{localStorage.setItem(LEARNED_KEY,JSON.stringify(loadLearned().concat(out)));}catch(e){}memo.clear();}
+    const other=[...(CUR.P.home.unknown||[]),...((CUR.P.bb&&CUR.P.bb.unknown)||[])].filter(id=>!BY_ID[id]&&!skipped.includes(id));
+    toast(out.length?`Named ${out.map(i=>i.n).join(", ")}`+(skipped.length+other.length?` · ${skipped.length+other.length} still unknown`:""):"No new names matched. Only equipment can be named so far.");
+    render();
+  }catch(e){toast(e.message);btn.disabled=false;btn.textContent="Fetch names from Clash of Clans API";}
+}
+
 function render(){
   renderTabs();renderAcctSel();
   try{localStorage.setItem("coc-ledger-tab",S.tab);if(S.acct)localStorage.setItem("coc-ledger-acct",S.acct);}catch(e){}
@@ -260,7 +307,7 @@ function render(){
   if(!snap){main.innerHTML=storageBanner()+`<section class="panel empty"><h2>No village yet</h2><p class="muted" style="max-width:52ch;margin:0">Paste the JSON from Settings → More Settings → Data Export. The tracker reads your Town Hall, buildings, heroes, equipment, lab and Builder Base, and keeps every import as a dated snapshot.</p><button class="btn gold" type="button" data-act="import">Import your first export</button></section>`;return;}
   const P=parsed(snap);
   if(!P.exp||!P.home){main.innerHTML=`<div class="banner">This snapshot could not be read. Try importing the export again.</div>`;return;}
-  const V={snap,P,acc:account(S.acct),fx:effectsNow(S.acct)};FX=V.fx;{const de=document.documentElement;const th=P.home.th||0;if(th){de.dataset.th=String(Math.min(th,18));if(th>18)de.dataset.thMax="";else delete de.dataset.thMax;}}
+  const V={snap,P,acc:account(S.acct),fx:effectsNow(S.acct)};FX=V.fx;CUR=V;{const de=document.documentElement;const th=P.home.th||0;if(th){de.dataset.th=String(Math.min(th,18));if(th>18)de.dataset.thMax="";else delete de.dataset.thMax;}}
   const views={overview:viewOverview,home:viewHome,heroes:viewHeroes,lab:viewLab,builder:viewBuilder,planner:viewPlanner,log:viewLog};
   main.innerHTML=storageBanner()+(["overview","home","heroes","lab","planner"].includes(S.tab)?fxBanner():"")+(views[S.tab]||viewOverview)(V);
   applySorts();
@@ -272,13 +319,13 @@ function catBars(v,keys){return`<div class="cats">${v.groups.filter(g=>!keys||ke
 function viewOverview(V){
   const h=V.P.home,b=V.P.bb,exp=V.P.exp,fx=V.fx;const hl=helperLevels(exp);const acc=V.acc||{};
   const vb=S.ovBase==="b"?"b":"h";
-  const unk=h.unknown.concat(b?b.unknown:[]);
+  const unk=h.unknown.concat(b?b.unknown:[]).filter(id=>!isEquipId(id));
   const tmsFor=base=>timersOf(exp).filter(t=>t.base===base);
   const nextPanel=(base,tab)=>{const all=tmsFor(base);const up=all.filter(t=>t.to!=null);const cd=all.filter(t=>t.to==null);const tms=up;return`<section class="panel"><div class="panel-h"><h3>Finishing next · ${base==="Home"?"TH"+h.th:"BH"+(b?b.th:"")}</h3><span class="small muted"><span data-ups="${up.map(t=>t.end).join(",")}">${up.length} upgrade${up.length===1?"":"s"} running</span> · from the snapshot taken ${dateStr(V.snap.ts*1000)}; boosts or potions used since then aren't reflected</span></div>
     ${(()=>{const H=base==="Home";const wrap=l=>`<div class="timers">${l.map(timerTileC).join("")}</div>`;return all.length?wrap(all):`<p class="muted">Nothing upgrading in this village.</p>`;})()}</section>`;};
   const seg=`<div class="seg" role="group" aria-label="Village">${[["h","Home Village"],["b","Builder Base"]].map(([v,l])=>`<button type="button" data-act="ovbase" data-v="${v}" aria-pressed="${vb===v}">${l}</button>`).join("")}</div>`;
   const head=`<section class="panel"><div class="panel-h" style="margin:0"><h2>${esc(acc.name||exp.tag)} <span class="muted small" style="font-family:var(--body)">${esc(exp.tag)}</span></h2><span class="small muted">Snapshot ${dateStr(V.snap.ts*1000)}</span></div><div style="margin-top:12px">${seg}</div></section>`;
-  const banner=unk.length?`<div class="banner">Unknown item IDs in this export (shown as unknown, not counted): ${unk.map(esc).join(", ")}. The game data may be older than your game version.</div>`:"";
+  const banner=unk.length?`<div class="banner">Unknown item IDs in this export (shown as unknown, not counted): ${unk.map(esc).join(", ")}. The game data may be older than your game version. <button class="btn ghost sm" type="button" data-act="syncnames">Fetch names from Clash of Clans API</button></div>`:"";
   const dayTxt=(adj,base)=>Math.abs(adj-base)>0.05?`<b>≈ ${adj.toFixed(1)} days</b> <s>${base.toFixed(1)}</s>`:`≈ ${base.toFixed(1)} days`;
 
   if(vb==="h"){
@@ -314,10 +361,10 @@ function viewOverview(V){
       <div class="panel-h" style="margin:0"><h2>Builder Base</h2><button class="btn ghost sm" type="button" data-tab="builder">Details</button></div>
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="bigpct">${pct(b.overall)}</span><span class="muted">of BH${b.th} builder &amp; Star Lab work done</span></div>
       ${bar(b.overall,"gold")}
-      <div class="chips">${b.hallUp?`<span class="chip sky">Upgrading to BH${b.th+1} · done ${dateStr(b.hallUp)}</span>`:""}${bbClock?`<span class="chip">Clock Tower ready ${dateStr(exp.timestamp*1000+bbClock*1000)}</span>`:""}<span class="chip">Home Village boosts don't apply here</span></div>
+      <div class="chips">${b.hallUp?`<span class="chip sky">Upgrading to BH${b.th+1} · done ${dateStr(b.hallUp)}</span>`:""}${ottoChips(b,exp)}${bbClock?`<span class="chip">Clock Tower ready ${dateStr(exp.timestamp*1000+bbClock*1000)}</span>`:""}<span class="chip">Home Village boosts don't apply here</span></div>
     </div></div></section>
   <section class="grid g3">
-    <div class="panel stat"><span class="k">Builder time left</span><span class="v">${fmtDur(b.builderTime)}</span><span class="s">Buildings, traps &amp; heroes to max BH${b.th} (walls not included)</span></div>
+    <div class="panel stat"><span class="k">Builder time left</span><span class="v">${fmtDur(b.builderTime)}</span><span class="s">≈ ${(b.builderTime/(b.huts*86400)).toFixed(1)} days with ${b.huts} builder${b.huts>1?"s":""} · buildings, traps &amp; heroes to max BH${b.th} (walls not included)</span></div>
     <div class="panel stat"><span class="k">Star Lab time left</span><span class="v">${fmtDur(b.labTime)}</span><span class="s">Troop research to max BH${b.th}</span></div>
     <div class="panel stat"><span class="k">Resources to max BH${b.th}</span><span class="v" style="font-size:1.15rem;font-family:var(--body);font-weight:800;display:flex;flex-wrap:wrap;gap:4px 12px">${resHTML(addAll(b.builderCost,b.labCost),["BG","BE"])}</span><span class="s">Walls ${resHTML(b.wallCost,["BG"])}</span></div>
   </section>
@@ -359,6 +406,7 @@ function copyRows(g,r,rk,op,m,resKeys){
 /* Town Hall pictures supplied by the user, one per level */
 const TH_IMG={"1": "assets/townhalls/th1.webp", "2": "assets/townhalls/th2.webp", "3": "assets/townhalls/th3.webp", "4": "assets/townhalls/th4.webp", "5": "assets/townhalls/th5.webp", "6": "assets/townhalls/th6.webp", "7": "assets/townhalls/th7.webp", "8": "assets/townhalls/th8.webp", "9": "assets/townhalls/th9.webp", "10": "assets/townhalls/th10.webp", "11": "assets/townhalls/th11.webp", "12": "assets/townhalls/th12.webp", "13": "assets/townhalls/th13.webp", "14": "assets/townhalls/th14.webp", "15": "assets/townhalls/th15.webp", "16": "assets/townhalls/th16.webp", "17": "assets/townhalls/th17.webp", "18": "assets/townhalls/th18.webp"};
 const BH_IMG={"3": "assets/builderhalls/bh3.png", "4": "assets/builderhalls/bh4.png", "5": "assets/builderhalls/bh5.png", "6": "assets/builderhalls/bh6.png", "7": "assets/builderhalls/bh7.png", "8": "assets/builderhalls/bh8.png", "9": "assets/builderhalls/bh9.png", "10": "assets/builderhalls/bh10.png"};
+function ottoChips(b,exp){if(!b.otto)return"";const r=b.groups.flatMap(g=>g.rows).find(r=>r.id===ID.OTTO),c=r.copies[0];return`<span class="chip">O.T.T.O's Outpost L${b.otto} of ${r.maxL} · 2nd builder</span>`+(c.timer?`<span class="chip sky">Outpost → L${b.otto+1} · done ${dateStr((exp.timestamp+c.timer)*1000)}</span>`:"");}
 function bhArt(bh){return BH_IMG[bh]?`<div class="thart bh" role="img" aria-label="Builder Hall ${bh}" title="Builder Hall ${bh}"><img src="${BH_IMG[bh]}" alt="" class="thart-img"><span class="thart-lv">BH${bh}</span></div>`:`<div class="thbadge bh"><div><b>${bh}</b><span>Builder Hall</span></div></div>`;}
 function thArt(th){th=+th||1;const two=th>=5,spires=th>=10,crown=th>=13,banner=th>=7;
   const cren=(x,y,w,n)=>{let s="";const cw=w/(n*2-1);for(let i=0;i<n;i++)s+=`<rect x="${(x+i*2*cw).toFixed(1)}" y="${y-5}" width="${cw.toFixed(1)}" height="5" class="ta-st"/>`;return s;};
@@ -382,16 +430,18 @@ function onSortHead(th){const tbl=th.closest("table");if(!tbl||!tbl.tHead||!tbl.
   const dir=!cur||cur.col!==col?"asc":cur.dir==="asc"?"desc":null;if(dir)SORTS[k]={col,dir};else delete SORTS[k];sortTable(tbl,col,dir);}
 document.addEventListener("click",ev=>{const th=ev.target.closest&&ev.target.closest("main thead th");if(th)onSortHead(th);});
 document.addEventListener("keydown",ev=>{if((ev.key==="Enter"||ev.key===" ")&&ev.target.matches&&ev.target.matches("main thead th")){ev.preventDefault();onSortHead(ev.target);}});
-function heroName(slug){return String(slug).split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");}
+const isEquipId=id=>id>=90000000&&id<91000000;
+function heroName(slug){if(!slug)return"Unknown hero";return String(slug).split("-").map(w=>w[0].toUpperCase()+w.slice(1)).join(" ");}
 function viewHome(V){const h=V.P.home;return`<section class="panel"><div class="panel-h"><h2>Home Village · Town Hall ${h.th}</h2><span class="muted small">Max levels are for TH${h.th}. "Rushed" means below the TH${h.th-1} max.</span></div>${catBars(h,["defense","army","resource","trap","wall"])}</section>`+["defense","army","resource","trap","wall"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("");}
 function viewHeroes(V){const h=V.P.home;const exp=V.P.exp;
   const notOwned=GAME.items.filter(i=>i.b==="h"&&i.k==="equipment"&&!(exp.equipment||[]).some(e=>e.data===i.id));
   return`<section class="panel"><div class="panel-h"><h2>Heroes, pets &amp; equipment</h2><span class="muted small">Hero Hall L${h.cur.herohall} (max ${h.caps.herohall}) · Blacksmith L${h.cur.blacksmith} (max ${h.caps.blacksmith}) · Pet House ${h.caps.pethouse?"L"+h.cur.pethouse+" (max "+h.caps.pethouse+")":"unlocks at TH14"}</span></div>${catBars(h,["hero","pet","equipment"])}</section>`
   +["hero","pet","equipment"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("")
+  +(()=>{const nu=(exp.equipment||[]).filter(e=>!BY_ID[e.data]);return nu.length?`<section class="panel"><p class="small muted" style="margin:0">${nu.length} equipment piece${nu.length>1?"s":""} in your export ${nu.length>1?"aren't":"isn't"} in the game data yet, so ${nu.length>1?"they're":"it's"} not counted: ${nu.map(e=>`ID ${e.data} (L${e.lvl})`).join(", ")}. They're newer than every public equipment list. <button class="btn ghost sm" type="button" data-act="syncnames">Fetch names from Clash of Clans API</button></p></section>`:"";})()
   +(notOwned.length?`<section class="panel"><details><summary>${notOwned.length} equipment pieces not unlocked yet</summary><p class="small muted">${notOwned.map(i=>esc(i.n)+" ("+esc(heroName(i.x&&i.x.hero||""))+")").join(", ")}</p></details></section>`:"");}
 function viewLab(V){const h=V.P.home;return`<section class="panel"><div class="panel-h"><h2>Laboratory</h2><span class="muted small">Lab L${h.cur.lab} of ${h.caps.lab} at TH${h.th} · ${fmtDur(h.labTime)} of research left</span></div>${catBars(h,["troop","spell","siege"])}</section>`+["troop","spell","siege"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("");}
 function viewBuilder(V){const b=V.P.bb;if(!b)return'<section class="panel empty"><h2>Builder Base not unlocked</h2></section>';
-  return`<section class="panel"><div class="hero-row">${bhArt(b.th)}<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap"><span class="bigpct">${pct(b.overall)}</span><span class="muted">of BH${b.th} work done</span></div>${bar(b.overall,"gold")}<span class="small muted">${fmtDur(b.builderTime)} builder time · ${fmtDur(b.labTime)} Star Lab · ${resHTML(addAll(b.builderCost,b.labCost),["BG","BE"])} · walls ${resHTML(b.wallCost,["BG"])}. Hammer Jam and Gold Pass boosts don't usually apply here.</span></div></div></section>`+b.groups.filter(g=>g.rows.length).map(g=>groupTable(g)).join("");}
+  return`<section class="panel"><div class="hero-row">${bhArt(b.th)}<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap"><span class="bigpct">${pct(b.overall)}</span><span class="muted">of BH${b.th} work done</span></div>${bar(b.overall,"gold")}<span class="small muted">${fmtDur(b.builderTime)} builder time (≈ ${(b.builderTime/(b.huts*86400)).toFixed(1)} days with ${b.huts} builder${b.huts>1?"s":""}${b.otto?`, O.T.T.O's Outpost L${b.otto}`:""}) · ${fmtDur(b.labTime)} Star Lab · ${resHTML(addAll(b.builderCost,b.labCost),["BG","BE"])} · walls ${resHTML(b.wallCost,["BG"])}. Hammer Jam and Gold Pass boosts don't usually apply here.</span></div></div></section>`+b.groups.filter(g=>g.rows.length).map(g=>groupTable(g)).join("");}
 function viewTimers(V){const t=timersOf(V.P.exp);const up=t.filter(x=>x.to!=null),other=t.filter(x=>x.to==null);
   return`<section class="panel"><div class="panel-h"><h2>Live upgrade timers</h2><span class="small muted">From the snapshot taken ${dateStr(V.snap.ts*1000)}. Boosts and potions used since then aren't reflected, so import a fresh export after using them.</span></div>${up.length?`<div class="timers">${up.map(timerCard).join("")}</div>`:'<p class="muted">Nothing upgrading.</p>'}</section>
   <section class="panel"><h3 style="margin-bottom:10px">Helpers &amp; boosts</h3>${other.length?`<div class="timers">${other.map(timerCard).join("")}</div>`:'<p class="muted">No cooldowns in this export.</p>'}</section>`;}
@@ -516,6 +566,7 @@ document.addEventListener("click",async ev=>{
   try{
     if(a==="import"){openImport();}
     else if(a==="ovbase"){S.ovBase=t.dataset.v;render();}
+    else if(a==="syncnames"){await syncNames(t);}
     else if(a==="copies"){const k=t.dataset.k;const op=!S.open.has(k);if(op)S.open.add(k);else S.open.delete(k);t.setAttribute("aria-expanded",String(op));document.querySelectorAll("tr.copy-row").forEach(tr=>{if(tr.dataset.p===k)tr.hidden=!op;});}
     else if(a==="delsnap"){if(t.dataset.confirm!=="1"){t.dataset.confirm="1";t.textContent="Confirm delete";return;}await Store.del("snapshots",t.dataset.id);memo.delete(t.dataset.id);toast("Snapshot deleted");render();}
     else if(a==="saveseason"){await saveSeason({points:Number($("#spPoints").value)||0,notes:$("#spNotes").value});toast("Season saved");render();}

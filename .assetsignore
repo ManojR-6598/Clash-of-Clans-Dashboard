@@ -4,3 +4,10 @@
 README.md
 wrangler.jsonc
 scripts
+
+worker.js
+.assetsignore
+.dev.vars
+dist
+.wrangler
+decoder

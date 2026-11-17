@@ -3,3 +3,10 @@
 
 # Folders
 dist/
+# Local Worker secrets
+.dev.vars
+.wrangler/
+
+# Decoder: personal exports and generated reports
+decoder/exports/
+decoder/reports/
