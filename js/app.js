@@ -62,14 +62,29 @@ const BB_GROUPS=[
   {key:"troop",label:"Troops",cats:["troop"],q:"lab",w:"time",src:"units2"},
   {key:"wall",label:"Walls",cats:["wall"],q:"wall",w:"cost"}
 ];
-function collectOwned(list){const m={};for(const e of list||[]){const n=e.cnt??1;(m[e.data]=m[e.data]||[]);for(let i=0;i<n;i++)m[e.data].push({lvl:e.lvl??0,timer:i===0&&e.timer?e.timer:0,gear:!!e.gear_up,helper:!!e.helper_recurrent});}return m;}
+/* Builder's Apprentice (93000000) and Lab Assistant (93000001): once a day a helper works for one hour on the upgrade
+   marked helper_recurrent, adding its level in extra hours (L1 = double speed). helper_cooldown counts 23 hours from
+   when it started, so it is working while more than 22 hours are left. Recurring helpers are assumed to start again
+   as soon as they're ready. Returns the upgrade's remaining seconds with that help counted. */
+const HELP_CD=23*3600,HELP_WORK=3600;
+const helperFor=e=>(e.data>=4000000&&e.data<5000000)||(e.data>=26000000&&e.data<27000000)?93000001:93000000;
+function helpedTimer(exp,e){
+  if(!e||!e.timer||!e.helper_recurrent||!exp)return e&&e.timer||0;
+  const h=(exp.helpers||[]).find(x=>x.data===helperFor(e));if(!h||!h.lvl)return e.timer;
+  const rate=h.lvl+1;let pos=0,left=e.timer,s=h.helper_cooldown?h.helper_cooldown-HELP_CD:0;
+  for(let i=0;i<400&&left>0;i++,s+=HELP_CD){const we=s+HELP_WORK;if(we<=pos)continue;const ws=Math.max(pos,s);
+    if(left<=ws-pos){pos+=left;left=0;break;}left-=ws-pos;pos=ws;
+    if(left<=(we-pos)*rate){pos+=left/rate;left=0;break;}left-=(we-pos)*rate;pos=we;}
+  return Math.round(pos+left);}
+const helperWorking=(exp,id)=>{const h=(exp.helpers||[]).find(x=>x.data===id);return!!(h&&h.lvl&&h.helper_cooldown>HELP_CD-HELP_WORK);};
+function collectOwned(list,exp){const m={};for(const e of list||[]){const n=e.cnt??1;(m[e.data]=m[e.data]||[]);for(let i=0;i<n;i++)m[e.data].push({lvl:e.lvl??0,timer:i===0&&e.timer?helpedTimer(exp,e):0,gear:!!e.gear_up,helper:!!e.helper_recurrent});}return m;}
 
 function computeVillage(exp,base){
   const H=base==="h";
   const bKey=H?"buildings":"buildings2", tKey=H?"traps":"traps2";
-  const owned=Object.assign({},collectOwned(exp[bKey]),collectOwned(exp[tKey]));
+  const owned=Object.assign({},collectOwned(exp[bKey],exp),collectOwned(exp[tKey],exp));
   const ownedSrc={};
-  for(const g of (H?HOME_GROUPS:BB_GROUPS))if(g.src)Object.assign(ownedSrc,collectOwned(exp[g.src]));
+  for(const g of (H?HOME_GROUPS:BB_GROUPS))if(g.src)Object.assign(ownedSrc,collectOwned(exp[g.src],exp));
   const hallId=H?ID.TH:ID.BH;
   const hall=(owned[hallId]||[{lvl:0}])[0];
   const th=hall.lvl||0;
@@ -140,11 +155,11 @@ function computeVillage(exp,base){
 
 function timersOf(exp){
   const ts=(exp.timestamp||0)*1000;const out=[];
-  const add=(list,base,q)=>{for(const e of list||[]){if(!e.timer)continue;const it=BY_ID[e.data];const U=it?lvRow(it,(e.lvl||0)+1):null;out.push({name:it?it.n:"Unknown "+e.data,to:(e.lvl||0)+1,end:ts+e.timer*1000,full:Math.max(U?(U[3]||0):0,e.timer||0),q,base});}};
+  const add=(list,base,q)=>{for(const e of list||[]){if(!e.timer)continue;const it=BY_ID[e.data];const U=it?lvRow(it,(e.lvl||0)+1):null;const left=helpedTimer(exp,e);out.push({name:it?it.n:"Unknown "+e.data,to:(e.lvl||0)+1,end:ts+left*1000,full:Math.max(U?(U[3]||0):0,e.timer||0),q,base,saved:e.timer-left,helper:e.helper_recurrent?(helperFor(e)===93000001?"Lab Assistant":"Builder's Apprentice"):null,working:e.helper_recurrent&&helperWorking(exp,helperFor(e))});}};
   add(exp.buildings,"Home","Builder");add(exp.traps,"Home","Builder");add(exp.heroes,"Home","Builder (hero)");
   add(exp.units,"Home","Laboratory");add(exp.spells,"Home","Laboratory");add(exp.siege_machines,"Home","Laboratory");add(exp.pets,"Home","Pet House");
   add(exp.buildings2,"Builder Base","Builder");add(exp.traps2,"Builder Base","Builder");add(exp.heroes2,"Builder Base","Builder (hero)");add(exp.units2,"Builder Base","Star Laboratory");
-  for(const h of exp.helpers||[]){if(h.helper_cooldown){const it=BY_ID[h.data];out.push({name:(it?it.n:"Helper")+" L"+h.lvl,to:null,end:ts+h.helper_cooldown*1000,q:"Helper ready",base:"Home"});}}
+  for(const h of exp.helpers||[]){if(h.helper_cooldown){const it=BY_ID[h.data];const nm=it?it.n:h.data===93000000?"Builder's Apprentice":h.data===93000001?"Lab Assistant":"Helper";const wk=h.helper_cooldown>HELP_CD-HELP_WORK;out.push({name:nm+" L"+h.lvl,to:null,end:ts+(wk?h.helper_cooldown-(HELP_CD-HELP_WORK):h.helper_cooldown)*1000,q:wk?"Working · ends":"Helper ready",base:"Home"});}}
   if(exp.boosts&&exp.boosts.clocktower_cooldown)out.push({name:"Clock Tower boost",to:null,end:ts+exp.boosts.clocktower_cooldown*1000,q:"Ready again",base:"Builder Base"});
   return out.sort((a,b)=>a.end-b.end);
 }
@@ -383,7 +398,7 @@ function tPct(st,end,now){return st&&end>st?Math.max(0,Math.min(1,(now-st)/(end-
 function timerCardA(t){const now=Date.now(),dn=t.end<=now,st=t.to!=null?tStart(t):0,p=tPct(st,t.end,now);
   return`<div class="tA${dn?" done":""}" data-end="${t.end}"${st?` data-start="${st}"`:""}><div class="tA-h"><b>${esc(t.name)}</b>${t.to?`<span class="tA-lv">L${t.to-1} → L${t.to}</span>`:""}</div>${st?`<div class="tA-trk"><div class="tA-fl" style="width:${dn?100:Math.round(p*100)}%"></div></div>`:""}<div class="tA-f"><span class="small muted"><span class="pc">${!dn&&p!=null?Math.round(p*100)+"% · ":""}</span>${esc(t.q)} · <span class="when">${dn?"Finished ":""}${dateStr(t.end)}</span></span><span class="cd tnum">${fmtCd((t.end-now)/1000)}</span></div></div>`;}
 function timerTileC(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),pet=/Pet/.test(t.q),cool=t.to==null;const cls=cool?"cool":pet?"pet":lab?"lab":"bld";const ic=cool?"⏱️":pet?"🐾":lab?"⚗️":"🔨";const lbl=cool?t.q:lab?t.q:pet?"Pet House":/hero/.test(t.q)?"Builder · hero":"Builder";
-  return`<div class="tC ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "><div class="tC-top"><div class="tC-n"><b>${esc(t.name)}</b>${t.to?` <span class="small muted">→ L${t.to}</span>`:""}</div><span class="tC-ic" role="img" title="${esc(lbl)}" aria-label="${esc(lbl)}">${ic}</span></div><div class="cd tnum">${fmtCd((t.end-now)/1000)}</div><span class="small muted when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span></div>`;}
+  return`<div class="tC ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "><div class="tC-top"><div class="tC-n"><b>${esc(t.name)}</b>${t.to?` <span class="small muted">→ L${t.to}</span>`:""}</div><span class="tC-ic" role="img" title="${esc(lbl)}" aria-label="${esc(lbl)}">${ic}</span></div><div class="cd tnum">${fmtCd((t.end-now)/1000)}</div><span class="small muted when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span>${t.helper?`<span class="small help">${t.working?"⚡ "+esc(t.helper)+" working now":"With "+esc(t.helper)}${t.saved>0?" · "+fmtDur(t.saved)+" sooner":""}</span>`:""}</div>`;}
 function timerRowB(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),cool=t.to==null;const cls=lab?"lab":cool?"cool":"bld";const ic=lab?"⚗️":cool?"⏱️":"🔨";
   return`<div class="tB ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "><span class="tB-ic" aria-hidden="true">${ic}</span><div class="tB-m"><b>${esc(t.name)}</b> <span class="small muted">${t.to?`L${t.to-1} → L${t.to} · `:""}<span class="when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span></span></div><span class="tB-pill cd tnum">${fmtCd((t.end-now)/1000)}</span></div>`;}
 let tickH=null;function tick(){clearInterval(tickH);const run=()=>{const now=Date.now();document.querySelectorAll("[data-end]").forEach(el=>{const end=+el.dataset.end;const s=(end-now)/1000;const c=el.querySelector(".cd");if(c)c.textContent=fmtCd(s);el.classList.toggle("done",s<=0);const w=el.querySelector(".when");if(w)w.textContent=(s<=0?"Finished ":(el.dataset.wp||""))+dateStr(end);const st=+el.dataset.start;if(st){const p=s<=0?1:tPct(st,end,now);const f=el.querySelector(".tA-fl");if(f)f.style.width=Math.round(p*100)+"%";const pc=el.querySelector(".pc");if(pc)pc.textContent=s<=0?"":Math.round(p*100)+"% · ";}});document.querySelectorAll("[data-ups]").forEach(el=>{const e=el.dataset.ups?el.dataset.ups.split(",").map(Number):[];const d=e.filter(x=>x<=now).length,r=e.length-d;el.textContent=`${r} upgrade${r===1?"":"s"} running${d?` · ${d} done`:""}`;});};run();tickH=setInterval(run,1000);}

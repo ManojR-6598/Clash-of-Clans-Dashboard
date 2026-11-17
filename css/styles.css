@@ -348,3 +348,4 @@ details>summary{cursor:pointer;font-weight:800}
 .errs h3{color:var(--warn)}
 .errs ul{margin:0;padding-left:20px;display:grid;gap:6px}
 .errs code{font-size:.9em}
+.tC .help{color:var(--sky);font-weight:700}
