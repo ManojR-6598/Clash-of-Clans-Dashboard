@@ -43,7 +43,7 @@ const DATAMINE_SRC="Clash of Clans Datamine, 16 Nov 2026";
   // Levels from the Clash of Clans Wiki (fandom) Squad Barracks page, 18 Nov 2026; level 1 matches the datamine's 1.7M build cost
   {id:1000106,n:"Squad Barracks",b:"h",k:"army",lv:[[1,1700000,"E",172800,8],[2,3000000,"E",259200,9],[3,3800000,"E",432000,10],[4,6000000,"E",518400,11],[5,7500000,"E",604800,12],[6,10000000,"E",648000,13],[7,12500000,"E",691200,14],[8,15000000,"E",820800,15],[9,16000000,"E",864000,16],[10,20000000,"E",950400,17],[11,26000000,"E",1166400,18],[12,32000000,"E",1382400,19]],cnt:{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":1,"9":1,"10":1,"11":1,"12":1,"13":1,"14":1,"15":1,"16":1,"17":1,"18":1,"19":1},x:{datamine:DATAMINE_SRC+" + Clash of Clans Wiki"}},
  ].filter(Boolean));}
-const ID={TH:1000001,BH:1000034,LAB:1000007,HH:1000071,BS:1000070,PH:1000068,SL:1000046,HUT:1000015,OTTO:1000078};
+const ID={TH:1000001,BH:1000034,LAB:1000007,HH:1000071,BS:1000070,PH:1000068,SL:1000046,HUT:1000015,OTTO:1000078,BOB_HUT:1000064,BOB_CTRL:1000065};
 function bldMaxAt(id,th){const it=BY_ID[id];if(!it)return 0;let m=0;for(const L of it.lv){if(L[4]==null||L[4]<=th)m=Math.max(m,L[0]);}return m;}
 function reqCaps(base,th){return base==="h"?{lab:bldMaxAt(ID.LAB,th),herohall:bldMaxAt(ID.HH,th),blacksmith:bldMaxAt(ID.BS,th),pethouse:bldMaxAt(ID.PH,th)}:{starlab:bldMaxAt(ID.SL,th)};}
 function levelOK(L,th,caps){if(L[4]!=null&&L[4]>th)return false;const rq=L[5];if(rq){for(const k in rq){if(caps[k]!=null&&rq[k]>caps[k])return false;}}return true;}
@@ -177,7 +177,7 @@ function computeVillage(exp,base){
   const builderCost={},labCost={},wallCost={},ore={};
   for(const g of groups){const t=g.q==="builder"?builderCost:g.q==="lab"||g.q==="pet"?labCost:g.q==="wall"?wallCost:ore;for(const k in g.remCost)t[k]=(t[k]||0)+g.remCost[k];}
   const otto=H?0:Math.max(0,...(owned[ID.OTTO]||[]).map(c=>c.lvl));
-  const huts=H?(owned[ID.HUT]||[]).length:1+(otto>0?1:0);
+  const huts=H?(owned[ID.HUT]||[]).length+((owned[ID.BOB_HUT]||[]).some(c=>c.lvl>0)?1:0):1+(otto>0?1:0);
   return {base,th,hallUp:hall.timer?(exp.timestamp+hall.timer)*1000:0,caps,cur,groups,by,unknown,overall:done+rem>0?done/(done+rem):1,builderTime:sumQ("builder"),labTime:sumQ("lab"),petTime:sumQ("pet"),builderLock:lockQ("builder"),labLock:lockQ("lab"),petLock:lockQ("pet"),builderCost,labCost,wallCost,ore,huts,otto,gearUps:sum(Object.values(owned).flat().map(c=>c.gear?1:0))};
 }
 
@@ -228,7 +228,8 @@ const tagKey=t=>String(t||"").replace(/[^A-Z0-9]/gi,"").toUpperCase();
 /* ---------- state ---------- */
 const S={acct:null,tab:"overview",view:{},compA:null,compB:null,open:new Set()};
 try{S.acct=localStorage.getItem("coc-ledger-acct");S.tab=localStorage.getItem("coc-ledger-tab")||"overview";}catch(e){}
-const TABS=[["overview","Overview"],["home","Home Village"],["heroes","Heroes & Gear"],["lab","Lab"],["builder","Builder Base"],["events","Events & Effects"],["planner","Planner"],["log","Item log"],["about","Data notes"]];
+const TABS=[["overview","Overview"],["home","Home Village"],["heroes","Heroes & Gear"],["lab","Lab"],["builder","Builder Base"],["builders","Builders"],["events","Events & Effects"],["planner","Planner"]];
+if(!TABS.some(t=>t[0]===S.tab))S.tab="overview"; // a saved tab that no longer exists
 const memo=new Map();let CUR=null;
 function snapsFor(k){return Store.cache.snapshots.filter(s=>s.tag===k).sort((a,b)=>a.ts-b.ts);}
 function parsed(s){if(memo.has(s._id))return memo.get(s._id);let exp;try{exp=typeof s.raw==="string"?JSON.parse(s.raw):s.raw;}catch(e){exp=null;logErr("Snapshot",new Error("The snapshot from "+dateStr((s.ts||0)*1000)+" isn't valid JSON: "+e.message));}let home=null,bb=null;if(exp){try{home=computeVillage(exp,"h");bb=computeVillage(exp,"b");}catch(e){logErr("Reading the export",e);}}const v={exp,home,bb};memo.set(s._id,v);return v;}
@@ -350,13 +351,12 @@ function render(){
   try{localStorage.setItem("coc-ledger-tab",S.tab);if(S.acct)localStorage.setItem("coc-ledger-acct",S.acct);}catch(e){}
   if(Store.mode==="loading"){main.innerHTML='<section class="panel empty"><h2>Opening your dashboard…</h2><p class="muted" style="margin:0">Loading saved accounts and snapshots.</p></section>';return;}
   if(S.tab==="events"){main.innerHTML=storageBanner()+viewEvents();return;}
-  if(S.tab==="about"){main.innerHTML=viewAbout();return;}
   const snap=latest();
   if(!snap){main.innerHTML=storageBanner()+`<section class="panel empty"><h2>No village yet</h2><p class="muted" style="max-width:52ch;margin:0">Paste the JSON from Settings → More Settings → Data Export. The tracker reads your Town Hall, buildings, heroes, equipment, lab and Builder Base, and keeps every import as a dated snapshot.</p><button class="btn gold" type="button" data-act="import">Import your first export</button></section>`;return;}
   const P=parsed(snap);
   if(!P.exp||!P.home){CUR=null;main.innerHTML=`<div class="banner">This snapshot could not be read. Try importing the export again.</div>`+errPanel();return;}
   const V={snap,P,acc:account(S.acct),fx:effectsNow(S.acct)};FX=V.fx;CUR=V;{const de=document.documentElement;const th=P.home.th||0;if(th){de.dataset.th=String(Math.min(th,18));if(th>18)de.dataset.thMax="";else delete de.dataset.thMax;}}
-  const views={overview:viewOverview,home:viewHome,heroes:viewHeroes,lab:viewLab,builder:viewBuilder,planner:viewPlanner,log:viewLog};
+  const views={overview:viewOverview,home:viewHome,heroes:viewHeroes,lab:viewLab,builder:viewBuilder,builders:builderPanel,planner:viewPlanner};
   try{main.innerHTML=storageBanner()+(["overview","home","heroes","lab","planner"].includes(S.tab)?fxBanner():"")+(views[S.tab]||viewOverview)(V);}
   catch(e){logErr("Showing the "+(TABS.find(x=>x[0]===S.tab)||[,S.tab])[1]+" tab",e);main.innerHTML=errPanel();return;}
   applySorts();
@@ -370,7 +370,7 @@ function viewOverview(V){
   const vb=S.ovBase==="b"?"b":"h";
   const tmsFor=base=>timersOf(exp).filter(t=>t.base===base);
   const nextPanel=(base,tab)=>{const all=tmsFor(base);const up=all.filter(t=>t.to!=null);const cd=all.filter(t=>t.to==null);const tms=up;return`<section class="panel"><div class="panel-h"><h3>Finishing next · ${base==="Home"?"TH"+h.th:"BH"+(b?b.th:"")}</h3><span class="small muted"><span data-ups="${up.map(t=>t.end).join(",")}">${up.length} upgrade${up.length===1?"":"s"} running</span> · from the snapshot taken ${dateStr(V.snap.ts*1000)}; boosts or potions used since then aren't reflected</span></div>
-    ${timerGroups(all,base,base==="Home"?(acc.builders||h.huts||1):(b?b.huts:1))}</section>`;};
+    ${timerGroups(all,base,base==="Home"?(acc.builders||h.huts||1):(b?b.huts:1),base==="Home"?h.cur.lab:(b?b.cur.starlab:0))}</section>`;};
   const seg=`<div class="seg" role="group" aria-label="Village">${[["h","Home Village"],["b","Builder Base"]].map(([v,l])=>`<button type="button" data-act="ovbase" data-v="${v}" aria-pressed="${vb===v}">${l}</button>`).join("")}</div>`;
   const head=`<section class="panel"><div class="panel-h" style="margin:0"><h2>${esc(acc.name||exp.tag)} <span class="muted small" style="font-family:var(--body)">${esc(exp.tag)}</span></h2><span class="small muted">Snapshot ${dateStr(V.snap.ts*1000)}</span></div><div style="margin-top:12px">${seg}</div></section>`;
   const banner=errPanel();
@@ -425,21 +425,90 @@ function tStart(t){return t.full?t.end-t.full*1000:0;}
 function tPct(st,end,now){return st&&end>st?Math.max(0,Math.min(1,(now-st)/(end-st))):null;}
 function timerCardA(t){const now=Date.now(),dn=t.end<=now,st=t.to!=null?tStart(t):0,p=tPct(st,t.end,now);
   return`<div class="tA${dn?" done":""}" data-end="${t.end}"${st?` data-start="${st}"`:""}${t.help?` data-full="${t.full}"`:""}${helpAttr(t)}><div class="tA-h"><b>${esc(t.name)} ${helpIcon(t)}</b>${t.to?`<span class="tA-lv">L${t.to-1} → L${t.to}</span>`:""}</div>${st?`<div class="tA-trk"><div class="tA-fl" style="width:${dn?100:Math.round(p*100)}%"></div></div>`:""}<div class="tA-f"><span class="small muted"><span class="pc">${!dn&&p!=null?Math.round(p*100)+"% · ":""}</span>${esc(t.q)} · <span class="when">${dn?"Finished ":""}${dateStr(t.end)}</span></span><span class="cd tnum">${fmtCd(cdLeft(t,now))}</span></div>${helpLine(t)}</div>`;}
+/* Builder unlocks: Builder's Huts 2–5 cost gems (the first is free); the 6th builder, B.O.B, comes from the Builder Base.
+   B.O.B Control (Builder Hall 9) gains a level for each task done, and at level 5 it becomes B.O.B's Hut in the Home Village.
+   Tasks from Supercell's Builder Base 2.0 announcement (2023). */
+const HUT_GEMS=[0,250,500,1000,2000];
+const GEM_IC='<img src="assets/icons/gem.png" alt="gems" class="gem-ic">';
+const HUT_IC='<img src="assets/icons/builder-hut.png" alt="" class="hut-ic">';
+const BOTO_IC='<img src="assets/icons/boto-shack.png" alt="" class="hut-ic">';
+const BOB_IC=BOTO_IC;
+const HELPER_IC='<img src="assets/icons/helper-hut.png" alt="" class="hut-ic">';
+const LAB_IMG={"1": "assets/labs/lab1.png", "2": "assets/labs/lab2.png", "3": "assets/labs/lab3.png", "4": "assets/labs/lab4.png", "5": "assets/labs/lab5.png", "6": "assets/labs/lab6.png", "7": "assets/labs/lab7.png", "8": "assets/labs/lab8.png", "9": "assets/labs/lab9.png", "10": "assets/labs/lab10.png", "11": "assets/labs/lab11.png", "12": "assets/labs/lab12.png", "13": "assets/labs/lab13.png", "14": "assets/labs/lab14.png", "15": "assets/labs/lab15.png", "16": "assets/labs/lab16.png", "17": "assets/labs/lab17.png"};
+// Star Laboratory by level; 0 is the ruin before it's rebuilt
+const STARLAB_IMG={"0": "assets/starlabs/starlab0.png", "1": "assets/starlabs/starlab1.png", "2": "assets/starlabs/starlab2.png", "3": "assets/starlabs/starlab3.png", "4": "assets/starlabs/starlab4.png", "5": "assets/starlabs/starlab5.png", "6": "assets/starlabs/starlab6.png", "7": "assets/starlabs/starlab7.png", "8": "assets/starlabs/starlab8.png", "9": "assets/starlabs/starlab9.png", "10": "assets/starlabs/starlab10.png"};
+const starLabIc=l=>STARLAB_IMG[l]?`<img src="${STARLAB_IMG[l]}" alt="" class="hut-ic lab-ic" title="${l?"Star Laboratory L"+l:"Star Laboratory ruin"}">`:"⚗️";
+const labIc=l=>LAB_IMG[l]?`<img src="${LAB_IMG[l]}" alt="" class="hut-ic lab-ic" title="Laboratory L${l}">`:"⚗️";
+function builderPanel(V){
+  const exp=V.P.exp,b=V.P.bb;
+  const cnt=id=>(exp.buildings||[]).filter(e=>e.data===id).reduce((n,e)=>n+(e.cnt||1),0);
+  const huts=Math.min(5,cnt(ID.HUT)),bobHut=(exp.buildings||[]).some(e=>e.data===ID.BOB_HUT&&e.lvl>0);
+  const ctrl=Math.max(0,...(exp.buildings2||[]).filter(e=>e.data===ID.BOB_CTRL).map(e=>e.lvl||0));
+  const gemsAll=sum(HUT_GEMS),gemsSpent=sum(HUT_GEMS.slice(0,huts)),gemsLeft=gemsAll-gemsSpent;
+  const bbTroop=Math.max(0,...(exp.units2||[]).map(e=>e.lvl||0));
+  const bbDef=Math.max(0,...(exp.buildings2||[]).filter(e=>{const it=BY_ID[e.data];return it&&it.k==="defense"&&e.data!==ID.OTTO;}).map(e=>e.lvl||0));
+  const bbHeroes=sum((exp.heroes2||[]).map(e=>e.lvl||0));
+  const gear=(exp.buildings||[]).filter(e=>e.gear_up).reduce((n,e)=>n+(e.cnt||1),0);
+  const bh=b?b.th:0;
+  const tasks=[
+    {ic:"🏰",label:"Builder Hall",note:"then build B.O.B Control",sub:"Reach Builder Hall 9, then build B.O.B Control",cur:bh,goal:9,unit:"BH"},
+    {ic:"⚙️",label:"Gear Ups",note:"in the Home Village",sub:"Gear Up 3 Home Village buildings",cur:gear,goal:3,unit:""},
+    {ic:"⚔️",label:"Troop level",note:"Builder Base, highest troop",sub:"Upgrade a Builder Base troop to level 18",cur:bbTroop,goal:18,unit:"L"},
+    {ic:"🛡️",label:"Defence level",note:"Builder Base, highest defence",sub:"Upgrade a Builder Base defence to level 9",cur:bbDef,goal:9,unit:"L"},
+    {ic:"🦸",label:"Hero levels",note:"Battle Machine + Battle Copter",sub:"Battle Machine and Battle Copter at a combined level of 45",cur:bbHeroes,goal:45,unit:"L"},
+  ].map(t=>Object.assign(t,{p:Math.min(1,t.cur/t.goal),done:t.cur>=t.goal}));
+  const nDone=tasks.filter(t=>t.done).length;
+  const bobP=bobHut?1:sum(tasks.map(t=>t.p))/tasks.length;
+  const total=huts+(bobHut?1:0);
+  // 6 slots: five huts and B.O.B, the last one filled as far as his tasks are
+  const slots=[...Array(6)].map((_,i)=>{const bob=i===5,on=bob?bobHut:i<huts,p=bob?bobP:(on?1:0);
+    return`<div class="bslot${on?" on":""}${bob?" bob":""}" title="${bob?"B.O.B":"Builder "+(i+1)}"><div class="bslot-fill" style="height:${Math.round(p*100)}%"></div><span class="bslot-ic" aria-hidden="true">${bob?BOB_IC:HUT_IC}</span><span class="bslot-n">${bob?"B.O.B":i+1}</span>${bob&&!on?`<span class="bslot-p">${Math.round(p*100)}%</span>`:""}</div>`;}).join("");
+  const hutCards=HUT_GEMS.map((g,i)=>{const on=i<huts;return`<div class="hutc${on?" on":""}" title="${g?fmtNum(g)+" gems":"free"}"><span class="hutc-n">${on?"✓":"○"} Builder ${i+1}</span><span class="hutc-v small">${g?fmtNum(g)+" "+GEM_IC:"free"}</span></div>`;}).join("");
+  const steps=[1,2,3,4,5].map(l=>`<div class="bstep${(bobHut||ctrl>=l)?" on":""}${!bobHut&&l===ctrl+1?" next":""}"><span class="bstep-dot">${(bobHut||ctrl>=l)?"✓":l}</span><span class="bstep-l small">${l===5?"Hut":"L"+l}</span></div>`).join("");
+  const canUp=!bobHut&&nDone>ctrl&&ctrl>0?`<p class="banner info" style="margin:12px 0 0">B.O.B Control can go to L${Math.min(5,nDone)}</p>`:"";
+  const taskCards=tasks.map(t=>`<li class="btask${t.done?" done":""}" title="${esc(t.sub)}"><span class="btask-ic" aria-hidden="true">${t.done?"✅":t.ic}</span><span class="btask-l"><b>${t.label}</b><span class="btask-n small muted">${t.note}</span></span><span class="btask-v tnum">${Math.min(t.cur,t.goal)}<span class="muted">/${t.goal}</span></span>${bar(t.p,t.done?"":"gold")}<span class="pct">${Math.round(t.p*100)}%</span></li>`).join("");
+  return`<section class="panel"><div class="hero-row" style="align-items:center">
+      <div><div class="bigpct" style="font-size:1.9rem">${total}<span class="muted" style="font-size:.55em"> / 6</span></div><div class="small muted">Home Village</div></div>
+      <div class="bslots" role="img" aria-label="${total} of 6 builders unlocked">${slots}</div></div></section>
+    <section class="panel"><div class="panel-h"><h3>${HUT_IC} Builder's Huts</h3><span class="small muted">${huts}/5${gemsLeft?" · "+fmtNum(gemsLeft)+" "+GEM_IC+" to go":""}</span></div>
+      <div class="cats" style="margin-bottom:12px"><div class="cat-row"><span class="small" style="font-weight:800">${GEM_IC} Gems</span>${bar(gemsSpent/gemsAll)}<span class="pct">${pct(gemsSpent/gemsAll)}</span></div></div>
+      <div class="hutcs">${hutCards}</div></section>
+    <section class="panel"><div class="panel-h"><h3>${BOB_IC} 6th builder: B.O.B</h3><span class="small muted">${bobHut?"✓ working":""}</span></div>
+      <div class="bsteps" title="B.O.B Control: each finished task unlocks one level; at level 5 it becomes B.O.B's Hut. B.O.B can't be bought with gems. Tasks from Supercell's Builder Base 2.0 announcement.">${steps}</div>
+      ${bobHut?"":`<ul class="btasks">${taskCards}<li class="btask btask-tot"><span class="btask-ic" aria-hidden="true">${BOB_IC}</span><span class="btask-l"><b>Overall</b></span><span class="btask-v tnum">${nDone}<span class="muted">/5</span></span>${bar(bobP,"gold")}<span class="pct">${Math.round(bobP*100)}%</span></li></ul>`}${canUp}</section>`+bbBuilderPanel(V);}
+/* Builder Base builders: the Master Builder; O.T.T.O, from O.T.T.O's Outpost at Builder Hall 6; and B.O.T.O,
+   from B.O.T.O's Shack, bought for 1,000 gems once the Builder Hall is level 2 and all 5 Builder's Huts are unlocked.
+   B.O.T.O's Shack isn't in any data source yet, so it can't be detected in an export. */
+const BOTO_GEMS=1000;
+function bbBuilderPanel(V){
+  const exp=V.P.exp,b=V.P.bb,bh=b?b.th:0,otto=b?b.otto>0:false;
+  const huts=Math.min(5,(exp.buildings||[]).filter(e=>e.data===ID.HUT).reduce((n,e)=>n+(e.cnt||1),0));
+  const have=1+(otto?1:0);
+  const slots=[["Master",b?1:0,HUT_IC],["O.T.T.O",otto?1:Math.min(1,bh/6),BOTO_IC],["B.O.T.O",0,BOTO_IC]].map(([n,p,ic])=>`<div class="bslot${p>=1?" on":""}${p<1?" bob":""}" title="${n}"><div class="bslot-fill" style="height:${Math.round(p*100)}%"></div><span class="bslot-ic" aria-hidden="true">${ic}</span><span class="bslot-n">${n}</span>${p<1&&p>0?`<span class="bslot-p">${Math.round(p*100)}%</span>`:""}</div>`).join("");
+  const row=(ic,label,note,cur,goal,tip)=>{const p=goal?Math.min(1,cur/goal):1,done=cur>=goal;return`<li class="btask${done?" done":""}" title="${esc(tip)}"><span class="btask-ic" aria-hidden="true">${done?"✅":ic}</span><span class="btask-l"><b>${label}</b><span class="btask-n small muted">${note}</span></span><span class="btask-v tnum">${Math.min(cur,goal)}<span class="muted">/${goal}</span></span>${bar(p,done?"":"gold")}<span class="pct">${Math.round(p*100)}%</span></li>`;};
+  return`<section class="panel"><div class="hero-row" style="align-items:center">
+      <div><div class="bigpct" style="font-size:1.9rem">${have}<span class="muted" style="font-size:.55em"> / 3</span></div><div class="small muted">Builder Base</div></div>
+      <div class="bslots" style="max-width:190px;grid-template-columns:repeat(3,minmax(0,1fr))">${slots}</div></div></section>
+    <section class="panel"><div class="panel-h"><h3>${BOTO_IC} O.T.T.O</h3><span class="small muted">${otto?"✓ working":"unlocks at BH6"}</span></div>
+      <ul class="btasks">${row("🏰","Builder Hall","build O.T.T.O's Outpost at BH6",bh,6,"Reach Builder Hall 6 to build O.T.T.O's Outpost; O.T.T.O works from it")}</ul></section>
+    <section class="panel"><div class="panel-h"><h3>${BOTO_IC} B.O.T.O</h3><span class="small muted">${fmtNum(BOTO_GEMS)} ${GEM_IC}</span></div>
+      <ul class="btasks">${row("🏰","Builder Hall","Builder Base, BH2",bh,2,"B.O.T.O's Shack needs Builder Hall 2")}${row(HUT_IC,"Builder's Huts","all 5 in the Home Village",huts,5,"B.O.T.O's Shack needs all 5 Home Village Builder's Huts")}<li class="btask"><span class="btask-ic" aria-hidden="true">${GEM_IC}</span><span class="btask-l"><b>Gems</b><span class="btask-n small muted">buy B.O.T.O's Shack</span></span><span class="btask-v tnum">${fmtNum(BOTO_GEMS)}</span><span></span><span></span></li></ul>
+      <p class="small muted" style="margin:10px 0 0">B.O.T.O's Shack isn't in the game data yet, so the dashboard can't tell whether you've built it. Send an export after building it to add it.</p></section>`;}
 /* Overview timers split by who is working: builders, the lab (Star Lab on the Builder Base), the Pet House, and helpers and boosts */
 const T_GROUPS=[
-  {key:"bld",ic:"🔨",label:"Builders",test:t=>t.to!=null&&/^Builder/.test(t.q)},
-  {key:"lab",ic:"⚗️",label:"Laboratory",test:t=>t.to!=null&&/Lab/.test(t.q)},
+  {key:"bld",ic:HUT_IC,label:"Builders",test:t=>t.to!=null&&/^Builder/.test(t.q)},
+  {key:"lab",ic:o=>o.H?(o.lab?labIc(o.lab):"⚗️"):starLabIc(o.lab||0),label:"Laboratory",test:t=>t.to!=null&&/Lab/.test(t.q)},
   {key:"pet",ic:"🐾",label:"Pet House",test:t=>t.to!=null&&/Pet/.test(t.q)},
-  {key:"cool",ic:"⏱️",label:"Helpers & boosts",test:t=>t.to==null},
+  {key:"cool",ic:HELPER_IC,label:"Helpers & boosts",test:t=>t.to==null},
 ];
-function timerGroups(all,base,builders){
+function timerGroups(all,base,builders,lab){
   if(!all.length)return'<p class="muted">Nothing upgrading in this village.</p>';
   const H=base==="Home";const used=new Set();
   return T_GROUPS.map(g=>{const l=all.filter(t=>!used.has(t)&&g.test(t));l.forEach(t=>used.add(t));
     const label=g.key==="lab"&&!H?"Star Laboratory":g.label;
     const busy=g.key==="bld"?`${l.length} of ${builders} busy`:g.key==="lab"||g.key==="pet"?(l.length?"busy":"idle"):`${l.length}`;
     if(!l.length&&g.key!=="bld"&&!(g.key==="lab"))return"";
-    return`<div class="tgrp"><h4 class="tgrp-h"><span aria-hidden="true">${g.ic}</span> ${label} <span class="small muted">· ${busy}</span></h4>${l.length?`<div class="timers">${l.map(timerTileC).join("")}</div>`:`<p class="small muted" style="margin:0">Nothing running. ${g.key==="bld"?"Every builder is free.":"The lab is free."}</p>`}</div>`;}).join("");}
+    return`<div class="tgrp"><h4 class="tgrp-h"><span aria-hidden="true">${typeof g.ic==="function"?g.ic({H,lab}):g.ic}</span> ${label} <span class="small muted">· ${busy}</span></h4>${l.length?`<div class="timers">${l.map(timerTileC).join("")}</div>`:`<p class="small muted" style="margin:0">Nothing running. ${g.key==="bld"?"Every builder is free.":"The lab is free."}</p>`}</div>`;}).join("");}
 function timerTileC(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),pet=/Pet/.test(t.q),cool=t.to==null;const cls=cool?"cool":pet?"pet":lab?"lab":"bld";const ic=cool?"⏱️":pet?"🐾":lab?"⚗️":"🔨";const lbl=cool?t.q:lab?t.q:pet?"Pet House":/hero/.test(t.q)?"Builder · hero":"Builder";
   return`<div class="tC ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "${helpAttr(t)}><div class="tC-top"><div class="tC-n"><b>${esc(t.name)}</b>${t.to?` <span class="small muted">→ L${t.to}</span>`:""}</div><span class="tC-ics">${helpIcon(t)}<span class="tC-ic" role="img" title="${esc(lbl)}" aria-label="${esc(lbl)}">${ic}</span></span></div><div class="cd tnum">${fmtCd(cdLeft(t,now))}</div><span class="small muted when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span>${helpLine(t)}</div>`;}
 function timerRowB(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),cool=t.to==null;const cls=lab?"lab":cool?"cool":"bld";const ic=lab?"⚗️":cool?"⏱️":"🔨";
@@ -514,7 +583,7 @@ function viewHeroes(V){const h=V.P.home;const exp=V.P.exp;
   +(()=>{const dm=(exp.equipment||[]).map(e=>({e,it:BY_ID[e.data]})).filter(o=>o.it&&o.it.x&&o.it.x.datamine);return dm.length?`<section class="panel"><p class="small muted" style="margin:0">New Town Hall 19 equipment, named from the ${esc(DATAMINE_SRC)} report: ${dm.map(o=>`${esc(o.it.n)} (${esc(heroName(o.it.x.hero))}, ${esc(o.it.x.rarity)}, L${o.e.lvl}, ID ${o.e.data})`).join(", ")}. The IDs are matched by the order the update added them, not yet confirmed. ${dm.some(o=>o.it.x.levelsUnknown)?"Legendary upgrade costs aren't public yet, so Blizzard Axe isn't counted in progress.":""}</p></section>`:"";})()
   +(()=>{const nu=(exp.equipment||[]).filter(e=>!BY_ID[e.data]);return nu.length?`<section class="panel"><p class="small muted" style="margin:0">${nu.length} equipment piece${nu.length>1?"s":""} in your export ${nu.length>1?"aren't":"isn't"} in the game data yet, so ${nu.length>1?"they're":"it's"} not counted: ${nu.map(e=>`ID ${e.data} (L${e.lvl})`).join(", ")}. They're newer than every public equipment list. <button class="btn ghost sm" type="button" data-act="syncnames">Fetch names from Clash of Clans API</button></p></section>`:"";})()
   +(notOwned.length?`<section class="panel"><details><summary>${notOwned.length} equipment pieces not unlocked yet</summary><p class="small muted">${notOwned.map(i=>esc(i.n)+" ("+esc(heroName(i.x&&i.x.hero||""))+")").join(", ")}</p></details></section>`:"");}
-function viewLab(V){const h=V.P.home;return`<section class="panel"><div class="panel-h"><h2>Laboratory</h2><span class="muted small">Lab L${h.cur.lab} of ${h.caps.lab} at TH${h.th} · ${fmtDur(h.labTime)} of research left</span></div>${catBars(h,["troop","spell","siege"])}</section>`+["troop","spell","siege"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("");}
+function viewLab(V){const h=V.P.home;return`<section class="panel"><div class="panel-h"><h2>${h.cur.lab?labIc(h.cur.lab)+" ":""}Laboratory</h2><span class="muted small">Lab L${h.cur.lab} of ${h.caps.lab} at TH${h.th} · ${fmtDur(h.labTime)} of research left</span></div>${catBars(h,["troop","spell","siege"])}</section>`+["troop","spell","siege"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("");}
 function viewBuilder(V){const b=V.P.bb;if(!b)return'<section class="panel empty"><h2>Builder Base not unlocked</h2></section>';
   return`<section class="panel"><div class="hero-row">${bhArt(b.th)}<div style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap"><span class="bigpct">${pct(b.overall)}</span><span class="muted">of BH${b.th} work done</span></div>${bar(b.overall,"gold")}<span class="small muted">${fmtDur(b.builderTime)} builder time (≈ ${(b.builderTime/(b.huts*86400)).toFixed(1)} days with ${b.huts} builder${b.huts>1?"s":""}${b.otto?`, O.T.T.O's Outpost L${b.otto}`:""}) · ${fmtDur(b.labTime)} Star Lab · ${resHTML(addAll(b.builderCost,b.labCost),["BG","BE"])} · walls ${resHTML(b.wallCost,["BG"])}. Hammer Jam and Gold Pass boosts don't usually apply here.</span></div></div></section>`+b.groups.filter(g=>g.rows.length).map(g=>groupTable(g)).join("");}
 function viewTimers(V){const t=timersOf(V.P.exp);const up=t.filter(x=>x.to!=null),other=t.filter(x=>x.to==null);
@@ -578,41 +647,6 @@ function viewPlanner(V){
 }
 
 /* item log */
-function viewLog(V){
-  const logs=Store.cache.itemlog.filter(l=>l.tag===S.acct).sort((a,b)=>b.date<a.date?-1:1);
-  const names=[...new Set(V.P.home.groups.flatMap(g=>g.rows.map(r=>r.name)).concat(V.P.bb?V.P.bb.groups.flatMap(g=>g.rows.map(r=>r.name)):[]))].sort();
-  const saved=l=>{const m=GAME.magic.find(x=>x.slug===l.item);if(!m||!m.hours||!m.multiplier)return 0;return m.hours*(m.multiplier-1)*3600*(l.qty||1);};
-  const tot=sum(logs.map(saved));
-  return`<section class="panel"><div class="panel-h"><h2>Magic item log</h2><span class="small muted">${logs.length} entries · potions logged here saved about ${fmtDur(tot)}</span></div>
-  <form class="form-row" id="logForm">
-    <label class="f">Date<input type="date" id="lgDate" value="${isoDay(Date.now())}" required></label>
-    <label class="f">Item<select id="lgItem">${GAME.magic.map(m=>`<option value="${esc(m.slug)}">${esc(m.name)}</option>`).join("")}</select></label>
-    <label class="f">Qty<input type="number" id="lgQty" min="1" value="1" style="width:70px"></label>
-    <label class="f">Used on<input type="text" id="lgOn" list="lgNames" placeholder="e.g. Archer Queen" style="width:180px"><datalist id="lgNames">${names.map(n=>`<option value="${esc(n)}">`).join("")}</datalist></label>
-    <label class="f" style="flex:1;min-width:160px">Notes<input type="text" id="lgNotes"></label>
-    <button class="btn" type="submit">Log it</button>
-  </form>
-  <div class="tbl-wrap" style="margin-top:14px"><table><thead><tr><th>Date</th><th>Item</th><th>Used on</th><th>Effect</th><th class="r">Time saved</th><th></th></tr></thead><tbody>
-  ${logs.length?logs.map(l=>{const m=GAME.magic.find(x=>x.slug===l.item)||{name:l.item};return`<tr><td class="tnum">${esc(l.date)}</td><td><b>${esc(m.name)}</b>${l.qty>1?" ×"+l.qty:""}</td><td>${esc(l.target||"")}${l.notes?`<div class="small muted">${esc(l.notes)}</div>`:""}</td><td class="small muted">${esc(m.effect||"")}</td><td class="r tnum">${saved(l)?fmtDur(saved(l)):"—"}</td><td><button class="btn ghost sm" type="button" data-act="dellog" data-id="${esc(l._id)}">Delete</button></td></tr>`;}).join(""):'<tr><td colspan="6" class="muted">No items logged yet.</td></tr>'}
-  </tbody></table></div></section>`;
-}
-
-function viewAbout(){
-  return`<section class="panel"><h2>Where the numbers come from</h2>
-  <p>Max levels, counts, costs and times come from the open-source <b>clash-of-clans-data</b> package (v0.19.1, sourced from the Clash of Clans Wiki), matched to your export by each item's in-game ID. It covers items up to Town Hall 18 and Builder Hall 10, checked on 18 Nov 2026 as the newest release. Two Town Hall 19 equipment pieces, Shield Brooch and Blizzard Axe, are added from the <a href="https://github.com/NotAmti/Clash-of-Clans-Datamine" target="_blank" rel="noopener">Clash of Clans Datamine</a> report of 16 Nov 2026. Squad Barracks (unlocked at Town Hall 8) is added with its 12 levels from the Clash of Clans Wiki. Other Town Hall 19 content (new defences and Town Hall 19 levels) isn't added yet.</p>
-  <ul class="small">
-   <li><b>Progress %</b> is the share of all upgrade time (builder and lab), from level 1 up to your current Town Hall's max, that you've finished. An upgrade in progress counts at the level it started from (L1 → L2 counts as L1) until a new export shows it finished. Walls and equipment use cost instead of time.</li>
-   <li><b>Rushed</b> means a copy is below the previous Town Hall's max level.</li>
-   <li><b>Days left</b> divides builder time across your Builder's Huts and adds the Builder's Apprentice and Lab Assistant at their level in hours per day. Potions, gems and Clock Tower aren't modelled.</li>
-   <li>Supercharges, crafted defenses, Town Hall weapons and super troops aren't counted.</li>
-   <li>Gold Pass boosts (20% builder and research) come from a third-party reward list. Event dates for December are estimates. Edit anything in Events &amp; Effects.</li>
-   <li>Timers count down from the moment the export was taken. Import a fresh export whenever you've used boosts.</li>
-  </ul>
-  <p class="small muted">Not affiliated with or endorsed by Supercell. Clash of Clans is a trademark of Supercell.</p></section>
-  <section class="panel"><h3>Backup</h3><p class="small muted">Copy all your accounts, snapshots, seasons, logs and custom events as JSON.</p><div class="form-row"><button class="btn ghost" type="button" data-act="backup">Copy backup to clipboard</button></div><textarea id="backupOut" hidden readonly></textarea></section>
-  <section class="panel"><h3>Accounts</h3>${Store.cache.accounts.map(a=>`<div class="form-row" style="margin:8px 0"><b style="min-width:120px">${esc(a.tag)}</b><label class="f">Nickname<input type="text" data-acc-name="${esc(a._id)}" value="${esc(a.name||"")}"></label><label class="f">Builders (override)<input type="number" min="1" max="7" data-acc-b="${esc(a._id)}" value="${esc(a.builders||"")}" style="width:90px"></label><button class="btn sm" type="button" data-act="saveacc" data-id="${esc(a._id)}">Save</button><button class="btn danger sm" type="button" data-act="delacc" data-id="${esc(a._id)}">Delete account</button></div>`).join("")||'<p class="muted">None yet.</p>'}</section>`;
-}
-
 /* ---------- actions ---------- */
 async function importExport(text,name){
   let exp;try{exp=JSON.parse(text.trim());}catch(e){throw new Error("That isn't valid JSON. Copy the whole export from the game and paste it again.");}
@@ -651,10 +685,6 @@ document.addEventListener("click",async ev=>{
     else if(a==="clearcal"){const sd=seasonDoc(S.acct,seasonKey(Date.now()))||{};const c=Object.assign({},sd.calib||{});delete c[t.dataset.q];await saveSeason({calib:c});toast("Using calculated discounts again");render();}
     else if(a==="newev"){openEvent(null);}
     else if(a==="editev"){openEvent(t.dataset.id);}
-    else if(a==="dellog"){await Store.del("itemlog",t.dataset.id);render();}
-    else if(a==="saveacc"){const id=t.dataset.id;const acc=account(id);await Store.put("accounts",id,Object.assign({},acc,{name:$(`[data-acc-name="${id}"]`).value.trim(),builders:Number($(`[data-acc-b="${id}"]`).value)||null}));toast("Account saved");render();}
-    else if(a==="delacc"){if(t.dataset.confirm!=="1"){t.dataset.confirm="1";t.textContent="Confirm: delete account and its snapshots";return;}const id=t.dataset.id;for(const s of snapsFor(id))await Store.del("snapshots",s._id);await Store.del("accounts",id);S.acct=null;toast("Account deleted");render();}
-    else if(a==="backup"){const out=JSON.stringify(Store.cache);const ta=$("#backupOut");try{await navigator.clipboard.writeText(out);toast("Backup copied");}catch(e){ta.hidden=false;ta.value=out;ta.select();toast("Select and copy the text below");}}
   }catch(e){logErr("Saving",e);toast("Couldn't save: "+(e&&e.message||e));}
 });
 document.addEventListener("change",async ev=>{
@@ -696,8 +726,6 @@ document.addEventListener("submit",async ev=>{if(ev.target.id!=="calForm")return
   const sd=seasonDoc(S.acct,seasonKey(now))||{};
   try{await saveSeason({calib:Object.assign({},sd.calib||{},{[q]:entry})});toast("Matched: "+(q==="builder"?"builder":"lab")+" times ×"+entry.t.toFixed(2));render();}catch(e){logErr("Saving",e);err.textContent="Couldn't save: "+(e.message||e);}
 });
-document.addEventListener("submit",async ev=>{if(ev.target.id!=="logForm")return;ev.preventDefault();
-  try{await Store.put("itemlog","l-"+Date.now().toString(36),{tag:S.acct,date:$("#lgDate").value,item:$("#lgItem").value,qty:Number($("#lgQty").value)||1,target:$("#lgOn").value.trim(),notes:$("#lgNotes").value.trim()});toast("Logged");render();}catch(e){logErr("Saving",e);toast("Couldn't save: "+(e.message||e));}});
 
 
 /* style switcher (remembered per browser) */
