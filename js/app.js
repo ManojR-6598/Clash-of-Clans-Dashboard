@@ -370,7 +370,7 @@ function viewOverview(V){
   const vb=S.ovBase==="b"?"b":"h";
   const tmsFor=base=>timersOf(exp).filter(t=>t.base===base);
   const nextPanel=(base,tab)=>{const all=tmsFor(base);const up=all.filter(t=>t.to!=null);const cd=all.filter(t=>t.to==null);const tms=up;return`<section class="panel"><div class="panel-h"><h3>Finishing next · ${base==="Home"?"TH"+h.th:"BH"+(b?b.th:"")}</h3><span class="small muted"><span data-ups="${up.map(t=>t.end).join(",")}">${up.length} upgrade${up.length===1?"":"s"} running</span> · from the snapshot taken ${dateStr(V.snap.ts*1000)}; boosts or potions used since then aren't reflected</span></div>
-    ${(()=>{const H=base==="Home";const wrap=l=>`<div class="timers">${l.map(timerTileC).join("")}</div>`;return all.length?wrap(all):`<p class="muted">Nothing upgrading in this village.</p>`;})()}</section>`;};
+    ${timerGroups(all,base,base==="Home"?(acc.builders||h.huts||1):(b?b.huts:1))}</section>`;};
   const seg=`<div class="seg" role="group" aria-label="Village">${[["h","Home Village"],["b","Builder Base"]].map(([v,l])=>`<button type="button" data-act="ovbase" data-v="${v}" aria-pressed="${vb===v}">${l}</button>`).join("")}</div>`;
   const head=`<section class="panel"><div class="panel-h" style="margin:0"><h2>${esc(acc.name||exp.tag)} <span class="muted small" style="font-family:var(--body)">${esc(exp.tag)}</span></h2><span class="small muted">Snapshot ${dateStr(V.snap.ts*1000)}</span></div><div style="margin-top:12px">${seg}</div></section>`;
   const banner=errPanel();
@@ -425,6 +425,21 @@ function tStart(t){return t.full?t.end-t.full*1000:0;}
 function tPct(st,end,now){return st&&end>st?Math.max(0,Math.min(1,(now-st)/(end-st))):null;}
 function timerCardA(t){const now=Date.now(),dn=t.end<=now,st=t.to!=null?tStart(t):0,p=tPct(st,t.end,now);
   return`<div class="tA${dn?" done":""}" data-end="${t.end}"${st?` data-start="${st}"`:""}${t.help?` data-full="${t.full}"`:""}${helpAttr(t)}><div class="tA-h"><b>${esc(t.name)} ${helpIcon(t)}</b>${t.to?`<span class="tA-lv">L${t.to-1} → L${t.to}</span>`:""}</div>${st?`<div class="tA-trk"><div class="tA-fl" style="width:${dn?100:Math.round(p*100)}%"></div></div>`:""}<div class="tA-f"><span class="small muted"><span class="pc">${!dn&&p!=null?Math.round(p*100)+"% · ":""}</span>${esc(t.q)} · <span class="when">${dn?"Finished ":""}${dateStr(t.end)}</span></span><span class="cd tnum">${fmtCd(cdLeft(t,now))}</span></div>${helpLine(t)}</div>`;}
+/* Overview timers split by who is working: builders, the lab (Star Lab on the Builder Base), the Pet House, and helpers and boosts */
+const T_GROUPS=[
+  {key:"bld",ic:"🔨",label:"Builders",test:t=>t.to!=null&&/^Builder/.test(t.q)},
+  {key:"lab",ic:"⚗️",label:"Laboratory",test:t=>t.to!=null&&/Lab/.test(t.q)},
+  {key:"pet",ic:"🐾",label:"Pet House",test:t=>t.to!=null&&/Pet/.test(t.q)},
+  {key:"cool",ic:"⏱️",label:"Helpers & boosts",test:t=>t.to==null},
+];
+function timerGroups(all,base,builders){
+  if(!all.length)return'<p class="muted">Nothing upgrading in this village.</p>';
+  const H=base==="Home";const used=new Set();
+  return T_GROUPS.map(g=>{const l=all.filter(t=>!used.has(t)&&g.test(t));l.forEach(t=>used.add(t));
+    const label=g.key==="lab"&&!H?"Star Laboratory":g.label;
+    const busy=g.key==="bld"?`${l.length} of ${builders} busy`:g.key==="lab"||g.key==="pet"?(l.length?"busy":"idle"):`${l.length}`;
+    if(!l.length&&g.key!=="bld"&&!(g.key==="lab"))return"";
+    return`<div class="tgrp"><h4 class="tgrp-h"><span aria-hidden="true">${g.ic}</span> ${label} <span class="small muted">· ${busy}</span></h4>${l.length?`<div class="timers">${l.map(timerTileC).join("")}</div>`:`<p class="small muted" style="margin:0">Nothing running. ${g.key==="bld"?"Every builder is free.":"The lab is free."}</p>`}</div>`;}).join("");}
 function timerTileC(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),pet=/Pet/.test(t.q),cool=t.to==null;const cls=cool?"cool":pet?"pet":lab?"lab":"bld";const ic=cool?"⏱️":pet?"🐾":lab?"⚗️":"🔨";const lbl=cool?t.q:lab?t.q:pet?"Pet House":/hero/.test(t.q)?"Builder · hero":"Builder";
   return`<div class="tC ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "${helpAttr(t)}><div class="tC-top"><div class="tC-n"><b>${esc(t.name)}</b>${t.to?` <span class="small muted">→ L${t.to}</span>`:""}</div><span class="tC-ics">${helpIcon(t)}<span class="tC-ic" role="img" title="${esc(lbl)}" aria-label="${esc(lbl)}">${ic}</span></span></div><div class="cd tnum">${fmtCd(cdLeft(t,now))}</div><span class="small muted when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span>${helpLine(t)}</div>`;}
 function timerRowB(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),cool=t.to==null;const cls=lab?"lab":cool?"cool":"bld";const ic=lab?"⚗️":cool?"⏱️":"🔨";

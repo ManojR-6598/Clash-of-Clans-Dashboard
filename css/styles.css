@@ -352,3 +352,5 @@ details>summary{cursor:pointer;font-weight:800}
 .tC-ics{display:inline-flex;gap:4px;align-items:center}
 .help-ic{display:inline-grid;place-items:center;font-size:.85em;filter:drop-shadow(0 0 3px rgba(255,200,0,.6))}
 .help-ic[hidden]{display:none}
+.tgrp+.tgrp{margin-top:14px}
+.tgrp-h{margin:0 0 8px;font-size:.95rem;display:flex;gap:6px;align-items:baseline}
