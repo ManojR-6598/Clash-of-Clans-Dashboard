@@ -2,7 +2,7 @@
 // Usage: node decoder/decode.mjs <export.json> [previous-export.json] [--out report.md]
 // Names come from decoder/id-map.json (rebuild with build-id-map.mjs); levels, max levels and upgrade
 // costs from js/game-data.js. Nothing is guessed: IDs missing from the map are reported as UNKNOWN.
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -17,6 +17,9 @@ if (!curPath) { console.error("Usage: node decoder/decode.mjs <export.json> [pre
 const MAP = JSON.parse(readFileSync(join(here, "id-map.json"), "utf8"));
 const GAME = eval("(" + readFileSync(join(root, "js/game-data.js"), "utf8").replace(/^const GAME\s*=\s*/, "").replace(/;\s*$/, "") + ")");
 const BY_ID = Object.fromEntries(GAME.items.map((i) => [i.id, i]));
+// new rows from datamine reports that have no ID yet (written by import-datamine.mjs); offered as candidates only
+const DM = existsSync(join(here, "datamine-new.json")) ? JSON.parse(readFileSync(join(here, "datamine-new.json"), "utf8")) : { reports: {}, tables: {} };
+const candidates = (table) => (DM.tables[table] || []).filter((r) => !r.knownIds).sort((a, b) => b.report.localeCompare(a.report) || a.order - b.order);
 const exp = JSON.parse(readFileSync(curPath, "utf8"));
 const prev = prevPath ? JSON.parse(readFileSync(prevPath, "utf8")) : null;
 
@@ -223,6 +226,21 @@ p();
 p("## Unidentified IDs");
 p();
 table(["Category", "ID", "Status", "What is known"], unknowns.map(({ key, id, e }) => [key.replace(/^__home\w+/, "buildings"), `\`${id}\``, e.warn ? "village mismatch" : e.status, e.warn || e.note || (e.internal ? `internal name ${e.internal}` : "no source has this ID")]));
+{
+  // candidate names: new rows in the same table that no ID has yet, newest update first
+  const tables = [...new Set(unknowns.filter(({ e }) => e.status === "unknown").map(({ key }) => (KEYS[key] || [])[0]).filter(Boolean))]; // an ID with an internal name is an older row
+  const lines = tables.map((t) => [t, candidates(t)]).filter(([, c]) => c.length);
+  if (lines.length) {
+    p("**Possible names** from datamine reports: rows added in recent updates that don't have a known ID yet. These are candidates, not matches; confirm in game before adding one to overrides.json.");
+    p();
+    for (const [t, c] of lines) {
+      const by = {};
+      for (const r of c) (by[r.report.slice(0, 10)] ||= []).push(r.name);
+      p(`- **${t}**: ${Object.entries(by).map(([d, n]) => `${n.join(", ")} (${d})`).join("; ")}`);
+    }
+    p();
+  }
+}
 
 // ---------- diff ----------
 if (prev) {
@@ -258,6 +276,7 @@ p("## Sources");
 p();
 for (const [k, v] of Object.entries(MAP.sources)) p(`- **${k}**: ${v}`);
 p(`- **Max levels and upgrade data**: js/game-data.js (clash-of-clans-data v0.19.1)`);
+for (const [k, r] of Object.entries(DM.reports)) p(`- **Datamine report ${k}**: ${r.url}`);
 p(`- ID map built ${MAP.generated}`);
 p();
 

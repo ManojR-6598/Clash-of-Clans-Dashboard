@@ -32,12 +32,16 @@ function addLearned(items){for(const it of items)if(!BY_ID[it.id]){GAME.items.pu
 addLearned(loadLearned());
 /* Town Hall 19 equipment from the NotAmti/Clash-of-Clans-Datamine report of 16 Nov 2026, newer than js/game-data.js.
    IDs are inferred from the order of the update's new rows, so names learned from the API sync above take precedence.
-   Shield Brooch uses the shared epic upgrade table; Legendary costs aren't public yet, so Blizzard Axe isn't counted. */
+   Shield Brooch uses the shared epic upgrade table; Legendary costs aren't public yet, so Blizzard Axe isn't counted.
+   Squad Barracks has one level per Town Hall from 8 to 19 (wiki table), so it is counted like the other barracks. */
 const DATAMINE_SRC="Clash of Clans Datamine, 16 Nov 2026";
 {const epic=equipTemplate(27);
  addLearned([
   epic&&{id:90000062,n:"Shield Brooch",b:"h",k:"equipment",lv:JSON.parse(JSON.stringify(epic.lv)),x:{hero:"royal-champion",rarity:"epic",datamine:DATAMINE_SRC}},
   {id:90000063,n:"Blizzard Axe",b:"h",k:"equipment",lv:[[1,{SO:0,GO:0,SR:0},"",0,null,{blacksmith:1}]],x:{hero:"barbarian-king",rarity:"legendary",datamine:DATAMINE_SRC,levelsUnknown:true}},
+  // ID inferred: seen being built in a TH11 export, and the only new Home Village building a TH11 can build.
+  // Levels from the Clash of Clans Wiki (fandom) Squad Barracks page, 18 Nov 2026; level 1 matches the datamine's 1.7M build cost
+  {id:1000106,n:"Squad Barracks",b:"h",k:"army",lv:[[1,1700000,"E",172800,8],[2,3000000,"E",259200,9],[3,3800000,"E",432000,10],[4,6000000,"E",518400,11],[5,7500000,"E",604800,12],[6,10000000,"E",648000,13],[7,12500000,"E",691200,14],[8,15000000,"E",820800,15],[9,16000000,"E",864000,16],[10,20000000,"E",950400,17],[11,26000000,"E",1166400,18],[12,32000000,"E",1382400,19]],cnt:{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":1,"9":1,"10":1,"11":1,"12":1,"13":1,"14":1,"15":1,"16":1,"17":1,"18":1,"19":1},x:{datamine:DATAMINE_SRC+" + Clash of Clans Wiki"}},
  ].filter(Boolean));}
 const ID={TH:1000001,BH:1000034,LAB:1000007,HH:1000071,BS:1000070,PH:1000068,SL:1000046,HUT:1000015,OTTO:1000078};
 function bldMaxAt(id,th){const it=BY_ID[id];if(!it)return 0;let m=0;for(const L of it.lv){if(L[4]==null||L[4]<=th)m=Math.max(m,L[0]);}return m;}
@@ -580,7 +584,7 @@ function viewLog(V){
 
 function viewAbout(){
   return`<section class="panel"><h2>Where the numbers come from</h2>
-  <p>Max levels, counts, costs and times come from the open-source <b>clash-of-clans-data</b> package (v0.19.1, sourced from the Clash of Clans Wiki), matched to your export by each item's in-game ID. It covers items up to Town Hall 18 and Builder Hall 10, checked on 18 Nov 2026 as the newest release. Two Town Hall 19 equipment pieces, Shield Brooch and Blizzard Axe, are added from the <a href="https://github.com/NotAmti/Clash-of-Clans-Datamine" target="_blank" rel="noopener">Clash of Clans Datamine</a> report of 16 Nov 2026. Other Town Hall 19 content (Squad Barracks, new defences and levels) isn't in any public data with levels and costs yet.</p>
+  <p>Max levels, counts, costs and times come from the open-source <b>clash-of-clans-data</b> package (v0.19.1, sourced from the Clash of Clans Wiki), matched to your export by each item's in-game ID. It covers items up to Town Hall 18 and Builder Hall 10, checked on 18 Nov 2026 as the newest release. Two Town Hall 19 equipment pieces, Shield Brooch and Blizzard Axe, are added from the <a href="https://github.com/NotAmti/Clash-of-Clans-Datamine" target="_blank" rel="noopener">Clash of Clans Datamine</a> report of 16 Nov 2026. Squad Barracks (unlocked at Town Hall 8) is added with its 12 levels from the Clash of Clans Wiki. Other Town Hall 19 content (new defences and Town Hall 19 levels) isn't added yet.</p>
   <ul class="small">
    <li><b>Progress %</b> is the share of all upgrade time (builder and lab), from level 1 up to your current Town Hall's max, that you've finished. An upgrade in progress counts at the level it started from (L1 → L2 counts as L1) until a new export shows it finished. Walls and equipment use cost instead of time.</li>
    <li><b>Rushed</b> means a copy is below the previous Town Hall's max level.</li>

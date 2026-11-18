@@ -17,13 +17,24 @@ The previous export is optional. Keep exports in `decoder/exports/` and reports 
 | [clash-of-clans-data](https://github.com/chiefpansancolt/clash-of-clans-data) (bundled as `js/game-data.js`) | Names, levels, costs for gameplay items | v0.19.1, 29 Oct 2026 |
 | [coc.py](https://github.com/mathsman5133/coc.py) `coc/static/static_data.json` | Display names generated from the game's files, including cosmetics | 1 Dec 2025 |
 | Game data tables, [Enjoyop2/Clash-of-Clans-data-assets](https://github.com/Enjoyop2/Clash-of-Clans-data-assets) | Internal names and the ID of every row | game v18.200.9, Mar 2026 |
-| [NotAmti/Clash-of-Clans-Datamine](https://github.com/NotAmti/Clash-of-Clans-Datamine) | Names, rarity and file order of new rows in each update (no IDs); used through `overrides.json` | report of 16 Nov 2026 (Town Hall 19) |
+| [NotAmti/Clash-of-Clans-Datamine](https://github.com/NotAmti/Clash-of-Clans-Datamine) | Names and file order of new rows in each update; name–ID pairs where a report prints a GlobalID (skins) | report of 16 Nov 2026 (Town Hall 19) |
 
 How IDs work in the game tables: `buildings`, `characters`, `spells` and `traps` have a `GlobalID` column. In every other table an ID is the table's base plus the row number, counting retired rows. Retired rows are sometimes reused for new items (for example `90000016` was a placeholder and is now Electro Fangs), so IDs can't be guessed from their order. The game's text file only stores hashes, so the tables confirm IDs and internal names but never display names.
 
 Each entry has a status: **verified** (two sources agree), **single-source**, **internal-name-only**, **conflict**, **researched** (from `overrides.json`), **retired** or **unknown**. The report marks them with symbols explained at its top.
 
 ## Updating the map
+
+After each game update, download the new report from [NotAmti/Clash-of-Clans-Datamine/reports](https://github.com/NotAmti/Clash-of-Clans-Datamine/tree/main/reports) and run:
+
+```bash
+node decoder/import-datamine.mjs path/to/2026-11-16_0f8af5ebc59d.md
+```
+
+It writes `decoder/datamine-new.json`: every new row per table, in file order, marked with its ID when the name already has one. Reports carry no IDs, so the rest are only **candidates**. When an export has an unknown ID, the report lists the candidates for that table under "Possible names". IDs aren't handed out in order (Ruin Witch, added in July 2026, took `4000109` while the newest troop was `4000188`), so a name is only assigned through `overrides.json` once it's confirmed.
+
+Some reports also print a row's `GlobalID` next to its name. The Town Hall 19 report does this for 449 skins. Those name–ID pairs come from the game files, so `import-datamine.mjs` saves them under `globalIds` and `build-id-map.mjs` uses them as a fourth source. Names that look like internal row names (`GrandWarden059`, `PetLassiDefault`) count as internal names, not display names.
+
 
 1. Download the sources into a scratch folder:
 

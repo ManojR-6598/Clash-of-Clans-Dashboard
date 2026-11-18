@@ -80,6 +80,12 @@ const gameById = Object.fromEntries(GAME.items.map((i) => [i.id, i]));
 const cocpy = JSON.parse(readFileSync(cocpyPath, "utf8"));
 const norm = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]/g, "");
 const overridesPath = join(here, "overrides.json");
+// name–ID pairs read from datamine reports by import-datamine.mjs (taken from the game files, newer than the CSVs)
+const dmPath = join(here, "datamine-new.json");
+const DM = existsSync(dmPath) ? JSON.parse(readFileSync(dmPath, "utf8")) : { reports: {}, globalIds: {} };
+const dmIds = DM.globalIds || {};
+// datamine names like "GrandWarden059" or "PetLassiDefault" are internal row names, not display names
+const internalLike = (n, internal) => (internal && n === internal) || /^[A-Za-z]+\d{3}$/.test(n) || (!/\s/.test(n) && /[a-z][A-Z]/.test(n));
 const overrides = existsSync(overridesPath) ? JSON.parse(readFileSync(overridesPath, "utf8")).ids || {} : {};
 
 const map = {};
@@ -89,6 +95,7 @@ for (const [table, t] of Object.entries(TABLES)) {
   const rows = t.csv ? csvRows(t.csv, t.base) : null;
   const ids = new Set([...Object.keys(cp), ...Object.keys(rows || {})].map(Number));
   for (const it of GAME.items) if (it.id >= t.base && it.id < t.base + 1000000) ids.add(it.id);
+  for (const k of Object.keys(dmIds)) if (+k >= t.base && +k < t.base + 1000000) ids.add(+k);
   for (const k of Object.keys(overrides)) if (k.startsWith(table + ":")) ids.add(Number(k.split(":")[1])); // IDs only an override knows
 
   for (const id of [...ids].sort((a, b) => a - b)) {
@@ -99,6 +106,8 @@ for (const [table, t] of Object.entries(TABLES)) {
     if (g) sources.push("clash-of-clans-data");
     if (c) sources.push("coc.py");
     if (row) sources.push(`game-csv ${csvVersion}`);
+    const dm = dmIds[id], dmName = dm && !internalLike(dm.name, internal) ? dm.name : null;
+    if (dm) sources.push(`datamine ${dm.report.slice(0, 10)}`);
 
     let name = g?.n || c?.name || null, status, note;
     if (g && c) {
@@ -113,11 +122,18 @@ for (const [table, t] of Object.entries(TABLES)) {
       status = "internal-name-only";
       note = "display name not in any source; internal name from the game table";
     } else status = retired ? "retired" : "unknown";
+    // the datamine gives a second, independent name (or an internal name) with the ID
+    let internalName = internal || (dm && !dmName ? dm.name : null);
+    if (dmName) {
+      if (!name) { name = dmName; status = "single-source"; note = undefined; }
+      else if (norm(name) === norm(dmName)) { if (status === "single-source") { status = "verified"; note = undefined; } }
+      else if (status !== "conflict") { status = "conflict"; note = `${g ? "clash-of-clans-data" : "coc.py"} says "${name}", the datamine says "${dmName}"`; }
+    } else if (!name && !internal && internalName) { status = "internal-name-only"; note = "display name not in any source; internal name from the datamine report"; }
 
     const village = g ? (g.b === "b" ? "builder" : "home")
       : c?.village ? (/builder/i.test(c.village) ? "builder" : "home")
       : internal && /^(BB[ _]|BB2_)/.test(internal) ? "builder" : undefined;
-    const e = { name, internal, status, sources };
+    const e = { name, internal: internalName, status, sources };
     if (village) e.village = village;
     if (note) e.note = note;
     if (table === "equipment" && (g?.x || c)) {
@@ -135,6 +151,7 @@ const out = {
   sources: {
     "clash-of-clans-data": "npm clash-of-clans-data v0.19.1 (29 Oct 2026), bundled as js/game-data.js — https://github.com/chiefpansancolt/clash-of-clans-data",
     "coc.py": "coc/static/static_data.json, last updated 1 Dec 2025, generated from the game's files — https://github.com/mathsman5133/coc.py",
+    ...Object.fromEntries(Object.entries(DM.reports || {}).filter(([k]) => Object.values(dmIds).some((v) => v.report === k)).map(([k, r]) => [`datamine ${k.slice(0, 10)}`, `name–ID pairs from the game files in the Clash of Clans Datamine report ${k} — ${r.url}`])),
     [`game-csv ${csvVersion}`]: `logic/*.csv from game version ${csvVersion} — https://github.com/Enjoyop2/Clash-of-Clans-data-assets/tree/main/${csvVersion}/logic`,
   },
   statuses: {

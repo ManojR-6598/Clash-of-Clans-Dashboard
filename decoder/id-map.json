@@ -1,8 +1,9 @@
 {
- "generated": "2026-11-18T17:20:17.514Z",
+ "generated": "2026-11-18T17:42:38.639Z",
  "sources": {
   "clash-of-clans-data": "npm clash-of-clans-data v0.19.1 (29 Oct 2026), bundled as js/game-data.js — https://github.com/chiefpansancolt/clash-of-clans-data",
   "coc.py": "coc/static/static_data.json, last updated 1 Dec 2025, generated from the game's files — https://github.com/mathsman5133/coc.py",
+  "datamine 2026-11-16": "name–ID pairs from the game files in the Clash of Clans Datamine report 2026-11-16_0f8af5ebc59d — https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-11-16_0f8af5ebc59d.md",
   "game-csv v18.200.9": "logic/*.csv from game version v18.200.9 — https://github.com/Enjoyop2/Clash-of-Clans-data-assets/tree/main/v18.200.9/logic"
  },
  "statuses": {
@@ -1112,6 +1113,18 @@
      "game-csv v18.200.9"
     ],
     "note": "display name not in any source; internal name from the game table"
+   },
+   "1000106": {
+    "name": "Squad Barracks",
+    "internal": null,
+    "status": "researched",
+    "sources": [
+     "overrides.json"
+    ],
+    "village": "home",
+    "source": "NotAmti/Clash-of-Clans-Datamine report 2026-11-16 (fingerprint 0f8af5ebc59d) plus export of 18 Nov 2026, 22:59",
+    "confidence": "inferred",
+    "note": "Inferred: first seen being built (L0) in a Town Hall 11 export. Of the buildings added since v18.200.9 without an ID, Squad Barracks (TownHallLevel 8, BuildCost 1,700,000) is the only Home Village one a Town Hall 11 can build; Guardian Shrine, Spiky Tower and Firecracker Tower need Town Hall 19 and BB Builders Hut is on the Builder Base. Confirm in game. Levels: 12, one per Town Hall from 8 to 19 (Clash of Clans Wiki, Squad Barracks page, 18 Nov 2026)."
    }
   },
   "traps": {
@@ -10289,40 +10302,44 @@
    "52000000": {
     "name": "Barbarian King",
     "internal": "BarbarianKingDefault",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000001": {
     "name": "Gladiator King",
     "internal": "BarbarianKingGladiator",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000002": {
     "name": "Archer Queen",
     "internal": "ArcherQueenDefault",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000003": {
     "name": "Grand Warden",
     "internal": "GrandWardenDefault",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -10332,7 +10349,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10342,7 +10360,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10352,7 +10371,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10362,7 +10382,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10372,7 +10393,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10382,7 +10404,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10392,7 +10415,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10402,7 +10426,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10412,7 +10437,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10422,7 +10448,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10432,7 +10459,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10442,7 +10470,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10452,7 +10481,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10462,7 +10492,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10472,7 +10503,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10482,7 +10514,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10492,7 +10525,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -10502,7 +10536,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -10512,7 +10547,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -10522,7 +10558,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -10532,17 +10569,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000025": {
     "name": "Warden of the North",
     "internal": "NorthWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -10552,27 +10591,30 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000027": {
     "name": "Warden Master",
     "internal": "MasterWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000028": {
     "name": "Royal Champion",
     "internal": "WarriorPrincessDefault",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10582,7 +10624,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10592,7 +10635,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10602,7 +10646,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10612,7 +10657,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10622,7 +10668,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10632,7 +10679,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10642,7 +10690,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10652,7 +10701,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10662,17 +10712,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000038": {
     "name": "Magic Champion",
     "internal": "TH15Champion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10682,7 +10734,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10692,7 +10745,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10702,7 +10756,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10712,7 +10767,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10722,7 +10778,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10732,7 +10789,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -10742,7 +10800,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10752,17 +10811,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000047": {
     "name": "Fierce King",
     "internal": "SavageKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10772,17 +10833,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000049": {
     "name": "Beat King",
     "internal": "AnniversaryKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10792,7 +10855,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10802,17 +10866,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000052": {
     "name": "Lunar King",
     "internal": "TigerKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10822,7 +10888,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10832,7 +10899,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10842,7 +10910,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10852,7 +10921,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -10862,7 +10932,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10872,7 +10943,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10882,7 +10954,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10892,7 +10965,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10902,7 +10976,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10912,7 +10987,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10922,7 +10998,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10932,7 +11009,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10942,17 +11020,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000066": {
     "name": "Magic Queen",
     "internal": "TH15Queen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10962,7 +11042,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10972,7 +11053,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -10982,7 +11064,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -10992,7 +11075,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11002,7 +11086,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11012,7 +11097,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11022,7 +11108,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11032,17 +11119,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000075": {
     "name": "Magic Warden",
     "internal": "TH15Warden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11052,7 +11141,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11062,7 +11152,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11072,7 +11163,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11082,7 +11174,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11092,7 +11185,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11101,7 +11195,8 @@
     "internal": "PetLassiDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11110,7 +11205,8 @@
     "internal": "PetYakDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11119,7 +11215,8 @@
     "internal": "PetEowlDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11128,7 +11225,8 @@
     "internal": "PetUnicornDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11137,7 +11235,8 @@
     "internal": "CapitalFlyingFortressDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11146,17 +11245,19 @@
     "internal": "CapitalMountainGolemDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000087": {
     "name": "Magic King",
     "internal": "TH15King",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11166,7 +11267,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11176,7 +11278,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11186,7 +11289,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11196,7 +11300,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11206,17 +11311,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000093": {
     "name": "Future King",
     "internal": "ClashiversaryKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11226,7 +11333,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11236,7 +11344,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11246,7 +11355,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11256,7 +11366,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11266,17 +11377,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000099": {
     "name": "Heart Hunter Queen",
     "internal": "ValentinesQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11286,7 +11399,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11296,7 +11410,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11306,17 +11421,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000103": {
     "name": "Future Queen",
     "internal": "ClashiversaryQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11326,7 +11443,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11336,17 +11454,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000106": {
     "name": "Queen of the North",
     "internal": "WinterQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11355,7 +11475,8 @@
     "internal": "PetFrostyDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11364,7 +11485,8 @@
     "internal": "PetPoisonIguanaDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11373,7 +11495,8 @@
     "internal": "PetPhoenixDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11382,7 +11505,8 @@
     "internal": "PetDiggyDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11391,7 +11515,8 @@
     "internal": "PetPhoenixEggDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11401,7 +11526,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -11411,17 +11537,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000114": {
     "name": "Future Champion",
     "internal": "ClashiversaryChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -11431,27 +11559,30 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000116": {
     "name": "Champions' Champion",
     "internal": "ChampionChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000117": {
     "name": "Dragon Champion",
     "internal": "LNY24Champion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -11461,17 +11592,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000119": {
     "name": "Egypt Champion",
     "internal": "EgyptianChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -11481,7 +11614,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -11491,17 +11625,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000122": {
     "name": "Future Warden",
     "internal": "ClashiversaryWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11511,17 +11647,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000124": {
     "name": "Dragon Warden",
     "internal": "LNY24Warden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11531,17 +11669,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000126": {
     "name": "Egypt Warden",
     "internal": "EgyptianWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11551,7 +11691,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11561,7 +11702,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11571,7 +11713,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -11581,47 +11724,52 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000131": {
     "name": "Grand Dwarf",
     "internal": "TTRPGWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000132": {
     "name": "Dragon King",
     "internal": "LunarKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000133": {
     "name": "King of the North",
     "internal": "WinterKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000134": {
     "name": "Egypt King",
     "internal": "EgyptianKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11631,27 +11779,30 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000136": {
     "name": "Super Squad King",
     "internal": "SquadKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000137": {
     "name": "King Haaland",
     "internal": "HaalandKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11661,7 +11812,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11671,7 +11823,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -11680,7 +11833,8 @@
     "internal": "BuilderApprentice",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11690,17 +11844,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000142": {
     "name": "Dragon Queen",
     "internal": "LNY24Queen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11710,17 +11866,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000144": {
     "name": "Egypt Queen",
     "internal": "EgyptianQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11730,7 +11888,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11740,7 +11899,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11750,7 +11910,8 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -11760,47 +11921,52 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000149": {
     "name": "Archer Satyr",
     "internal": "TTRPGQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000150": {
     "name": "Dark Minion Queen",
     "internal": "ClashoweenQuen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000151": {
     "name": "Justice Queen",
     "internal": "TH17Queen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000152": {
     "name": "Battle Machine",
     "internal": "WarmachineDefault",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warmachine"
    },
@@ -11810,37 +11976,41 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warmachine"
    },
    "52000154": {
     "name": "Goblin Machine",
     "internal": "Warmachine002",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warmachine"
    },
    "52000155": {
     "name": "Steampunk Machine",
     "internal": "Warmachine003",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warmachine"
    },
    "52000156": {
     "name": "Battle Machine of the North",
     "internal": "OfTheNorthMachine",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warmachine"
    },
@@ -11849,7 +12019,8 @@
     "internal": "Warmachine005",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11858,7 +12029,8 @@
     "internal": "Warmachine006",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11867,7 +12039,8 @@
     "internal": "Warmachine007",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11876,7 +12049,8 @@
     "internal": "Warmachine008",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11885,7 +12059,8 @@
     "internal": "Warmachine009",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11894,47 +12069,52 @@
     "internal": "Warmachine010",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000163": {
     "name": "Battle Copter",
     "internal": "BattleCopterDefault",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Battle Copter"
    },
    "52000164": {
     "name": "SteamPunk Copter",
     "internal": "BattleCopter001",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Battle Copter"
    },
    "52000165": {
     "name": "Hotrod Copter",
     "internal": "BattleCopter002",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Battle Copter"
    },
    "52000166": {
     "name": "Boat Copter",
     "internal": "PirateCopter",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Battle Copter"
    },
@@ -11943,7 +12123,8 @@
     "internal": "BattleCopter004",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11952,7 +12133,8 @@
     "internal": "BattleCopter005",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11961,7 +12143,8 @@
     "internal": "BattleCopter006",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11970,7 +12153,8 @@
     "internal": "BattleCopter007",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11979,7 +12163,8 @@
     "internal": "BattleCopter008",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11988,7 +12173,8 @@
     "internal": "BattleCopter009",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -11997,7 +12183,8 @@
     "internal": "BattleCopter010",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12007,17 +12194,19 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000175": {
     "name": "Paladin Champion",
     "internal": "TTRPGChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -12027,67 +12216,74 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000177": {
     "name": "Snake Champion",
     "internal": "LNY25Champion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000178": {
     "name": "Sniper Champion",
     "internal": "MilitaryChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000179": {
     "name": "The RoyalEST",
     "internal": "April25Champion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000180": {
     "name": "Royal Ninja",
     "internal": "JapanChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000181": {
     "name": "Showtime Champion",
     "internal": "DarkDaysChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000182": {
     "name": "Royal Officer",
     "internal": "CyberpunkChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
@@ -12097,55 +12293,60 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000184": {
     "name": "Yeti Champion",
     "internal": "ClasharamaChampion2",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000185": {
     "name": "Cursed Champion",
     "internal": "CosmicCurseChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000186": {
     "name": "Nomad Champion",
     "internal": "WastelandsChampion",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Warrior Princess"
    },
    "52000187": {
-    "name": null,
+    "name": "Explorer Champion",
     "internal": "FrostageChampion",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000188": {
     "name": null,
     "internal": "PetFennecDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12154,7 +12355,8 @@
     "internal": "RageJellyDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12163,7 +12365,8 @@
     "internal": "BuilderApprenticeMenu",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12173,47 +12376,52 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000192": {
     "name": "Barbarian Orc",
     "internal": "TTRPGKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000193": {
     "name": "Dark Minion King",
     "internal": "ClashoweenKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000194": {
     "name": "Judgment King",
     "internal": "TH17King",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000195": {
     "name": "Robo King",
     "internal": "ClashmasKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -12223,67 +12431,74 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000197": {
     "name": "Snake King",
     "internal": "LNY25King",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000198": {
     "name": "Combat King",
     "internal": "MilitaryKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000199": {
     "name": "King Cody",
     "internal": "April25King",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000200": {
     "name": "Samurai King",
     "internal": "JapanKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000201": {
     "name": "Barbarian Butcher",
     "internal": "DarkDaysKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000202": {
     "name": "Renegade King",
     "internal": "CyberpunkKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
@@ -12293,74 +12508,79 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000204": {
     "name": "Jelly King",
     "internal": "ClasharamaKing2",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000205": {
     "name": "Berserker King",
     "internal": "CosmicCurseKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000206": {
     "name": "Bruiser King",
     "internal": "WastelandsKing",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Barbarian King"
    },
    "52000207": {
-    "name": null,
+    "name": "Awakened King",
     "internal": "FrostageKing",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000208": {
-    "name": null,
+    "name": "Desert King",
     "internal": "BarbarianKing059",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000209": {
-    "name": null,
+    "name": "Monkey King",
     "internal": "BarbarianKing060",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000210": {
     "name": "Puppet Queen",
     "internal": "ClashmasQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -12370,67 +12590,74 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000212": {
     "name": "Snake Queen",
     "internal": "LNY25Queen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000213": {
     "name": "Quickfire Queen",
     "internal": "MilitaryQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000214": {
     "name": "Brutality Queen",
     "internal": "April25Queen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000215": {
     "name": "Kyudo Queen",
     "internal": "JapanQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000216": {
     "name": "Queen Fatale",
     "internal": "DarkDaysQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000217": {
     "name": "Renegade Queen",
     "internal": "CyberpunkQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
@@ -12440,129 +12667,135 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000219": {
     "name": "P.E.Q.Q.A",
     "internal": "ClasharamaQueen2",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000220": {
     "name": "Archer Hunter",
     "internal": "CosmicCurseQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000221": {
     "name": "Fury Queen",
     "internal": "WastelandsQueen",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Archer Queen"
    },
    "52000222": {
-    "name": null,
+    "name": "Blizzard Queen",
     "internal": "FrostageQueen",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000223": {
-    "name": null,
+    "name": "Queen of the Dunes",
     "internal": "ArcherQueen054",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000224": {
-    "name": null,
+    "name": "Phantom Queen",
     "internal": "ArcherQueen055",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000225": {
-    "name": null,
+    "name": "Dragonscale Queen",
     "internal": "ArcherQueen056",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000226": {
-    "name": null,
+    "name": "Bassbow Queen",
     "internal": "ArcherQueen057",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000227": {
-    "name": null,
+    "name": "Skeleton Queen",
     "internal": "ArcherQueen058",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000228": {
-    "name": null,
+    "name": "Anime Fury Queen",
     "internal": "ArcherQueen059",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000229": {
-    "name": null,
+    "name": "Manga Fury Queen",
     "internal": "ArcherQueen060",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000230": {
     "name": "Dark Minion Warden",
     "internal": "ClashoweenWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000231": {
     "name": "Grand Judge",
     "internal": "TH17Warden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -12572,67 +12805,74 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000233": {
     "name": "Snake Warden",
     "internal": "LNY25Warden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000234": {
     "name": "Jetpack Warden",
     "internal": "MilitaryWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000235": {
     "name": "Darkness Warden",
     "internal": "April25Warden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000236": {
     "name": "Grand Monk",
     "internal": "JapanWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000237": {
     "name": "Grand Godfather",
     "internal": "DarkDaysWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000238": {
     "name": "Grand Doctor",
     "internal": "CyberpunkWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
@@ -12642,170 +12882,181 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000240": {
     "name": "Ivan Warden",
     "internal": "ClasharamaWarden2",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000241": {
     "name": "Eternal Warden",
     "internal": "CosmicCurseWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000242": {
     "name": "Shaman Warden",
     "internal": "WastelandsWarden",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Grand Warden"
    },
    "52000243": {
-    "name": null,
+    "name": "Grand Warlock",
     "internal": "FrostageWarden",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000244": {
-    "name": null,
+    "name": "Grand Sorcerer",
     "internal": "GrandWarden045",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000245": {
-    "name": null,
+    "name": "River Warden",
     "internal": "GrandWarden046",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000246": {
-    "name": null,
+    "name": "Dragonscale Warden",
     "internal": "GrandWarden047",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000247": {
-    "name": null,
+    "name": "Keystriker Warden",
     "internal": "GrandWarden048",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000248": {
-    "name": null,
+    "name": "Skeleton Warden",
     "internal": "GrandWarden049",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000249": {
-    "name": null,
+    "name": "Anime Fury Warden",
     "internal": "GrandWarden050",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000250": {
     "name": "Minion Prince",
     "internal": "MinionHeroDefault",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000251": {
     "name": "Snake Prince",
     "internal": "LNYPrince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000252": {
     "name": "Minion General",
     "internal": "MilitaryPrince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000253": {
     "name": "Prince Mysterio",
     "internal": "April25Prince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000254": {
     "name": "Cyclone Prince",
     "internal": "JapanPrince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000255": {
     "name": "Minion Cop",
     "internal": "DarkDaysPrince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000256": {
     "name": "Minion Inventor",
     "internal": "CyberpunkPrince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
@@ -12815,136 +13066,141 @@
     "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000258": {
     "name": "Lava Prince",
     "internal": "ClasharamaPrince2",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000259": {
     "name": "Nightmare Prince",
     "internal": "CosmicCursePrince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000260": {
     "name": "Armored Prince",
     "internal": "WastelandsPrince",
-    "status": "single-source",
+    "status": "verified",
     "sources": [
      "coc.py",
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "character": "Minion Hero"
    },
    "52000261": {
-    "name": null,
+    "name": "Frost Prince",
     "internal": "FrostagePrince",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000262": {
-    "name": null,
+    "name": "Genie Prince",
     "internal": "MinionHero012",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000263": {
-    "name": null,
+    "name": "Ox Prince",
     "internal": "MinionHero013",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000264": {
-    "name": null,
+    "name": "Dragonscale Prince",
     "internal": "MinionHero014",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000265": {
-    "name": null,
+    "name": "Beatsmasher Prince",
     "internal": "MinionHero015",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000266": {
-    "name": null,
+    "name": "Skeleton Prince",
     "internal": "MinionHero016",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000267": {
-    "name": null,
+    "name": "Anime Fury Prince",
     "internal": "MinionHero017",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000268": {
-    "name": null,
+    "name": "Manga Fury Prince",
     "internal": "MinionHero018",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000269": {
-    "name": null,
+    "name": "Midas Prince",
     "internal": "MinionHero019",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000270": {
-    "name": null,
+    "name": "Majestic Minion Prince",
     "internal": "MinionHero020",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000271": {
     "name": null,
     "internal": "LabAssistant",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12953,7 +13209,8 @@
     "internal": "LabAssistantMenu",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12962,7 +13219,8 @@
     "internal": "Alchemist",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12971,7 +13229,8 @@
     "internal": "AlchemistMenu",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12980,7 +13239,8 @@
     "internal": "PetBatDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12989,7 +13249,8 @@
     "internal": "PetBatBubbleDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -12998,7 +13259,8 @@
     "internal": "KANE",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13007,7 +13269,8 @@
     "internal": "Reborn KANE",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13016,7 +13279,8 @@
     "internal": "Disarmer",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13025,7 +13289,8 @@
     "internal": "Defensive Disarmer",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13034,7 +13299,8 @@
     "internal": "Defensive YEETer",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13043,7 +13309,8 @@
     "internal": "YEETer",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13052,7 +13319,8 @@
     "internal": "Tribal Tag Team",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13061,232 +13329,235 @@
     "internal": "Defensive Tribal Tag Team",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000285": {
-    "name": null,
+    "name": "Dragonscale King",
     "internal": "BarbarianKing061",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000286": {
-    "name": null,
+    "name": "Stringshredder King",
     "internal": "BarbarianKing062",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000287": {
-    "name": null,
+    "name": "Skeleton King Resurrected",
     "internal": "BarbarianKing063",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000288": {
-    "name": null,
+    "name": "Anime Fury King",
     "internal": "BarbarianKing064",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000289": {
-    "name": null,
+    "name": "Shadow Samurai",
     "internal": "BarbarianKing065",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000290": {
-    "name": null,
+    "name": "Manga Fury King",
     "internal": "BarbarianKing066",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000291": {
-    "name": null,
+    "name": "Zeus King",
     "internal": "BarbarianKing067",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000292": {
-    "name": null,
+    "name": "Majestic Barbarian King",
     "internal": "BarbarianKing068",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000293": {
-    "name": null,
+    "name": "Sapphire Half-Time King",
     "internal": "BarbarianKing069",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000294": {
-    "name": null,
+    "name": "King Barbarian",
     "internal": "BarbarianKing070",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000295": {
-    "name": null,
+    "name": "Mirage Champion",
     "internal": "RoyalChampion041",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000296": {
-    "name": null,
+    "name": "Red Champion",
     "internal": "RoyalChampion042",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000297": {
-    "name": null,
+    "name": "Dragonscale Champion",
     "internal": "RoyalChampion043",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000298": {
-    "name": null,
+    "name": "Royal Screamstress",
     "internal": "RoyalChampion044",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000299": {
-    "name": null,
+    "name": "Skeleton Champion",
     "internal": "RoyalChampion045",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000300": {
-    "name": null,
+    "name": "Anime Fury Champion",
     "internal": "RoyalChampion046",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000301": {
-    "name": null,
+    "name": "Royal Enchantress",
     "internal": "RoyalChampion047",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000302": {
-    "name": null,
+    "name": "Manga Fury Champion",
     "internal": "RoyalChampion048",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000303": {
-    "name": null,
+    "name": "Hades Champion",
     "internal": "RoyalChampion049",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000304": {
-    "name": null,
+    "name": "Majestic Royal Champion",
     "internal": "RoyalChampion050",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000305": {
     "name": null,
     "internal": "DefaultBuilderSkin",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000306": {
-    "name": null,
+    "name": "Meteorite Builder",
     "internal": "MeteoriteBuilderSkin",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000307": {
-    "name": null,
+    "name": "Smasher",
     "internal": "MeleeGuardian",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000308": {
-    "name": null,
+    "name": "Longshot",
     "internal": "RangedGuardian",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000309": {
     "name": null,
     "internal": "Builder001",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13295,7 +13566,8 @@
     "internal": "Builder002",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13304,7 +13576,8 @@
     "internal": "Builder003",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13313,7 +13586,8 @@
     "internal": "Builder004",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13322,7 +13596,8 @@
     "internal": "Builder005",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13331,7 +13606,8 @@
     "internal": "Builder006",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13340,7 +13616,8 @@
     "internal": "Builder007",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13349,7 +13626,8 @@
     "internal": "Builder008",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13358,7 +13636,8 @@
     "internal": "Builder009",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13367,70 +13646,72 @@
     "internal": "Builder010",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000319": {
-    "name": null,
+    "name": "Medusa Queen",
     "internal": "ArcherQueen061",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000320": {
-    "name": null,
+    "name": "Majestic Archer Queen",
     "internal": "ArcherQueen062",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000321": {
-    "name": null,
+    "name": "Rosy Half-Time Queen",
     "internal": "ArcherQueen063",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000322": {
-    "name": null,
+    "name": "Elven Archer",
     "internal": "ArcherQueen064",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000323": {
-    "name": null,
+    "name": "Alexa Bliss",
     "internal": "ArcherQueen065",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000324": {
-    "name": null,
+    "name": "Shroud Queen",
     "internal": "ArcherQueen066",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000325": {
     "name": null,
     "internal": "ArcherQueen067",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13439,7 +13720,8 @@
     "internal": "ArcherQueen068",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13448,7 +13730,8 @@
     "internal": "ArcherQueen069",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13457,88 +13740,91 @@
     "internal": "ArcherQueen070",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000329": {
-    "name": null,
+    "name": "Manga Fury Warden",
     "internal": "GrandWarden051",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000330": {
-    "name": null,
+    "name": "Poseidon Warden",
     "internal": "GrandWarden052",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000331": {
-    "name": null,
+    "name": "Majestic Grand Warden",
     "internal": "GrandWarden053",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000332": {
     "name": null,
     "internal": "GrandWarden054",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000333": {
-    "name": null,
+    "name": "Violet Half-Time Warden",
     "internal": "GrandWarden055",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000334": {
-    "name": null,
+    "name": "Grand Mage",
     "internal": "GrandWarden056",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000335": {
-    "name": null,
+    "name": "American Badass Undertaker",
     "internal": "GrandWarden057",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000336": {
-    "name": null,
+    "name": "Spider Warden",
     "internal": "GrandWarden058",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000337": {
     "name": null,
     "internal": "GrandWarden059",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13547,7 +13833,8 @@
     "internal": "GrandWarden060",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13556,7 +13843,8 @@
     "internal": "Prospector",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13565,7 +13853,8 @@
     "internal": "ProspectorMenu",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13574,151 +13863,153 @@
     "internal": "CrowDefault",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
    "52000342": {
-    "name": null,
+    "name": "Dragon Duke",
     "internal": "DragonDukeDefault",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000343": {
-    "name": null,
+    "name": "Imprisoned Duke",
     "internal": "DragonDuke001",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000344": {
-    "name": null,
+    "name": "Showmaster Duke",
     "internal": "DragonDuke002",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000345": {
-    "name": null,
+    "name": "Skeleton Duke",
     "internal": "DragonDuke003",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000346": {
-    "name": null,
+    "name": "Anime Fury Duke",
     "internal": "DragonDuke004",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000347": {
-    "name": null,
+    "name": "Manga Fury Duke",
     "internal": "DragonDuke005",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000348": {
-    "name": null,
+    "name": "Hydra Duke",
     "internal": "DragonDuke006",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000349": {
-    "name": null,
+    "name": "Majestic Dragon Duke",
     "internal": "DragonDuke007",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000350": {
-    "name": null,
+    "name": "Drakan Duke",
     "internal": "DragonDuke008",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000351": {
-    "name": null,
+    "name": "KANE",
     "internal": "DragonDuke009",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000352": {
-    "name": null,
+    "name": "Behemoth Duke",
     "internal": "DragonDuke010",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000353": {
-    "name": null,
+    "name": "Lich Prince",
     "internal": "MinionHero021",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000354": {
-    "name": null,
+    "name": "League Prince",
     "internal": "MinionHero022",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000355": {
-    "name": null,
+    "name": "Jey Uso",
     "internal": "MinionHero023",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000356": {
-    "name": null,
+    "name": "Nasty Prince",
     "internal": "MinionHero024",
-    "status": "internal-name-only",
+    "status": "single-source",
     "sources": [
-     "game-csv v18.200.9"
-    ],
-    "note": "display name not in any source; internal name from the game table"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
+    ]
    },
    "52000357": {
     "name": null,
     "internal": "MinionHero025",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13727,7 +14018,8 @@
     "internal": "MinionHero026",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13736,7 +14028,8 @@
     "internal": "MinionHero027",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13745,7 +14038,8 @@
     "internal": "MinionHero028",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13754,7 +14048,8 @@
     "internal": "MinionHero029",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
    },
@@ -13763,9 +14058,774 @@
     "internal": "MinionHero030",
     "status": "internal-name-only",
     "sources": [
-     "game-csv v18.200.9"
+     "game-csv v18.200.9",
+     "datamine 2026-11-16"
     ],
     "note": "display name not in any source; internal name from the game table"
+   },
+   "52000363": {
+    "name": "Sniffer",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000364": {
+    "name": null,
+    "internal": "BuilderGuardian",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000365": {
+    "name": "Logger",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000366": {
+    "name": "Returner",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000367": {
+    "name": null,
+    "internal": "UndeadWrestler",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000368": {
+    "name": "Cody Rhodes",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000369": {
+    "name": "Savage King",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000370": {
+    "name": null,
+    "internal": "BarbarianKing073",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000371": {
+    "name": null,
+    "internal": "BarbarianKing074",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000372": {
+    "name": null,
+    "internal": "BarbarianKing075",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000373": {
+    "name": null,
+    "internal": "BarbarianKing076",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000374": {
+    "name": null,
+    "internal": "BarbarianKing077",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000375": {
+    "name": null,
+    "internal": "BarbarianKing078",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000376": {
+    "name": null,
+    "internal": "BarbarianKing079",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000377": {
+    "name": null,
+    "internal": "BarbarianKing080",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000378": {
+    "name": "Amber Half-Time Champion",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000379": {
+    "name": "Tempest Champion",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000380": {
+    "name": "Iyo Sky",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000381": {
+    "name": "Terror Champion",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000382": {
+    "name": null,
+    "internal": "RoyalChampion055",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000383": {
+    "name": null,
+    "internal": "RoyalChampion056",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000384": {
+    "name": null,
+    "internal": "RoyalChampion057",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000385": {
+    "name": null,
+    "internal": "RoyalChampion058",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000386": {
+    "name": null,
+    "internal": "RoyalChampion059",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000387": {
+    "name": null,
+    "internal": "RoyalChampion060",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000388": {
+    "name": null,
+    "internal": "DragonDuke011",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000389": {
+    "name": null,
+    "internal": "DragonDuke012",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000390": {
+    "name": null,
+    "internal": "DragonDuke013",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000391": {
+    "name": null,
+    "internal": "DragonDuke014",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000392": {
+    "name": null,
+    "internal": "DragonDuke015",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000393": {
+    "name": null,
+    "internal": "DragonDuke016",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000394": {
+    "name": null,
+    "internal": "DragonDuke017",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000395": {
+    "name": null,
+    "internal": "DragonDuke018",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000396": {
+    "name": null,
+    "internal": "DragonDuke019",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000397": {
+    "name": null,
+    "internal": "DragonDuke020",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000398": {
+    "name": "Skeletons of Darkness",
+    "internal": null,
+    "status": "single-source",
+    "sources": [
+     "datamine 2026-11-16"
+    ]
+   },
+   "52000399": {
+    "name": null,
+    "internal": "ArcherQueen071",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000400": {
+    "name": null,
+    "internal": "ArcherQueen072",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000401": {
+    "name": null,
+    "internal": "ArcherQueen073",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000402": {
+    "name": null,
+    "internal": "ArcherQueen074",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000403": {
+    "name": null,
+    "internal": "ArcherQueen075",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000404": {
+    "name": null,
+    "internal": "ArcherQueen076",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000405": {
+    "name": null,
+    "internal": "ArcherQueen077",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000406": {
+    "name": null,
+    "internal": "ArcherQueen078",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000407": {
+    "name": null,
+    "internal": "ArcherQueen079",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000408": {
+    "name": null,
+    "internal": "ArcherQueen080",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000409": {
+    "name": null,
+    "internal": "GrandWarden061",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000410": {
+    "name": null,
+    "internal": "GrandWarden062",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000411": {
+    "name": null,
+    "internal": "GrandWarden063",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000412": {
+    "name": null,
+    "internal": "GrandWarden064",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000413": {
+    "name": null,
+    "internal": "GrandWarden065",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000414": {
+    "name": null,
+    "internal": "GrandWarden066",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000415": {
+    "name": null,
+    "internal": "GrandWarden067",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000416": {
+    "name": null,
+    "internal": "GrandWarden068",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000417": {
+    "name": null,
+    "internal": "GrandWarden069",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000418": {
+    "name": null,
+    "internal": "GrandWarden070",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000419": {
+    "name": null,
+    "internal": "BarbarianKing081",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000420": {
+    "name": null,
+    "internal": "BarbarianKing082",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000421": {
+    "name": null,
+    "internal": "BarbarianKing083",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000422": {
+    "name": null,
+    "internal": "BarbarianKing084",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000423": {
+    "name": null,
+    "internal": "BarbarianKing085",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000424": {
+    "name": null,
+    "internal": "BarbarianKing086",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000425": {
+    "name": null,
+    "internal": "BarbarianKing087",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000426": {
+    "name": null,
+    "internal": "BarbarianKing088",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000427": {
+    "name": null,
+    "internal": "BarbarianKing089",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000428": {
+    "name": null,
+    "internal": "BarbarianKing090",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000429": {
+    "name": null,
+    "internal": "MinionHero031",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000430": {
+    "name": null,
+    "internal": "MinionHero032",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000431": {
+    "name": null,
+    "internal": "MinionHero033",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000432": {
+    "name": null,
+    "internal": "MinionHero034",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000433": {
+    "name": null,
+    "internal": "MinionHero035",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000434": {
+    "name": null,
+    "internal": "MinionHero036",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000435": {
+    "name": null,
+    "internal": "MinionHero037",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000436": {
+    "name": null,
+    "internal": "MinionHero038",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000437": {
+    "name": null,
+    "internal": "MinionHero039",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000438": {
+    "name": null,
+    "internal": "MinionHero040",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000439": {
+    "name": null,
+    "internal": "RoyalChampion061",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000440": {
+    "name": null,
+    "internal": "RoyalChampion062",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000441": {
+    "name": null,
+    "internal": "RoyalChampion063",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000442": {
+    "name": null,
+    "internal": "RoyalChampion064",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000443": {
+    "name": null,
+    "internal": "RoyalChampion065",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000444": {
+    "name": null,
+    "internal": "RoyalChampion066",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000445": {
+    "name": null,
+    "internal": "RoyalChampion067",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000446": {
+    "name": null,
+    "internal": "RoyalChampion068",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000447": {
+    "name": null,
+    "internal": "RoyalChampion069",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
+   },
+   "52000448": {
+    "name": null,
+    "internal": "RoyalChampion070",
+    "status": "internal-name-only",
+    "sources": [
+     "datamine 2026-11-16"
+    ],
+    "note": "display name not in any source; internal name from the datamine report"
    }
   },
   "sceneries": {

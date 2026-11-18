@@ -1,0 +1,2574 @@
+{
+ "reports": {
+  "2026-07-26_11e16c188447": {
+   "fingerprint": "11e16c188447c4128ddd4bce9ca4c9ac38f305be",
+   "generated": "2026-07-26 07:58 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-07-26_11e16c188447.md"
+  },
+  "2026-08-14_7f04bdfdc412": {
+   "fingerprint": "7f04bdfdc4124b1f49308423bb8f4aa8b137aae3",
+   "generated": "2026-08-14 08:02 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-08-14_7f04bdfdc412.md"
+  },
+  "2026-08-31_95c0ae5e9529": {
+   "fingerprint": "95c0ae5e9529ccc4ac4c2a55c9c71647a2394430",
+   "generated": "2026-08-31 12:21 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-08-31_95c0ae5e9529.md"
+  },
+  "2026-09-09_edaa611bbb09": {
+   "fingerprint": "edaa611bbb095ac871fc3a692ae1a3251b5f2843",
+   "generated": "2026-09-09 06:15 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-09-09_edaa611bbb09.md"
+  },
+  "2026-10-04_1cd4ee9dd360": {
+   "fingerprint": "1cd4ee9dd36037d505d51d3e6df8424a7dba199c",
+   "generated": "2026-10-04 14:26 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-10-04_1cd4ee9dd360.md"
+  },
+  "2026-10-13_4103d9568ccd": {
+   "fingerprint": "4103d9568ccdad7e9c02d78b80961e69f74d9ec5",
+   "generated": "2026-10-13 08:36 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-10-13_4103d9568ccd.md"
+  },
+  "2026-10-21_443f20eb3aa7": {
+   "fingerprint": "443f20eb3aa749c454b1da26259eac44f145a40b",
+   "generated": "2026-10-21 06:57 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-10-21_443f20eb3aa7.md"
+  },
+  "2026-11-16_0f8af5ebc59d": {
+   "fingerprint": "0f8af5ebc59dc7b88f884643c1fb8b57928113d6",
+   "generated": "2026-11-16 11:49 UTC",
+   "url": "https://github.com/NotAmti/Clash-of-Clans-Datamine/blob/main/reports/2026-11-16_0f8af5ebc59d.md"
+  }
+ },
+ "tables": {
+  "characters": [
+   {
+    "name": "Ruin Witch",
+    "order": 0,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_unit_ruinwitch.png",
+    "stats": "HousingSpace 26 • Hitpoints 2300 • DPS 25 • Speed 150 • AttackRange 80 • UnlockByTH 6",
+    "knownIds": [
+     4000109
+    ]
+   },
+   {
+    "name": "Ruin Knight",
+    "order": 1,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_unit_barbarian.png",
+    "stats": "HousingSpace 20 • Hitpoints 3100 • DPS 255 • Speed 200 • AttackRange 60 • UnlockByTH 6"
+   },
+   {
+    "name": "Elephant",
+    "order": 2,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_unit_movingCannon.png",
+    "stats": "HousingSpace 20 • Hitpoints 450 • DPS 10 • Speed 250 • AttackRange 80 • UnlockByTH 1"
+   },
+   {
+    "name": "Rider",
+    "order": 3,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_unit_elephant_rider.png",
+    "stats": "HousingSpace 10 • Hitpoints 220 • DPS 22 • Speed 200 • AttackRange 50 • UnlockByTH 1"
+   },
+   {
+    "name": "Elephant Rider",
+    "order": 4,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_unit_elephant_rider.png",
+    "stats": "HousingSpace 24 • Hitpoints 750 • DPS 40 • Speed 250 • AttackRange 80 • UnlockByTH 1"
+   },
+   {
+    "name": "Ruin Witch_DEF",
+    "order": 5,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_unit_elephant_rider.png",
+    "stats": "HousingSpace 26 • Hitpoints 2300 • DPS 25 • Speed 150 • AttackRange 80 • UnlockByTH 1"
+   },
+   {
+    "name": "Undead Wrestler Big Boy",
+    "order": 0,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "HousingSpace 20 • Hitpoints 400 • DPS 45 • Speed 150 • AttackRange 100"
+   },
+   {
+    "name": "Yeti Undertaker",
+    "order": 1,
+    "report": "2026-08-31_95c0ae5e9529",
+    "icon": "icon_unit_undeadwrestler.png",
+    "stats": "HousingSpace 80 • Hitpoints 500 • DPS 150 • Speed 300 • AttackRange 80 • UnlockByTH 4"
+   },
+   {
+    "name": "Tiny Totem",
+    "order": 2,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "HousingSpace 20 • Hitpoints 3840 • DPS 1 • Speed 0 • AttackRange 1"
+   },
+   {
+    "name": "Totem Thrower",
+    "order": 3,
+    "report": "2026-08-31_95c0ae5e9529",
+    "icon": "icon_unit_totem_thrower.png",
+    "stats": "HousingSpace 28 • Hitpoints 2040 • DPS 204 • Speed 270 • AttackRange 600 • UnlockByTH 1"
+   },
+   {
+    "name": "Barch Squad",
+    "order": 0,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_barcher_squad.png",
+    "stats": "HousingSpace 15"
+   },
+   {
+    "name": "Giant Wizard Squad",
+    "order": 1,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_giant_wizard_squad.png",
+    "stats": "HousingSpace 25"
+   },
+   {
+    "name": "Wall Breaker Squad",
+    "order": 2,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_wall_breaker_squad.png",
+    "stats": "HousingSpace 8"
+   },
+   {
+    "name": "Minion Squad",
+    "order": 3,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_minion_squad.png",
+    "stats": "HousingSpace 12"
+   },
+   {
+    "name": "Balloon Squad",
+    "order": 4,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_balloon_squad.png",
+    "stats": "HousingSpace 16"
+   },
+   {
+    "name": "Golem Witch Squad",
+    "order": 5,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_golem_witch_squad.png",
+    "stats": "HousingSpace 55"
+   },
+   {
+    "name": "Hog Rider Squad",
+    "order": 6,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_hog_rider_squad.png",
+    "stats": "HousingSpace 48"
+   },
+   {
+    "name": "Miner Squad",
+    "order": 7,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_miner_squad.png",
+    "stats": "HousingSpace 48"
+   },
+   {
+    "name": "Healer Squad",
+    "order": 8,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_healer_squad.png",
+    "stats": "HousingSpace 70"
+   },
+   {
+    "name": "P.E.K.K.A Titan Squad",
+    "order": 9,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_pekka_etitan_squad.png",
+    "stats": "HousingSpace 46"
+   },
+   {
+    "name": "Dragons Squad",
+    "order": 10,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_dragon_squad.png",
+    "stats": "HousingSpace 85"
+   },
+   {
+    "name": "Baby Dragon Squad",
+    "order": 11,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_baby_dragon_squad.png",
+    "stats": "HousingSpace 26"
+   },
+   {
+    "name": "Seasonal Defense Spear Goblin",
+    "order": 12,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_unit_goblin.png",
+    "stats": "HousingSpace 1 • Hitpoints 155 • DPS 55 • Speed 250 • AttackRange 275"
+   },
+   {
+    "name": "Frost Yeti",
+    "order": 13,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_unit_christmas_yeti.png",
+    "stats": "HousingSpace 26 • Hitpoints 1800 • DPS 95 • Speed 150 • AttackRange 80 • UnlockByTH 6"
+   },
+   {
+    "name": "ChristmasYetiMite",
+    "order": 14,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "stats": "HousingSpace 1 • Hitpoints 85 • DPS 45 • Speed 300 • AttackRange 200"
+   },
+   {
+    "name": "Bash Buck",
+    "order": 15,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_unit_supermiemie.png",
+    "stats": "HousingSpace 28 • Hitpoints 1450 • DPS 100 • Speed 200 • AttackRange 100 • UnlockByTH 6"
+   },
+   {
+    "name": "FireGoatMini",
+    "order": 16,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_unit_supermiemie.png",
+    "stats": "HousingSpace 5 • Hitpoints 550 • DPS 25 • Speed 150 • AttackRange 80"
+   },
+   {
+    "name": "FireGoatAdult",
+    "order": 17,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_unit_supermiemie.png",
+    "stats": "HousingSpace 28 • Hitpoints 1450 • DPS 100 • Speed 200 • AttackRange 100"
+   }
+  ],
+  "spells": [
+   {
+    "name": "AngrySpell",
+    "order": 0,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_spell_brainwash.png",
+    "stats": "HousingSpace 1 • DeployTimeMS 800 • Damage 0 • Radius 600 • SpellForgeLevel 8 • LaboratoryLevel 13",
+    "knownIds": [
+     26000123,
+     26000123
+    ]
+   },
+   {
+    "name": "ElephantRiderSummonElephant",
+    "order": 1,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_spell_earthquake.png",
+    "stats": "HousingSpace 1 • DeployTimeMS 0 • Damage 0 • Radius 0 • SpellForgeLevel 8 • LaboratoryLevel 16"
+   },
+   {
+    "name": "ElephantRiderSummonRider",
+    "order": 2,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_spell_earthquake.png",
+    "stats": "HousingSpace 1 • DeployTimeMS 0 • Damage 0 • Radius 0 • SpellForgeLevel 8 • LaboratoryLevel 16"
+   },
+   {
+    "name": "CakeThrowerExplosion",
+    "order": 3,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_spell_earthquake.png",
+    "stats": "HousingSpace 1 • DeployTimeMS 1999 • Damage 400 • Radius 250 • SpellForgeLevel 8 • LaboratoryLevel 16"
+   },
+   {
+    "name": "UndeadWrestlerDeathSpawn",
+    "order": 0,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Damage 0 • Radius 300"
+   },
+   {
+    "name": "TinyTotemImpact",
+    "order": 1,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "DeployTimeMS 0 • Damage 0 • Radius 500"
+   },
+   {
+    "name": "TinyTotemSummon",
+    "order": 2,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "DeployTimeMS 100 • Damage 0 • Radius 0"
+   },
+   {
+    "name": "CakeThrowerExplosion2",
+    "order": 3,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "DeployTimeMS 1999 • Damage 400 • Radius 250"
+   },
+   {
+    "name": "CakeThrowerExplosion3",
+    "order": 4,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "DeployTimeMS 1999 • Damage 400 • Radius 250"
+   },
+   {
+    "name": "CakeThrowerExplosion4",
+    "order": 5,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "DeployTimeMS 1999 • Damage 400 • Radius 250"
+   },
+   {
+    "name": "Blizzard Axe Aura",
+    "order": 0,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "stats": "Damage 19 • Radius 500"
+   },
+   {
+    "name": "GoblinThrowerTowerSummon",
+    "order": 1,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "stats": "DeployTimeMS 0 • Damage 0 • Radius 150"
+   },
+   {
+    "name": "Firecracker Tower Hit Spell",
+    "order": 2,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "stats": "DeployTimeMS 0 • Damage 365 • Radius 500"
+   },
+   {
+    "name": "ShieldBroochBurst",
+    "order": 3,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "stats": "DeployTimeMS 0 • Damage 1250 • Radius 450"
+   },
+   {
+    "name": "ChristmasYetiMiteFreeze",
+    "order": 4,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "stats": "DeployTimeMS 0 • Radius 450"
+   },
+   {
+    "name": "Heroic Spell",
+    "order": 5,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_spell_heroic.png",
+    "stats": "HousingSpace 2 • DeployTimeMS 800 • Radius 500 • SpellForgeLevel 10 • LaboratoryLevel 1"
+   },
+   {
+    "name": "FireGoatSummonLamb",
+    "order": 6,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "stats": "DeployTimeMS 0 • Damage 0 • Radius 0"
+   }
+  ],
+  "equipment": [
+   {
+    "name": "Draconic Counter",
+    "order": 0,
+    "report": "2026-07-26_11e16c188447",
+    "icon": "icon_gear_DD_DraconicCounter.png",
+    "stats": "Rarity EPIC • HitPoints 900 • DPS 20 • HealOnActivation 250 • AttackSpeedPercentage 18 • RequiredBlacksmithLevel 1"
+   },
+   {
+    "name": "Portal Pendant",
+    "order": 0,
+    "report": "2026-08-31_95c0ae5e9529",
+    "icon": "icon_gear_MP_CosmicPortal.png",
+    "stats": "Rarity EPIC • HealOnActivation 558 • RequiredBlacksmithLevel 1",
+    "knownIds": [
+     90000061
+    ]
+   },
+   {
+    "name": "Giant Arrow",
+    "order": 0,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_gear_AQ_MagicArrow.png",
+    "stats": "Rarity COMMON • HitPoints 80 • DPS 20 • RequiredBlacksmithLevel 2",
+    "knownIds": [
+     90000017
+    ]
+   },
+   {
+    "name": "Shield Brooch",
+    "order": 1,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_gear_RC_ShieldBrooch.png",
+    "stats": "Rarity EPIC • HitPoints 50 • DPS 18 • RequiredBlacksmithLevel 1",
+    "knownIds": [
+     90000062
+    ]
+   },
+   {
+    "name": "Blizzard Axe",
+    "order": 2,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "icon_gear_BK_tornadoaxe_anim.webp",
+    "stats": "Rarity LEGENDARY • HitPoints 150 • DPS 35 • RequiredBlacksmithLevel 1",
+    "knownIds": [
+     90000063
+    ]
+   }
+  ],
+  "buildings": [
+   {
+    "name": "BB Builders Hut",
+    "order": 0,
+    "report": "2026-07-26_11e16c188447",
+    "stats": "Hitpoints 300 • DPS 117 • TownHallLevel 2 • HousingSpace 50 • BuildCost 1000"
+   },
+   {
+    "name": "PEKKAs Playhouse",
+    "order": 0,
+    "report": "2026-08-31_95c0ae5e9529",
+    "icon": "goblin_clancastle_01.png",
+    "stats": "Hitpoints 15000 • TownHallLevel 1 • BuildCost 250",
+    "knownIds": [
+     1000076
+    ]
+   },
+   {
+    "name": "Guardian Shrine",
+    "order": 0,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "guardian_house_lvl1.webp",
+    "stats": "Hitpoints 2000 • TownHallLevel 19 • BuildCost 0"
+   },
+   {
+    "name": "Squad Barracks",
+    "order": 1,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "squad_barracks_lvl1.webp",
+    "stats": "Hitpoints 500 • TownHallLevel 8 • BuildCost 1700000",
+    "knownIds": [
+     1000106
+    ]
+   },
+   {
+    "name": "Spiky Tower",
+    "order": 2,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "log_spinner_lvl1_home.png",
+    "stats": "Hitpoints 5959 • TownHallLevel 19 • BuildCost 500000"
+   },
+   {
+    "name": "Firecracker Tower",
+    "order": 3,
+    "report": "2026-11-16_0f8af5ebc59d",
+    "icon": "merged_archer_scattershot_lvl1.webp",
+    "stats": "Hitpoints 6500 • DPS 270 • TownHallLevel 19 • BuildCost 31000000"
+   }
+  ],
+  "skins": [
+   {
+    "name": "League Prince",
+    "order": 0,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • Tier LEGENDARY • ReleaseMonth 2026-07 • ThemeYear 0"
+   },
+   {
+    "name": "UndeadWrestler",
+    "order": 1,
+    "report": "2026-08-31_95c0ae5e9529",
+    "icon": "icon_unit_undeadwrestler.png",
+    "stats": "Character UndeadWrestler • Tier DEFAULT • ThemeYear 0"
+   },
+   {
+    "name": "Skeletons of Darkness",
+    "order": 2,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Undead Wrestler Big Boy • Tier DEFAULT • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen071",
+    "order": 3,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen072",
+    "order": 4,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen073",
+    "order": 5,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen074",
+    "order": 6,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen075",
+    "order": 7,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen076",
+    "order": 8,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen077",
+    "order": 9,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen078",
+    "order": 10,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen079",
+    "order": 11,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "ArcherQueen080",
+    "order": 12,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Archer Queen • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden061",
+    "order": 13,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden062",
+    "order": 14,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden063",
+    "order": 15,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden064",
+    "order": 16,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden065",
+    "order": 17,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden066",
+    "order": 18,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden067",
+    "order": 19,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden068",
+    "order": 20,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden069",
+    "order": 21,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "GrandWarden070",
+    "order": 22,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Grand Warden • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing081",
+    "order": 23,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing082",
+    "order": 24,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing083",
+    "order": 25,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing084",
+    "order": 26,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing085",
+    "order": 27,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing086",
+    "order": 28,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing087",
+    "order": 29,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing088",
+    "order": 30,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing089",
+    "order": 31,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "BarbarianKing090",
+    "order": 32,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Barbarian King • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero031",
+    "order": 33,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero032",
+    "order": 34,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero033",
+    "order": 35,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero034",
+    "order": 36,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero035",
+    "order": 37,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero036",
+    "order": 38,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero037",
+    "order": 39,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero038",
+    "order": 40,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero039",
+    "order": 41,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "MinionHero040",
+    "order": 42,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Minion Prince • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion061",
+    "order": 43,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion062",
+    "order": 44,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion063",
+    "order": 45,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion064",
+    "order": 46,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion065",
+    "order": 47,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion066",
+    "order": 48,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion067",
+    "order": 49,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion068",
+    "order": 50,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion069",
+    "order": 51,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   },
+   {
+    "name": "RoyalChampion070",
+    "order": 52,
+    "report": "2026-08-31_95c0ae5e9529",
+    "stats": "Character Royal Champion • ThemeYear 0"
+   }
+  ]
+ },
+ "globalIds": {
+  "52000000": {
+   "name": "Barbarian King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000001": {
+   "name": "Gladiator King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000002": {
+   "name": "Archer Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000003": {
+   "name": "Grand Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000004": {
+   "name": "P.E.K.K.A King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000005": {
+   "name": "Skeleton King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000006": {
+   "name": "Jolly King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000007": {
+   "name": "Primal King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000008": {
+   "name": "Clockwork King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000009": {
+   "name": "Party King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000010": {
+   "name": "Champion King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000011": {
+   "name": "Pirate King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000012": {
+   "name": "Gladiator Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000013": {
+   "name": "Valkyrie Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000014": {
+   "name": "Autumn Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000015": {
+   "name": "Ice Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000016": {
+   "name": "Warrior Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000017": {
+   "name": "Primal Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000018": {
+   "name": "Clockwork Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000019": {
+   "name": "Pirate Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000020": {
+   "name": "Party Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000021": {
+   "name": "Primal Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000022": {
+   "name": "Clockwork Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000023": {
+   "name": "Gladiator Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000024": {
+   "name": "Pirate Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000025": {
+   "name": "Warden of the North",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000026": {
+   "name": "Jungle Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000027": {
+   "name": "Warden Master",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000028": {
+   "name": "Royal Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000029": {
+   "name": "Winter Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000030": {
+   "name": "Rogue Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000031": {
+   "name": "Jungle Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000032": {
+   "name": "Gladiator Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000033": {
+   "name": "Shadow Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000034": {
+   "name": "Primal Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000035": {
+   "name": "Summer Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000036": {
+   "name": "Pixel Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000037": {
+   "name": "Party Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000038": {
+   "name": "Magic Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000039": {
+   "name": "Pirate Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000040": {
+   "name": "Jolly Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000041": {
+   "name": "Warrior Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000042": {
+   "name": "Painter Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000043": {
+   "name": "Dark Ages Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000044": {
+   "name": "Ghost Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000045": {
+   "name": "Warrior King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000046": {
+   "name": "Rogue King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000047": {
+   "name": "Fierce King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000048": {
+   "name": "Jungle King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000049": {
+   "name": "Beat King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000050": {
+   "name": "Golem King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000051": {
+   "name": "Ice King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000052": {
+   "name": "Lunar King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000053": {
+   "name": "Shadow King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000054": {
+   "name": "Summer King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000055": {
+   "name": "Pixel King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000056": {
+   "name": "Clash Fest King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000057": {
+   "name": "Rogue Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000058": {
+   "name": "Jungle Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000059": {
+   "name": "Party Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000060": {
+   "name": "Champion Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000061": {
+   "name": "Shadow Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000062": {
+   "name": "Miner Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000063": {
+   "name": "Summer Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000064": {
+   "name": "Pixel Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000065": {
+   "name": "Spooky Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000066": {
+   "name": "Magic Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000067": {
+   "name": "Jolly Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000068": {
+   "name": "Dark Ages Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000069": {
+   "name": "Jolly Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000070": {
+   "name": "Warrior Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000071": {
+   "name": "Shadow Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000072": {
+   "name": "Summer Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000073": {
+   "name": "Pixel Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000074": {
+   "name": "Champion Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000075": {
+   "name": "Magic Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000076": {
+   "name": "Painter Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000077": {
+   "name": "Dark Ages Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000078": {
+   "name": "Ghost Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000079": {
+   "name": "Goblin Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000080": {
+   "name": "League Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000081": {
+   "name": "PetLassiDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000082": {
+   "name": "PetYakDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000083": {
+   "name": "PetEowlDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000084": {
+   "name": "PetUnicornDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000085": {
+   "name": "CapitalFlyingFortressDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000086": {
+   "name": "CapitalMountainGolemDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000087": {
+   "name": "Magic King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000088": {
+   "name": "Dark Ages King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000089": {
+   "name": "Painter King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000090": {
+   "name": "Beast King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000091": {
+   "name": "League King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000092": {
+   "name": "Goblin King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000093": {
+   "name": "Future King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000094": {
+   "name": "Gingerbread King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000095": {
+   "name": "Ghost King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000096": {
+   "name": "Chess King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000097": {
+   "name": "Lunar Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000098": {
+   "name": "Painter Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000099": {
+   "name": "Heart Hunter Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000100": {
+   "name": "Goblin Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000101": {
+   "name": "Ghost Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000102": {
+   "name": "League Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000103": {
+   "name": "Future Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000104": {
+   "name": "Gingerbread Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000105": {
+   "name": "Chess Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000106": {
+   "name": "Queen of the North",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000107": {
+   "name": "PetFrostyDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000108": {
+   "name": "PetPoisonIguanaDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000109": {
+   "name": "PetPhoenixDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000110": {
+   "name": "PetDiggyDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000111": {
+   "name": "PetPhoenixEggDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000112": {
+   "name": "League Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000113": {
+   "name": "Goblin Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000114": {
+   "name": "Future Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000115": {
+   "name": "Gingerbread Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000116": {
+   "name": "Champions' Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000117": {
+   "name": "Dragon Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000118": {
+   "name": "Space Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000119": {
+   "name": "Egypt Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000120": {
+   "name": "Football Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000121": {
+   "name": "Wild West Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000122": {
+   "name": "Future Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000123": {
+   "name": "Gingerbread Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000124": {
+   "name": "Dragon Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000125": {
+   "name": "Space Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000126": {
+   "name": "Egypt Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000127": {
+   "name": "Football Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000128": {
+   "name": "Wild West Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000129": {
+   "name": "Clash Games Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000130": {
+   "name": "Anime Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000131": {
+   "name": "Grand Dwarf",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000132": {
+   "name": "Dragon King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000133": {
+   "name": "King of the North",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000134": {
+   "name": "Egypt King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000135": {
+   "name": "Space King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000136": {
+   "name": "Super Squad King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000137": {
+   "name": "King Haaland",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000138": {
+   "name": "Football King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000139": {
+   "name": "Wild West King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000140": {
+   "name": "BuilderApprentice",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000141": {
+   "name": "Clash Games King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000142": {
+   "name": "Dragon Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000143": {
+   "name": "Space Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000144": {
+   "name": "Egypt Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000145": {
+   "name": "Football Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000146": {
+   "name": "Wild West Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000147": {
+   "name": "Clash Games Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000148": {
+   "name": "Anime Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000149": {
+   "name": "Archer Satyr",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000150": {
+   "name": "Dark Minion Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000151": {
+   "name": "Justice Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000152": {
+   "name": "Battle Machine",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000153": {
+   "name": "Armored Machine",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000154": {
+   "name": "Goblin Machine",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000155": {
+   "name": "Steampunk Machine",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000156": {
+   "name": "Battle Machine of the North",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000157": {
+   "name": "Warmachine005",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000158": {
+   "name": "Warmachine006",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000159": {
+   "name": "Warmachine007",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000160": {
+   "name": "Warmachine008",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000161": {
+   "name": "Warmachine009",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000162": {
+   "name": "Warmachine010",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000163": {
+   "name": "Battle Copter",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000164": {
+   "name": "SteamPunk Copter",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000165": {
+   "name": "Hotrod Copter",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000166": {
+   "name": "Boat Copter",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000167": {
+   "name": "BattleCopter004",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000168": {
+   "name": "BattleCopter005",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000169": {
+   "name": "BattleCopter006",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000170": {
+   "name": "BattleCopter007",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000171": {
+   "name": "BattleCopter008",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000172": {
+   "name": "BattleCopter009",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000173": {
+   "name": "BattleCopter010",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000174": {
+   "name": "Anime Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000175": {
+   "name": "Paladin Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000176": {
+   "name": "Ice Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000177": {
+   "name": "Snake Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000178": {
+   "name": "Sniper Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000179": {
+   "name": "The RoyalEST",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000180": {
+   "name": "Royal Ninja",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000181": {
+   "name": "Showtime Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000182": {
+   "name": "Royal Officer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000183": {
+   "name": "Clash-A-Rama Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000184": {
+   "name": "Yeti Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000185": {
+   "name": "Cursed Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000186": {
+   "name": "Nomad Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000187": {
+   "name": "Explorer Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000188": {
+   "name": "PetFennecDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000189": {
+   "name": "RageJellyDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000190": {
+   "name": "BuilderApprenticeMenu",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000191": {
+   "name": "Anime King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000192": {
+   "name": "Barbarian Orc",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000193": {
+   "name": "Dark Minion King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000194": {
+   "name": "Judgment King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000195": {
+   "name": "Robo King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000196": {
+   "name": "Fire King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000197": {
+   "name": "Snake King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000198": {
+   "name": "Combat King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000199": {
+   "name": "King Cody",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000200": {
+   "name": "Samurai King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000201": {
+   "name": "Barbarian Butcher",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000202": {
+   "name": "Renegade King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000203": {
+   "name": "Clash-A-Rama King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000204": {
+   "name": "Jelly King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000205": {
+   "name": "Berserker King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000206": {
+   "name": "Bruiser King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000207": {
+   "name": "Awakened King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000208": {
+   "name": "Desert King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000209": {
+   "name": "Monkey King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000210": {
+   "name": "Puppet Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000211": {
+   "name": "Fire Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000212": {
+   "name": "Snake Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000213": {
+   "name": "Quickfire Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000214": {
+   "name": "Brutality Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000215": {
+   "name": "Kyudo Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000216": {
+   "name": "Queen Fatale",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000217": {
+   "name": "Renegade Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000218": {
+   "name": "Clash-A-Rama Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000219": {
+   "name": "P.E.Q.Q.A",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000220": {
+   "name": "Archer Hunter",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000221": {
+   "name": "Fury Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000222": {
+   "name": "Blizzard Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000223": {
+   "name": "Queen of the Dunes",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000224": {
+   "name": "Phantom Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000225": {
+   "name": "Dragonscale Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000226": {
+   "name": "Bassbow Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000227": {
+   "name": "Skeleton Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000228": {
+   "name": "Anime Fury Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000229": {
+   "name": "Manga Fury Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000230": {
+   "name": "Dark Minion Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000231": {
+   "name": "Grand Judge",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000232": {
+   "name": "Ice Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000233": {
+   "name": "Snake Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000234": {
+   "name": "Jetpack Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000235": {
+   "name": "Darkness Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000236": {
+   "name": "Grand Monk",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000237": {
+   "name": "Grand Godfather",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000238": {
+   "name": "Grand Doctor",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000239": {
+   "name": "Clash-A-Rama Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000240": {
+   "name": "Ivan Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000241": {
+   "name": "Eternal Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000242": {
+   "name": "Shaman Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000243": {
+   "name": "Grand Warlock",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000244": {
+   "name": "Grand Sorcerer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000245": {
+   "name": "River Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000246": {
+   "name": "Dragonscale Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000247": {
+   "name": "Keystriker Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000248": {
+   "name": "Skeleton Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000249": {
+   "name": "Anime Fury Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000250": {
+   "name": "Minion Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000251": {
+   "name": "Snake Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000252": {
+   "name": "Minion General",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000253": {
+   "name": "Prince Mysterio",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000254": {
+   "name": "Cyclone Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000255": {
+   "name": "Minion Cop",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000256": {
+   "name": "Minion Inventor",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000257": {
+   "name": "Clash-A-Rama Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000258": {
+   "name": "Lava Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000259": {
+   "name": "Nightmare Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000260": {
+   "name": "Armored Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000261": {
+   "name": "Frost Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000262": {
+   "name": "Genie Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000263": {
+   "name": "Ox Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000264": {
+   "name": "Dragonscale Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000265": {
+   "name": "Beatsmasher Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000266": {
+   "name": "Skeleton Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000267": {
+   "name": "Anime Fury Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000268": {
+   "name": "Manga Fury Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000269": {
+   "name": "Midas Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000270": {
+   "name": "Majestic Minion Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000271": {
+   "name": "LabAssistant",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000272": {
+   "name": "LabAssistantMenu",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000273": {
+   "name": "Alchemist",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000274": {
+   "name": "AlchemistMenu",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000275": {
+   "name": "PetBatDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000276": {
+   "name": "PetBatBubbleDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000277": {
+   "name": "KANE",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000278": {
+   "name": "Reborn KANE",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000279": {
+   "name": "Disarmer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000280": {
+   "name": "Defensive Disarmer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000281": {
+   "name": "Defensive YEETer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000282": {
+   "name": "YEETer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000283": {
+   "name": "Tribal Tag Team",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000284": {
+   "name": "Defensive Tribal Tag Team",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000285": {
+   "name": "Dragonscale King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000286": {
+   "name": "Stringshredder King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000287": {
+   "name": "Skeleton King Resurrected",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000288": {
+   "name": "Anime Fury King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000289": {
+   "name": "Shadow Samurai",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000290": {
+   "name": "Manga Fury King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000291": {
+   "name": "Zeus King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000292": {
+   "name": "Majestic Barbarian King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000293": {
+   "name": "Sapphire Half-Time King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000294": {
+   "name": "King Barbarian",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000295": {
+   "name": "Mirage Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000296": {
+   "name": "Red Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000297": {
+   "name": "Dragonscale Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000298": {
+   "name": "Royal Screamstress",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000299": {
+   "name": "Skeleton Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000300": {
+   "name": "Anime Fury Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000301": {
+   "name": "Royal Enchantress",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000302": {
+   "name": "Manga Fury Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000303": {
+   "name": "Hades Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000304": {
+   "name": "Majestic Royal Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000305": {
+   "name": "DefaultBuilderSkin",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000306": {
+   "name": "Meteorite Builder",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000307": {
+   "name": "Smasher",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000308": {
+   "name": "Longshot",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000309": {
+   "name": "Builder001",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000310": {
+   "name": "Builder002",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000311": {
+   "name": "Builder003",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000312": {
+   "name": "Builder004",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000313": {
+   "name": "Builder005",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000314": {
+   "name": "Builder006",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000315": {
+   "name": "Builder007",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000316": {
+   "name": "Builder008",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000317": {
+   "name": "Builder009",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000318": {
+   "name": "Builder010",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000319": {
+   "name": "Medusa Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000320": {
+   "name": "Majestic Archer Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000321": {
+   "name": "Rosy Half-Time Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000322": {
+   "name": "Elven Archer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000323": {
+   "name": "Alexa Bliss",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000324": {
+   "name": "Shroud Queen",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000325": {
+   "name": "ArcherQueen067",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000326": {
+   "name": "ArcherQueen068",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000327": {
+   "name": "ArcherQueen069",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000328": {
+   "name": "ArcherQueen070",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000329": {
+   "name": "Manga Fury Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000330": {
+   "name": "Poseidon Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000331": {
+   "name": "Majestic Grand Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000332": {
+   "name": "GrandWarden054",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000333": {
+   "name": "Violet Half-Time Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000334": {
+   "name": "Grand Mage",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000335": {
+   "name": "American Badass Undertaker",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000336": {
+   "name": "Spider Warden",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000337": {
+   "name": "GrandWarden059",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000338": {
+   "name": "GrandWarden060",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000339": {
+   "name": "Prospector",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000340": {
+   "name": "ProspectorMenu",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000341": {
+   "name": "CrowDefault",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000342": {
+   "name": "Dragon Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000343": {
+   "name": "Imprisoned Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000344": {
+   "name": "Showmaster Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000345": {
+   "name": "Skeleton Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000346": {
+   "name": "Anime Fury Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000347": {
+   "name": "Manga Fury Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000348": {
+   "name": "Hydra Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000349": {
+   "name": "Majestic Dragon Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000350": {
+   "name": "Drakan Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000351": {
+   "name": "KANE",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000352": {
+   "name": "Behemoth Duke",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000353": {
+   "name": "Lich Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000354": {
+   "name": "League Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000355": {
+   "name": "Jey Uso",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000356": {
+   "name": "Nasty Prince",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000357": {
+   "name": "MinionHero025",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000358": {
+   "name": "MinionHero026",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000359": {
+   "name": "MinionHero027",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000360": {
+   "name": "MinionHero028",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000361": {
+   "name": "MinionHero029",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000362": {
+   "name": "MinionHero030",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000363": {
+   "name": "Sniffer",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000364": {
+   "name": "BuilderGuardian",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000365": {
+   "name": "Logger",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000366": {
+   "name": "Returner",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000367": {
+   "name": "UndeadWrestler",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000368": {
+   "name": "Cody Rhodes",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000369": {
+   "name": "Savage King",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000370": {
+   "name": "BarbarianKing073",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000371": {
+   "name": "BarbarianKing074",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000372": {
+   "name": "BarbarianKing075",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000373": {
+   "name": "BarbarianKing076",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000374": {
+   "name": "BarbarianKing077",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000375": {
+   "name": "BarbarianKing078",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000376": {
+   "name": "BarbarianKing079",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000377": {
+   "name": "BarbarianKing080",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000378": {
+   "name": "Amber Half-Time Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000379": {
+   "name": "Tempest Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000380": {
+   "name": "Iyo Sky",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000381": {
+   "name": "Terror Champion",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000382": {
+   "name": "RoyalChampion055",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000383": {
+   "name": "RoyalChampion056",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000384": {
+   "name": "RoyalChampion057",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000385": {
+   "name": "RoyalChampion058",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000386": {
+   "name": "RoyalChampion059",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000387": {
+   "name": "RoyalChampion060",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000388": {
+   "name": "DragonDuke011",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000389": {
+   "name": "DragonDuke012",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000390": {
+   "name": "DragonDuke013",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000391": {
+   "name": "DragonDuke014",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000392": {
+   "name": "DragonDuke015",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000393": {
+   "name": "DragonDuke016",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000394": {
+   "name": "DragonDuke017",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000395": {
+   "name": "DragonDuke018",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000396": {
+   "name": "DragonDuke019",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000397": {
+   "name": "DragonDuke020",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000398": {
+   "name": "Skeletons of Darkness",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000399": {
+   "name": "ArcherQueen071",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000400": {
+   "name": "ArcherQueen072",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000401": {
+   "name": "ArcherQueen073",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000402": {
+   "name": "ArcherQueen074",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000403": {
+   "name": "ArcherQueen075",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000404": {
+   "name": "ArcherQueen076",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000405": {
+   "name": "ArcherQueen077",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000406": {
+   "name": "ArcherQueen078",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000407": {
+   "name": "ArcherQueen079",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000408": {
+   "name": "ArcherQueen080",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000409": {
+   "name": "GrandWarden061",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000410": {
+   "name": "GrandWarden062",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000411": {
+   "name": "GrandWarden063",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000412": {
+   "name": "GrandWarden064",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000413": {
+   "name": "GrandWarden065",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000414": {
+   "name": "GrandWarden066",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000415": {
+   "name": "GrandWarden067",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000416": {
+   "name": "GrandWarden068",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000417": {
+   "name": "GrandWarden069",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000418": {
+   "name": "GrandWarden070",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000419": {
+   "name": "BarbarianKing081",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000420": {
+   "name": "BarbarianKing082",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000421": {
+   "name": "BarbarianKing083",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000422": {
+   "name": "BarbarianKing084",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000423": {
+   "name": "BarbarianKing085",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000424": {
+   "name": "BarbarianKing086",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000425": {
+   "name": "BarbarianKing087",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000426": {
+   "name": "BarbarianKing088",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000427": {
+   "name": "BarbarianKing089",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000428": {
+   "name": "BarbarianKing090",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000429": {
+   "name": "MinionHero031",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000430": {
+   "name": "MinionHero032",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000431": {
+   "name": "MinionHero033",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000432": {
+   "name": "MinionHero034",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000433": {
+   "name": "MinionHero035",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000434": {
+   "name": "MinionHero036",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000435": {
+   "name": "MinionHero037",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000436": {
+   "name": "MinionHero038",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000437": {
+   "name": "MinionHero039",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000438": {
+   "name": "MinionHero040",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000439": {
+   "name": "RoyalChampion061",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000440": {
+   "name": "RoyalChampion062",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000441": {
+   "name": "RoyalChampion063",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000442": {
+   "name": "RoyalChampion064",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000443": {
+   "name": "RoyalChampion065",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000444": {
+   "name": "RoyalChampion066",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000445": {
+   "name": "RoyalChampion067",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000446": {
+   "name": "RoyalChampion068",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000447": {
+   "name": "RoyalChampion069",
+   "report": "2026-11-16_0f8af5ebc59d"
+  },
+  "52000448": {
+   "name": "RoyalChampion070",
+   "report": "2026-11-16_0f8af5ebc59d"
+  }
+ }
+}

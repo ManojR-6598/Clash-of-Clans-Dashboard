@@ -16,6 +16,13 @@
       "source": "NotAmti/Clash-of-Clans-Datamine report 2026-11-16 (fingerprint 0f8af5ebc59d), Town Hall 19 update",
       "confidence": "inferred",
       "info": "Inferred: the report lists the update's new equipment rows in file order (Giant Arrow, Shield Brooch, Blizzard Axe; the same order in its abilities list), and the two IDs after Portal Pendant (90000061) are the only new rows. Confirm with the API sync or in game. Legendary is a new rarity; level costs aren't public yet."
+    },
+    "buildings:1000106": {
+      "name": "Squad Barracks",
+      "village": "home",
+      "source": "NotAmti/Clash-of-Clans-Datamine report 2026-11-16 (fingerprint 0f8af5ebc59d) plus export of 18 Nov 2026, 22:59",
+      "confidence": "inferred",
+      "note": "Inferred: first seen being built (L0) in a Town Hall 11 export. Of the buildings added since v18.200.9 without an ID, Squad Barracks (TownHallLevel 8, BuildCost 1,700,000) is the only Home Village one a Town Hall 11 can build; Guardian Shrine, Spiky Tower and Firecracker Tower need Town Hall 19 and BB Builders Hut is on the Builder Base. Confirm in game. Levels: 12, one per Town Hall from 8 to 19 (Clash of Clans Wiki, Squad Barracks page, 18 Nov 2026)."
     }
   }
 }
