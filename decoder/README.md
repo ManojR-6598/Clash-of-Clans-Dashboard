@@ -17,6 +17,7 @@ The previous export is optional. Keep exports in `decoder/exports/` and reports 
 | [clash-of-clans-data](https://github.com/chiefpansancolt/clash-of-clans-data) (bundled as `js/game-data.js`) | Names, levels, costs for gameplay items | v0.19.1, 29 Oct 2026 |
 | [coc.py](https://github.com/mathsman5133/coc.py) `coc/static/static_data.json` | Display names generated from the game's files, including cosmetics | 1 Dec 2025 |
 | Game data tables, [Enjoyop2/Clash-of-Clans-data-assets](https://github.com/Enjoyop2/Clash-of-Clans-data-assets) | Internal names and the ID of every row | game v18.200.9, Mar 2026 |
+| [NotAmti/Clash-of-Clans-Datamine](https://github.com/NotAmti/Clash-of-Clans-Datamine) | Names, rarity and file order of new rows in each update (no IDs); used through `overrides.json` | report of 16 Nov 2026 (Town Hall 19) |
 
 How IDs work in the game tables: `buildings`, `characters`, `spells` and `traps` have a `GlobalID` column. In every other table an ID is the table's base plus the row number, counting retired rows. Retired rows are sometimes reused for new items (for example `90000016` was a placeholder and is now Electro Fangs), so IDs can't be guessed from their order. The game's text file only stores hashes, so the tables confirm IDs and internal names but never display names.
 
@@ -38,6 +39,6 @@ Each entry has a status: **verified** (two sources agree), **single-source**, **
    node decoder/build-id-map.mjs path/to/static_data.json path/to/logic-folder v18.200.9
    ```
 
-3. For an ID no source has, research it (in-game screen, wiki, patch notes), add it to `decoder/overrides.json` with where the name came from, and rebuild. It then shows as **researched**.
+3. For an ID no source has, check the newest datamine report first, research it (in-game screen, wiki, patch notes), add it to `decoder/overrides.json` with where the name came from, and rebuild. It then shows as **researched**.
 
 Update `js/game-data.js` from the npm package to refresh levels and costs; the decoder and the dashboard share it.

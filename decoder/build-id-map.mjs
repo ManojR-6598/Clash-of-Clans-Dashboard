@@ -89,6 +89,7 @@ for (const [table, t] of Object.entries(TABLES)) {
   const rows = t.csv ? csvRows(t.csv, t.base) : null;
   const ids = new Set([...Object.keys(cp), ...Object.keys(rows || {})].map(Number));
   for (const it of GAME.items) if (it.id >= t.base && it.id < t.base + 1000000) ids.add(it.id);
+  for (const k of Object.keys(overrides)) if (k.startsWith(table + ":")) ids.add(Number(k.split(":")[1])); // IDs only an override knows
 
   for (const id of [...ids].sort((a, b) => a - b)) {
     const g = gameById[id], c = cp[id], row = rows ? rows[id] : null;
@@ -124,7 +125,7 @@ for (const [table, t] of Object.entries(TABLES)) {
       if (c?.info) e.info = c.info;
     }
     if (table === "skins" && c?.character) e.character = c.character;
-    if (overrides[`${table}:${id}`]) Object.assign(e, overrides[`${table}:${id}`], { status: "researched" });
+    if (overrides[`${table}:${id}`]) { Object.assign(e, overrides[`${table}:${id}`], { status: "researched" }); e.sources = [...e.sources, "overrides.json"]; if (table === "equipment" && !e.village) e.village = "home"; }
     (map[table] ||= {})[id] = e;
   }
 }

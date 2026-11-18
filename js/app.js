@@ -30,6 +30,15 @@ const LEARNED_KEY="coc-ledger-learned";
 function loadLearned(){try{return JSON.parse(localStorage.getItem(LEARNED_KEY)||"[]")}catch(e){return[]}}
 function addLearned(items){for(const it of items)if(!BY_ID[it.id]){GAME.items.push(it);BY_ID[it.id]=it;}}
 addLearned(loadLearned());
+/* Town Hall 19 equipment from the NotAmti/Clash-of-Clans-Datamine report of 16 Nov 2026, newer than js/game-data.js.
+   IDs are inferred from the order of the update's new rows, so names learned from the API sync above take precedence.
+   Shield Brooch uses the shared epic upgrade table; Legendary costs aren't public yet, so Blizzard Axe isn't counted. */
+const DATAMINE_SRC="Clash of Clans Datamine, 16 Nov 2026";
+{const epic=equipTemplate(27);
+ addLearned([
+  epic&&{id:90000062,n:"Shield Brooch",b:"h",k:"equipment",lv:JSON.parse(JSON.stringify(epic.lv)),x:{hero:"royal-champion",rarity:"epic",datamine:DATAMINE_SRC}},
+  {id:90000063,n:"Blizzard Axe",b:"h",k:"equipment",lv:[[1,{SO:0,GO:0,SR:0},"",0,null,{blacksmith:1}]],x:{hero:"barbarian-king",rarity:"legendary",datamine:DATAMINE_SRC,levelsUnknown:true}},
+ ].filter(Boolean));}
 const ID={TH:1000001,BH:1000034,LAB:1000007,HH:1000071,BS:1000070,PH:1000068,SL:1000046,HUT:1000015,OTTO:1000078};
 function bldMaxAt(id,th){const it=BY_ID[id];if(!it)return 0;let m=0;for(const L of it.lv){if(L[4]==null||L[4]<=th)m=Math.max(m,L[0]);}return m;}
 function reqCaps(base,th){return base==="h"?{lab:bldMaxAt(ID.LAB,th),herohall:bldMaxAt(ID.HH,th),blacksmith:bldMaxAt(ID.BS,th),pethouse:bldMaxAt(ID.PH,th)}:{starlab:bldMaxAt(ID.SL,th)};}
@@ -68,15 +77,29 @@ const BB_GROUPS=[
    as soon as they're ready. Returns the upgrade's remaining seconds with that help counted. */
 const HELP_CD=23*3600,HELP_WORK=3600;
 const helperFor=e=>(e.data>=4000000&&e.data<5000000)||(e.data>=26000000&&e.data<27000000)?93000001:93000000;
-function helpedTimer(exp,e){
-  if(!e||!e.timer||!e.helper_recurrent||!exp)return e&&e.timer||0;
-  const h=(exp.helpers||[]).find(x=>x.data===helperFor(e));if(!h||!h.lvl)return e.timer;
-  const rate=h.lvl+1;let pos=0,left=e.timer,s=h.helper_cooldown?h.helper_cooldown-HELP_CD:0;
+const HELPER_NAME={93000000:"Builder's Apprentice",93000001:"Lab Assistant"};
+function helperPlan(exp,e){
+  if(!e||!e.timer||!e.helper_recurrent||!exp)return null;
+  const h=(exp.helpers||[]).find(x=>x.data===helperFor(e));if(!h||!h.lvl)return null;
+  const rate=h.lvl+1,wins=[];let pos=0,left=e.timer,s=h.helper_cooldown?h.helper_cooldown-HELP_CD:0;
   for(let i=0;i<400&&left>0;i++,s+=HELP_CD){const we=s+HELP_WORK;if(we<=pos)continue;const ws=Math.max(pos,s);
-    if(left<=ws-pos){pos+=left;left=0;break;}left-=ws-pos;pos=ws;
+    if(left<=ws-pos){pos+=left;left=0;break;}left-=ws-pos;pos=ws;wins.push([s,we]);
     if(left<=(we-pos)*rate){pos+=left/rate;left=0;break;}left-=(we-pos)*rate;pos=we;}
-  return Math.round(pos+left);}
-const helperWorking=(exp,id)=>{const h=(exp.helpers||[]).find(x=>x.data===id);return!!(h&&h.lvl&&h.helper_cooldown>HELP_CD-HELP_WORK);};
+  return{name:HELPER_NAME[h.data]||"Helper",lvl:h.lvl,timer:e.timer,wins,end:Math.round(pos+left)};}
+function helpedTimer(exp,e){const p=helperPlan(exp,e);return p?p.end:(e&&e.timer||0);}
+/* the in-game timer at a moment: it runs at helper speed inside a working window and at normal speed outside */
+function helpLeft(hp,ts,now){const t=(now-ts)/1000;let extra=0;for(const [a,b] of hp.w)extra+=Math.max(0,Math.min(b,t)-Math.max(a,0));return Math.max(0,hp.t-t-hp.l*extra);}
+function helpStatus(hp,ts,now){const t=(now-ts)/1000;const L=fmtDur(hp.l*HELP_WORK);
+  const cur=hp.w.find(([a,b])=>t>=a&&t<b),next=hp.w.find(([a])=>a>t);
+  if(helpLeft(hp,ts,now)<=0)return`${hp.n} L${hp.l} helped`;
+  if(cur)return`⚡ ${hp.n} L${hp.l} at ${hp.l+1}× speed · ${fmtDur(t-cur[0])} used, ${fmtDur(cur[1]-t)} left`;
+  if(next)return`${hp.n} L${hp.l} next helps ${dateStr(ts+next[0]*1000)} · cuts ${L}`;
+  return hp.w.some(([,b])=>b<=t)?`${hp.n} L${hp.l} finished its hour (${fmtDur(hp.l*hp.w.reduce((x,[a,b])=>x+Math.max(0,Math.min(b,t)-Math.max(a,0)),0))} cut since the snapshot) · normal speed now`:`${hp.n} L${hp.l} · cuts up to ${L} a day`;}
+const helpAttr=t=>t.help?` data-help="${esc(JSON.stringify(t.help))}" data-ts="${t.ts}"`:"";
+const helpLine=t=>t.help?`<span class="small help">${esc(helpStatus(t.help,t.ts,Date.now()))}</span>`:"";
+const helpWorking=(hp,ts,now)=>{const t=(now-ts)/1000;return hp.w.some(([a,b])=>t>=a&&t<b)&&helpLeft(hp,ts,now)>0;};
+const helpIcon=t=>t.help?`<span class="help-ic" role="img" title="${esc(t.help.n)} working" aria-label="${esc(t.help.n)} working"${helpWorking(t.help,t.ts,Date.now())?"":" hidden"}>⚡</span>`:"";
+const cdLeft=(t,now)=>t.help?helpLeft(t.help,t.ts,now):(t.end-now)/1000;
 function collectOwned(list,exp){const m={};for(const e of list||[]){const n=e.cnt??1;(m[e.data]=m[e.data]||[]);for(let i=0;i<n;i++)m[e.data].push({lvl:e.lvl??0,timer:i===0&&e.timer?helpedTimer(exp,e):0,gear:!!e.gear_up,helper:!!e.helper_recurrent});}return m;}
 
 function computeVillage(exp,base){
@@ -96,6 +119,7 @@ function computeVillage(exp,base){
     const G={key:g.key,label:g.label,q:g.q,w:g.w,base,rows:[],done:0,rem:0,remTime:0,lock:0,remCost:{},doneLv:0,totLv:0};
     const items=GAME.items.filter(it=>it.b===base&&g.cats.includes(it.k));
     for(const it of items){
+      if(it.x&&it.x.levelsUnknown)continue;
       const src=g.src?ownedSrc:owned;
       const have=(src[it.id]||[]).slice();seen.add(it.id);
       const maxL=maxLevelAt(it,th,caps);const prevMax=th>1?maxLevelAt(it,th-1,prevCaps):0;
@@ -155,7 +179,7 @@ function computeVillage(exp,base){
 
 function timersOf(exp){
   const ts=(exp.timestamp||0)*1000;const out=[];
-  const add=(list,base,q)=>{for(const e of list||[]){if(!e.timer)continue;const it=BY_ID[e.data];const U=it?lvRow(it,(e.lvl||0)+1):null;const left=helpedTimer(exp,e);out.push({name:it?it.n:"Unknown "+e.data,to:(e.lvl||0)+1,end:ts+left*1000,full:Math.max(U?(U[3]||0):0,e.timer||0),q,base,saved:e.timer-left,helper:e.helper_recurrent?(helperFor(e)===93000001?"Lab Assistant":"Builder's Apprentice"):null,working:e.helper_recurrent&&helperWorking(exp,helperFor(e))});}};
+  const add=(list,base,q)=>{for(const e of list||[]){if(!e.timer)continue;const it=BY_ID[e.data];const U=it?lvRow(it,(e.lvl||0)+1):null;const hp=helperPlan(exp,e);const left=hp?hp.end:e.timer;out.push({name:it?it.n:"Unknown "+e.data,to:(e.lvl||0)+1,end:ts+left*1000,full:Math.max(U?(U[3]||0):0,e.timer||0),q,base,ts,help:hp?{n:hp.name,l:hp.lvl,t:hp.timer,w:hp.wins}:null});}};
   add(exp.buildings,"Home","Builder");add(exp.traps,"Home","Builder");add(exp.heroes,"Home","Builder (hero)");
   add(exp.units,"Home","Laboratory");add(exp.spells,"Home","Laboratory");add(exp.siege_machines,"Home","Laboratory");add(exp.pets,"Home","Pet House");
   add(exp.buildings2,"Builder Base","Builder");add(exp.traps2,"Builder Base","Builder");add(exp.heroes2,"Builder Base","Builder (hero)");add(exp.units2,"Builder Base","Star Laboratory");
@@ -392,19 +416,19 @@ function viewOverview(V){
   `+nextPanel("Builder Base","builder");
 }
 function addAll(...os){const r={};for(const o of os)for(const k in o)r[k]=(r[k]||0)+o[k];return r;}
-function timerCard(t){const dn=t.end<=Date.now();return`<div class="timer${dn?" done":""}" data-end="${t.end}"><div><b>${esc(t.name)}</b>${t.to?` <span class="muted">→ L${t.to}</span>`:""}<div class="small muted">${esc(t.base)} · ${esc(t.q)} · <span class="when">${dn?"Finished ":""}${dateStr(t.end)}</span></div></div><div class="cd tnum">${fmtCd((t.end-Date.now())/1000)}</div></div>`;}
+function timerCard(t){const dn=t.end<=Date.now();return`<div class="timer${dn?" done":""}" data-end="${t.end}"${helpAttr(t)}><div><b>${esc(t.name)}</b> ${helpIcon(t)}${t.to?` <span class="muted">→ L${t.to}</span>`:""}<div class="small muted">${esc(t.base)} · ${esc(t.q)} · <span class="when">${dn?"Finished ":""}${dateStr(t.end)}</span></div>${helpLine(t)}</div><div class="cd tnum">${fmtCd(cdLeft(t,Date.now()))}</div></div>`;}
 function tStart(t){return t.full?t.end-t.full*1000:0;}
 function tPct(st,end,now){return st&&end>st?Math.max(0,Math.min(1,(now-st)/(end-st))):null;}
 function timerCardA(t){const now=Date.now(),dn=t.end<=now,st=t.to!=null?tStart(t):0,p=tPct(st,t.end,now);
-  return`<div class="tA${dn?" done":""}" data-end="${t.end}"${st?` data-start="${st}"`:""}><div class="tA-h"><b>${esc(t.name)}</b>${t.to?`<span class="tA-lv">L${t.to-1} → L${t.to}</span>`:""}</div>${st?`<div class="tA-trk"><div class="tA-fl" style="width:${dn?100:Math.round(p*100)}%"></div></div>`:""}<div class="tA-f"><span class="small muted"><span class="pc">${!dn&&p!=null?Math.round(p*100)+"% · ":""}</span>${esc(t.q)} · <span class="when">${dn?"Finished ":""}${dateStr(t.end)}</span></span><span class="cd tnum">${fmtCd((t.end-now)/1000)}</span></div></div>`;}
+  return`<div class="tA${dn?" done":""}" data-end="${t.end}"${st?` data-start="${st}"`:""}${t.help?` data-full="${t.full}"`:""}${helpAttr(t)}><div class="tA-h"><b>${esc(t.name)} ${helpIcon(t)}</b>${t.to?`<span class="tA-lv">L${t.to-1} → L${t.to}</span>`:""}</div>${st?`<div class="tA-trk"><div class="tA-fl" style="width:${dn?100:Math.round(p*100)}%"></div></div>`:""}<div class="tA-f"><span class="small muted"><span class="pc">${!dn&&p!=null?Math.round(p*100)+"% · ":""}</span>${esc(t.q)} · <span class="when">${dn?"Finished ":""}${dateStr(t.end)}</span></span><span class="cd tnum">${fmtCd(cdLeft(t,now))}</span></div>${helpLine(t)}</div>`;}
 function timerTileC(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),pet=/Pet/.test(t.q),cool=t.to==null;const cls=cool?"cool":pet?"pet":lab?"lab":"bld";const ic=cool?"⏱️":pet?"🐾":lab?"⚗️":"🔨";const lbl=cool?t.q:lab?t.q:pet?"Pet House":/hero/.test(t.q)?"Builder · hero":"Builder";
-  return`<div class="tC ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "><div class="tC-top"><div class="tC-n"><b>${esc(t.name)}</b>${t.to?` <span class="small muted">→ L${t.to}</span>`:""}</div><span class="tC-ic" role="img" title="${esc(lbl)}" aria-label="${esc(lbl)}">${ic}</span></div><div class="cd tnum">${fmtCd((t.end-now)/1000)}</div><span class="small muted when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span>${t.helper?`<span class="small help">${t.working?"⚡ "+esc(t.helper)+" working now":"With "+esc(t.helper)}${t.saved>0?" · "+fmtDur(t.saved)+" sooner":""}</span>`:""}</div>`;}
+  return`<div class="tC ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "${helpAttr(t)}><div class="tC-top"><div class="tC-n"><b>${esc(t.name)}</b>${t.to?` <span class="small muted">→ L${t.to}</span>`:""}</div><span class="tC-ics">${helpIcon(t)}<span class="tC-ic" role="img" title="${esc(lbl)}" aria-label="${esc(lbl)}">${ic}</span></span></div><div class="cd tnum">${fmtCd(cdLeft(t,now))}</div><span class="small muted when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span>${helpLine(t)}</div>`;}
 function timerRowB(t){const now=Date.now(),dn=t.end<=now;const lab=/Lab/.test(t.q),cool=t.to==null;const cls=lab?"lab":cool?"cool":"bld";const ic=lab?"⚗️":cool?"⏱️":"🔨";
-  return`<div class="tB ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "><span class="tB-ic" aria-hidden="true">${ic}</span><div class="tB-m"><b>${esc(t.name)}</b> <span class="small muted">${t.to?`L${t.to-1} → L${t.to} · `:""}<span class="when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span></span></div><span class="tB-pill cd tnum">${fmtCd((t.end-now)/1000)}</span></div>`;}
-let tickH=null;function tick(){clearInterval(tickH);const run=()=>{const now=Date.now();document.querySelectorAll("[data-end]").forEach(el=>{const end=+el.dataset.end;const s=(end-now)/1000;const c=el.querySelector(".cd");if(c)c.textContent=fmtCd(s);el.classList.toggle("done",s<=0);const w=el.querySelector(".when");if(w)w.textContent=(s<=0?"Finished ":(el.dataset.wp||""))+dateStr(end);const st=+el.dataset.start;if(st){const p=s<=0?1:tPct(st,end,now);const f=el.querySelector(".tA-fl");if(f)f.style.width=Math.round(p*100)+"%";const pc=el.querySelector(".pc");if(pc)pc.textContent=s<=0?"":Math.round(p*100)+"% · ";}});document.querySelectorAll("[data-ups]").forEach(el=>{const e=el.dataset.ups?el.dataset.ups.split(",").map(Number):[];const d=e.filter(x=>x<=now).length,r=e.length-d;el.textContent=`${r} upgrade${r===1?"":"s"} running${d?` · ${d} done`:""}`;});};run();tickH=setInterval(run,1000);}
+  return`<div class="tB ${cls}${dn?" done":""}" data-end="${t.end}" data-wp="Ends "${helpAttr(t)}><span class="tB-ic" aria-hidden="true">${ic}</span>${helpIcon(t)}<div class="tB-m"><b>${esc(t.name)}</b> <span class="small muted">${t.to?`L${t.to-1} → L${t.to} · `:""}<span class="when">${dn?"Finished ":"Ends "}${dateStr(t.end)}</span></span>${helpLine(t)}</div><span class="tB-pill cd tnum">${fmtCd(cdLeft(t,now))}</span></div>`;}
+let tickH=null;function tick(){clearInterval(tickH);const run=()=>{const now=Date.now();document.querySelectorAll("[data-end]").forEach(el=>{const end=+el.dataset.end;let s=(end-now)/1000;let hp=null;if(el.dataset.help){try{hp=JSON.parse(el.dataset.help);}catch(e){}}const gs=hp?helpLeft(hp,+el.dataset.ts,now):s;if(hp)s=Math.min(s,gs);const c=el.querySelector(".cd");if(c)c.textContent=fmtCd(gs);if(hp){const hl=el.querySelector(".help");if(hl)hl.textContent=helpStatus(hp,+el.dataset.ts,now);const hi=el.querySelector(".help-ic");if(hi)hi.hidden=!helpWorking(hp,+el.dataset.ts,now);}el.classList.toggle("done",s<=0);const w=el.querySelector(".when");if(w)w.textContent=(s<=0?"Finished ":(el.dataset.wp||""))+dateStr(end);const st=+el.dataset.start;if(st){const full=+el.dataset.full;const p=s<=0?1:hp&&full?Math.max(0,Math.min(1,1-gs/full)):tPct(st,end,now);const f=el.querySelector(".tA-fl");if(f)f.style.width=Math.round(p*100)+"%";const pc=el.querySelector(".pc");if(pc)pc.textContent=s<=0?"":Math.round(p*100)+"% · ";}});document.querySelectorAll("[data-ups]").forEach(el=>{const e=el.dataset.ups?el.dataset.ups.split(",").map(Number):[];const d=e.filter(x=>x<=now).length,r=e.length-d;el.textContent=`${r} upgrade${r===1?"":"s"} running${d?` · ${d} done`:""}`;});};run();tickH=setInterval(run,1000);}
 
 function copiesStr(r){const m={};for(const c of r.copies){const k=c.missing?"–":c.lvl+(c.timer?"↑":"");m[k]=(m[k]||0)+1;}return Object.entries(m).sort((a,b)=>parseInt(a[0])-parseInt(b[0])).map(([l,n])=>`<span class="lvl">${n>1?n+"×":""}${l==="–"?'<span style="color:var(--bad)">new</span>':"L"+l}</span>`).join(" ");}
-function statusChips(r){const c=[];const maxed=r.copies.every(x=>x.lvl>=r.maxL);if(maxed)c.push('<span class="chip good">Maxed</span>');else if(r.copies.every(x=>x.lvl>=r.maxL||(x.timer&&x.lvl+1>=r.maxL)))c.push('<span class="chip good">Maxed when done</span>');if(r.upgrading)c.push(`<span class="chip sky">Upgrading ${r.upgrading>1?r.upgrading:""}</span>`);if(r.missing)c.push(`<span class="chip bad">${r.missing} to build</span>`);if(r.rushed)c.push(`<span class="chip warn">${r.rushed} rushed</span>`);if(r.locked)c.push(`<span class="chip">needs ${esc(r.next.find(n=>n.blocked).blocked)} upgrade</span>`);if(r.copies.some(x=>x.gear))c.push('<span class="chip sky">Geared up</span>');if(r.copies.some(x=>x.helper))c.push('<span class="chip">Lab Assistant</span>');return c.join(" ");}
+function statusChips(r){const c=[];const maxed=r.copies.every(x=>x.lvl>=r.maxL);if(maxed)c.push('<span class="chip good">Maxed</span>');else if(r.copies.every(x=>x.lvl>=r.maxL||(x.timer&&x.lvl+1>=r.maxL)))c.push('<span class="chip good">Maxed when done</span>');if(r.upgrading)c.push(`<span class="chip sky">Upgrading ${r.upgrading>1?r.upgrading:""}</span>`);if(r.missing)c.push(`<span class="chip bad">${r.missing} to build</span>`);if(r.rushed)c.push(`<span class="chip warn">${r.rushed} rushed</span>`);if(r.locked)c.push(`<span class="chip">needs ${esc(r.next.find(n=>n.blocked).blocked)} upgrade</span>`);if(r.copies.some(x=>x.gear))c.push('<span class="chip sky">Geared up</span>');if(r.copies.some(x=>x.helper))c.push(`<span class="chip">${HELPER_NAME[helperFor({data:r.id})]}</span>`);return c.join(" ");}
 function groupTable(g,opts){
   opts=opts||{};const resKeys=g.q==="ore"?["SO","GO","SR"]:null;const m=mult(g.q,g.base);
   const pctLbl=v=>v!==1?` <span class="chip gold">${Math.round((v-1)*100)}%</span>`:"";
@@ -468,6 +492,7 @@ function viewHeroes(V){const h=V.P.home;const exp=V.P.exp;
   const notOwned=GAME.items.filter(i=>i.b==="h"&&i.k==="equipment"&&!(exp.equipment||[]).some(e=>e.data===i.id));
   return`<section class="panel"><div class="panel-h"><h2>Heroes, pets &amp; equipment</h2><span class="muted small">Hero Hall L${h.cur.herohall} (max ${h.caps.herohall}) · Blacksmith L${h.cur.blacksmith} (max ${h.caps.blacksmith}) · Pet House ${h.caps.pethouse?"L"+h.cur.pethouse+" (max "+h.caps.pethouse+")":"unlocks at TH14"}</span></div>${catBars(h,["hero","pet","equipment"])}</section>`
   +["hero","pet","equipment"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("")
+  +(()=>{const dm=(exp.equipment||[]).map(e=>({e,it:BY_ID[e.data]})).filter(o=>o.it&&o.it.x&&o.it.x.datamine);return dm.length?`<section class="panel"><p class="small muted" style="margin:0">New Town Hall 19 equipment, named from the ${esc(DATAMINE_SRC)} report: ${dm.map(o=>`${esc(o.it.n)} (${esc(heroName(o.it.x.hero))}, ${esc(o.it.x.rarity)}, L${o.e.lvl}, ID ${o.e.data})`).join(", ")}. The IDs are matched by the order the update added them, not yet confirmed. ${dm.some(o=>o.it.x.levelsUnknown)?"Legendary upgrade costs aren't public yet, so Blizzard Axe isn't counted in progress.":""}</p></section>`:"";})()
   +(()=>{const nu=(exp.equipment||[]).filter(e=>!BY_ID[e.data]);return nu.length?`<section class="panel"><p class="small muted" style="margin:0">${nu.length} equipment piece${nu.length>1?"s":""} in your export ${nu.length>1?"aren't":"isn't"} in the game data yet, so ${nu.length>1?"they're":"it's"} not counted: ${nu.map(e=>`ID ${e.data} (L${e.lvl})`).join(", ")}. They're newer than every public equipment list. <button class="btn ghost sm" type="button" data-act="syncnames">Fetch names from Clash of Clans API</button></p></section>`:"";})()
   +(notOwned.length?`<section class="panel"><details><summary>${notOwned.length} equipment pieces not unlocked yet</summary><p class="small muted">${notOwned.map(i=>esc(i.n)+" ("+esc(heroName(i.x&&i.x.hero||""))+")").join(", ")}</p></details></section>`:"");}
 function viewLab(V){const h=V.P.home;return`<section class="panel"><div class="panel-h"><h2>Laboratory</h2><span class="muted small">Lab L${h.cur.lab} of ${h.caps.lab} at TH${h.th} · ${fmtDur(h.labTime)} of research left</span></div>${catBars(h,["troop","spell","siege"])}</section>`+["troop","spell","siege"].map(k=>h.by(k)).filter(g=>g&&g.rows.length).map(g=>groupTable(g)).join("");}
@@ -555,7 +580,7 @@ function viewLog(V){
 
 function viewAbout(){
   return`<section class="panel"><h2>Where the numbers come from</h2>
-  <p>Max levels, counts, costs and times come from the open-source <b>clash-of-clans-data</b> package (v0.19.1, sourced from the Clash of Clans Wiki), matched to your export by each item's in-game ID. It covers ${GAME.items.length} items up to Town Hall 18 and Builder Hall 10. TH19 isn't in it yet.</p>
+  <p>Max levels, counts, costs and times come from the open-source <b>clash-of-clans-data</b> package (v0.19.1, sourced from the Clash of Clans Wiki), matched to your export by each item's in-game ID. It covers items up to Town Hall 18 and Builder Hall 10, checked on 18 Nov 2026 as the newest release. Two Town Hall 19 equipment pieces, Shield Brooch and Blizzard Axe, are added from the <a href="https://github.com/NotAmti/Clash-of-Clans-Datamine" target="_blank" rel="noopener">Clash of Clans Datamine</a> report of 16 Nov 2026. Other Town Hall 19 content (Squad Barracks, new defences and levels) isn't in any public data with levels and costs yet.</p>
   <ul class="small">
    <li><b>Progress %</b> is the share of all upgrade time (builder and lab), from level 1 up to your current Town Hall's max, that you've finished. An upgrade in progress counts at the level it started from (L1 → L2 counts as L1) until a new export shows it finished. Walls and equipment use cost instead of time.</li>
    <li><b>Rushed</b> means a copy is below the previous Town Hall's max level.</li>

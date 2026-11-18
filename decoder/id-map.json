@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-17T10:47:58.968Z",
+ "generated": "2026-11-18T17:20:17.514Z",
  "sources": {
   "clash-of-clans-data": "npm clash-of-clans-data v0.19.1 (29 Oct 2026), bundled as js/game-data.js — https://github.com/chiefpansancolt/clash-of-clans-data",
   "coc.py": "coc/static/static_data.json, last updated 1 Dec 2025, generated from the game's files — https://github.com/mathsman5133/coc.py",
@@ -8870,6 +8870,34 @@
     "village": "home",
     "hero": "minion-prince",
     "rarity": "epic"
+   },
+   "90000062": {
+    "name": "Shield Brooch",
+    "internal": null,
+    "status": "researched",
+    "sources": [
+     "overrides.json"
+    ],
+    "hero": "royal-champion",
+    "rarity": "Epic",
+    "source": "NotAmti/Clash-of-Clans-Datamine report 2026-11-16 (fingerprint 0f8af5ebc59d), Town Hall 19 update",
+    "confidence": "inferred",
+    "info": "Inferred: the report lists the update's new equipment rows in file order (Giant Arrow, Shield Brooch, Blizzard Axe; the same order in its abilities list), and the two IDs after Portal Pendant (90000061) are the only new rows. Confirm with the API sync or in game.",
+    "village": "home"
+   },
+   "90000063": {
+    "name": "Blizzard Axe",
+    "internal": null,
+    "status": "researched",
+    "sources": [
+     "overrides.json"
+    ],
+    "hero": "barbarian-king",
+    "rarity": "Legendary",
+    "source": "NotAmti/Clash-of-Clans-Datamine report 2026-11-16 (fingerprint 0f8af5ebc59d), Town Hall 19 update",
+    "confidence": "inferred",
+    "info": "Inferred: the report lists the update's new equipment rows in file order (Giant Arrow, Shield Brooch, Blizzard Axe; the same order in its abilities list), and the two IDs after Portal Pendant (90000061) are the only new rows. Confirm with the API sync or in game. Legendary is a new rarity; level costs aren't public yet.",
+    "village": "home"
    }
   },
   "house_parts": {

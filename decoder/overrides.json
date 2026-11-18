@@ -1,4 +1,21 @@
 {
   "_comment": "Names researched by hand, keyed table:id (tables: buildings, traps, decos, obstacles, characters, heroes, spells, pets, equipment, house_parts, skins, sceneries, helpers, emotes). Each entry needs a name and a source, e.g. \"equipment:90000062\": {\"name\": \"...\", \"hero\": \"barbarian-king\", \"rarity\": \"Epic\", \"source\": \"in-game Blacksmith, 18 Nov 2026\"}. Rebuild with build-id-map.mjs after editing.",
-  "ids": {}
+  "ids": {
+    "equipment:90000062": {
+      "name": "Shield Brooch",
+      "hero": "royal-champion",
+      "rarity": "Epic",
+      "source": "NotAmti/Clash-of-Clans-Datamine report 2026-11-16 (fingerprint 0f8af5ebc59d), Town Hall 19 update",
+      "confidence": "inferred",
+      "info": "Inferred: the report lists the update's new equipment rows in file order (Giant Arrow, Shield Brooch, Blizzard Axe; the same order in its abilities list), and the two IDs after Portal Pendant (90000061) are the only new rows. Confirm with the API sync or in game."
+    },
+    "equipment:90000063": {
+      "name": "Blizzard Axe",
+      "hero": "barbarian-king",
+      "rarity": "Legendary",
+      "source": "NotAmti/Clash-of-Clans-Datamine report 2026-11-16 (fingerprint 0f8af5ebc59d), Town Hall 19 update",
+      "confidence": "inferred",
+      "info": "Inferred: the report lists the update's new equipment rows in file order (Giant Arrow, Shield Brooch, Blizzard Axe; the same order in its abilities list), and the two IDs after Portal Pendant (90000061) are the only new rows. Confirm with the API sync or in game. Legendary is a new rarity; level costs aren't public yet."
+    }
+  }
 }
